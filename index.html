@@ -87,23 +87,27 @@
       margin: 0 auto;
     }
 
-    .nav-brand {
+    .nav-left {
       display: flex;
       align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: inherit;
     }
 
-    
+    .nav-brand {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: #ffffff;
+      font-family: var(--serif);
+      font-size: 23px;
+      letter-spacing: -0.01em;
+      line-height: 1;
+      margin-right: 36px;
+      transition: opacity 0.2s ease;
+    }
 
-    
-
-    
-
-    
-
-    
+    .nav-brand:hover {
+      opacity: 0.85;
+    }
 
     .nav-links {
       display: flex;
@@ -394,32 +398,198 @@
       transform: translateY(-1px);
     }
 
+    /* Mobile Hamburger & Drawer */
+    .mobile-menu-btn {
+      display: none;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      width: 36px;
+      height: 36px;
+      padding: 6px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      z-index: 1010;
+    }
+
+    .mobile-menu-btn span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: #ffffff;
+      border-radius: 2px;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .mobile-menu-btn.active span:nth-child(1) {
+      transform: translateY(3.5px) rotate(45deg);
+    }
+
+    .mobile-menu-btn.active span:nth-child(2) {
+      transform: translateY(-3.5px) rotate(-45deg);
+    }
+
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(8, 8, 11, 0.98);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      z-index: 1005;
+      display: flex;
+      flex-direction: column;
+      padding: 84px 6vw 36px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-10px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      overflow-y: auto;
+    }
+
+    .mobile-drawer.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .mobile-drawer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .mobile-drawer-link {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 19px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .mobile-drawer-link.active {
+      color: #b8a58a;
+    }
+
+    .mobile-drawer-sublinks {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+      margin-bottom: 8px;
+      padding-left: 8px;
+    }
+
+    .mobile-drawer-sublink {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.65);
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      padding: 4px 10px;
+    }
+
+    .mobile-drawer-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: auto;
+      padding-top: 20px;
+    }
+
+    .mobile-drawer-pill {
+      background: #ffffff;
+      color: #000000;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 13px;
+      border-radius: 8px;
+      text-align: center;
+      display: block;
+    }
+
+    .mobile-drawer-master {
+      background: rgba(184, 165, 138, 0.15);
+      border: 1px solid rgba(184, 165, 138, 0.4);
+      color: #d8c4aa;
+      font-weight: 600;
+      font-size: 13.5px;
+      padding: 12px;
+      border-radius: 8px;
+      text-align: center;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--sans);
+    }
+
     /* Mobile Responsive (≤ 760px) */
     @media (max-width: 760px) {
       nav.hero-nav {
-        left: 5vw;
-        right: 5vw;
-        top: 2.5vh;
+        left: 4vw;
+        right: 4vw;
+        top: 2vh;
+        height: 48px;
       }
-      .nav-links, .nav-actions .sign-in {
+      .nav-brand {
+        font-size: 20px;
+        margin-right: 0;
+      }
+      .nav-links, .nav-actions .sign-in, .nav-actions .nav-pill {
+        display: none !important;
+      }
+      .nav-master-btn {
+        padding: 6px 9px;
+      }
+      .nav-master-btn span {
         display: none;
       }
-      .wordmark-container {
-        --fs: 36vw;
-        top: 14vh;
+      .mobile-menu-btn {
+        display: flex;
       }
-      .link-row {
-        top: 36vh;
-        flex-wrap: wrap;
-        padding: 0 8vw;
-        gap: 12px;
-        font-size: 11px;
+      .wordmark-container {
+        --fs: clamp(44px, 20vw, 100px);
+        top: 15vh;
       }
       .skill-card-hud {
-        left: 5vw;
-        right: 5vw;
-        bottom: 2.5vh;
+        left: 14px;
+        right: 14px;
+        bottom: 16px;
+        min-width: 0;
         max-width: none;
+        padding: 16px 18px;
+        border-radius: 12px;
+      }
+      .hud-title {
+        font-size: 17px;
+        margin-bottom: 6px;
+      }
+      .hud-desc {
+        font-size: 12.5px;
+        line-height: 1.45;
+        margin-bottom: 12px;
+      }
+      .hud-footer {
+        padding-top: 10px;
+        gap: 10px;
+      }
+      .hud-btn {
+        padding: 6px 12px;
+        font-size: 11.5px;
       }
     }
   
@@ -459,37 +629,40 @@
 
   <!-- Top Nav: z 5 -->
   <nav class="hero-nav" id="heroNav">
-    <div class="nav-links">
-      <div class="nav-item">
-        <a href="index.html" class="nav-link active">Home</a>
-      </div>
-      
-      <div class="nav-item">
-        <a href="skills.html" class="nav-link">Skills 
-          <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-        </a>
-        <div class="dropdown-menu">
-          <a href="skills.html?cat=all">All Skills</a>
-          <a href="skills.html?cat=design">Frontend & Design</a>
-          <a href="skills.html?cat=engineering">Design Engineering</a>
-          <a href="skills.html?cat=audit">Audits & Hardening</a>
-          <a href="skills.html?cat=frameworks">Frameworks & Next.js</a>
+    <div class="nav-left">
+      <a href="index.html" class="nav-brand">Skilla</a>
+      <div class="nav-links">
+        <div class="nav-item">
+          <a href="index.html" class="nav-link active">Home</a>
         </div>
-      </div>
-      <div class="nav-item">
-        <a href="foundations.html" class="nav-link">Foundations</a>
-      </div>
-      <div class="nav-item">
-        <a href="workflows.html" class="nav-link">Workflows</a>
-      </div>
-      <div class="nav-item">
-        <a href="more.html" class="nav-link">More 
-          <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-        </a>
-        <div class="dropdown-menu">
-          <a href="more.html#mcp">MCP Servers</a>
-          <a href="more.html#guidelines">Playbook Guidelines</a>
-          <a href="more.html#faq">FAQ & Documentation</a>
+        
+        <div class="nav-item">
+          <a href="skills.html" class="nav-link">Skills 
+            <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <div class="dropdown-menu">
+            <a href="skills.html?cat=all">All Skills</a>
+            <a href="skills.html?cat=design">Frontend & Design</a>
+            <a href="skills.html?cat=engineering">Design Engineering</a>
+            <a href="skills.html?cat=audit">Audits & Hardening</a>
+            <a href="skills.html?cat=frameworks">Frameworks & Next.js</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="foundations.html" class="nav-link">Foundations</a>
+        </div>
+        <div class="nav-item">
+          <a href="workflows.html" class="nav-link">Workflows</a>
+        </div>
+        <div class="nav-item">
+          <a href="more.html" class="nav-link">More 
+            <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <div class="dropdown-menu">
+            <a href="more.html#mcp">MCP Servers</a>
+            <a href="more.html#guidelines">Playbook Guidelines</a>
+            <a href="more.html#faq">FAQ & Documentation</a>
+          </div>
         </div>
       </div>
     </div>
@@ -503,8 +676,52 @@
       <a href="explore.html" class="nav-pill">
         Explore 2,900+ Skills ↗
       </a>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Navigation">
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </nav>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer-links">
+      <a href="index.html" class="mobile-drawer-link active">Home</a>
+      
+      <div>
+        <a href="skills.html" class="mobile-drawer-link">Skills <span>↗</span></a>
+        <div class="mobile-drawer-sublinks">
+          <a href="skills.html?cat=all" class="mobile-drawer-sublink">All Skills</a>
+          <a href="skills.html?cat=design" class="mobile-drawer-sublink">Design & UI</a>
+          <a href="skills.html?cat=engineering" class="mobile-drawer-sublink">Engineering</a>
+          <a href="skills.html?cat=audit" class="mobile-drawer-sublink">Audits</a>
+          <a href="skills.html?cat=frameworks" class="mobile-drawer-sublink">Frameworks</a>
+        </div>
+      </div>
+      
+      <a href="foundations.html" class="mobile-drawer-link">Foundations <span>↗</span></a>
+      <a href="workflows.html" class="mobile-drawer-link">Workflows <span>↗</span></a>
+      
+      <div>
+        <a href="more.html" class="mobile-drawer-link">More <span>↗</span></a>
+        <div class="mobile-drawer-sublinks">
+          <a href="more.html#mcp" class="mobile-drawer-sublink">MCP Servers</a>
+          <a href="more.html#guidelines" class="mobile-drawer-sublink">Guidelines</a>
+          <a href="more.html#faq" class="mobile-drawer-sublink">FAQ</a>
+        </div>
+      </div>
+      
+      <a href="submit.html" class="mobile-drawer-link">Submit a Playbook <span>↗</span></a>
+    </div>
+
+    <div class="mobile-drawer-actions">
+      <a href="explore.html" class="mobile-drawer-pill">Explore 2,900+ Community Skills ↗</a>
+      <button class="mobile-drawer-master" onclick="copyMasterSkillBundle()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#b8a58a" stroke="#b8a58a"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        <span>Copy Master Skill Bundle</span>
+      </button>
+    </div>
+  </div>
 
   <!-- Giant Serif Wordmark: z 1 -->
   <div class="wordmark-container" id="wordmarkContainer">
@@ -1146,6 +1363,56 @@
       mouseNDC.x = (e.clientX / window.innerWidth) * 2 - 1;
       mouseNDC.y = -(e.clientY / window.innerHeight) * 2 + 1;
     }
+
+    // Mobile Menu Toggle
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    if (mobileBtn && mobileDrawer) {
+      mobileBtn.addEventListener('click', () => {
+        const isOpen = mobileBtn.classList.toggle('active');
+        mobileDrawer.classList.toggle('active');
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+      });
+
+      // Close drawer when clicking a link
+      mobileDrawer.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileBtn.classList.remove('active');
+          mobileDrawer.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      });
+    }
+
+    // Touch event support for mobile devices
+    function onTouchInteract(e) {
+      if (e.target.closest('nav') || e.target.closest('.skill-card-hud') || e.target.closest('.mobile-drawer')) {
+        return;
+      }
+      const touch = e.touches[0];
+      if (!touch) return;
+      pointer.x = touch.clientX;
+      pointer.y = touch.clientY;
+      pointer.inside = true;
+      pointer.lastMoveTime = performance.now();
+
+      mouseNDC.x = (touch.clientX / window.innerWidth) * 2 - 1;
+      mouseNDC.y = -(touch.clientY / window.innerHeight) * 2 + 1;
+
+      // Raycast to find touched book and open HUD
+      raycaster.setFromCamera(mouseNDC, camera);
+      const intersects = raycaster.intersectObjects(raycastMeshes);
+      if (intersects.length > 0) {
+        const hitMesh = intersects[0].object;
+        if (hitMesh.userData.data) {
+          updateHud(hitMesh.userData.data);
+          scrollActiveUntil = performance.now() + 4000;
+        }
+      }
+    }
+
+    window.addEventListener('touchstart', onTouchInteract, { passive: true });
+    window.addEventListener('touchmove', onTouchInteract, { passive: true });
 
     window.addEventListener('pointermove', onPointerMove);
     window.addEventListener('pointerleave', () => {

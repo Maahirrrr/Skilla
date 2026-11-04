@@ -467,12 +467,192 @@
       opacity: 1;
     }
 
+    /* Mobile Hamburger & Drawer */
+    .mobile-menu-btn {
+      display: none;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      width: 36px;
+      height: 36px;
+      padding: 6px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      z-index: 1010;
+    }
+
+    .mobile-menu-btn span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: #ffffff;
+      border-radius: 2px;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .mobile-menu-btn.active span:nth-child(1) {
+      transform: translateY(3.5px) rotate(45deg);
+    }
+
+    .mobile-menu-btn.active span:nth-child(2) {
+      transform: translateY(-3.5px) rotate(-45deg);
+    }
+
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(8, 8, 11, 0.98);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      z-index: 1005;
+      display: flex;
+      flex-direction: column;
+      padding: 84px 6vw 36px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-10px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      overflow-y: auto;
+    }
+
+    .mobile-drawer.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .mobile-drawer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .mobile-drawer-link {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 19px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .mobile-drawer-link.active {
+      color: #b8a58a;
+    }
+
+    .mobile-drawer-sublinks {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+      margin-bottom: 8px;
+      padding-left: 8px;
+    }
+
+    .mobile-drawer-sublink {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.65);
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      padding: 4px 10px;
+    }
+
+    .mobile-drawer-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: auto;
+      padding-top: 20px;
+    }
+
+    .mobile-drawer-pill {
+      background: #ffffff;
+      color: #000000;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 13px;
+      border-radius: 8px;
+      text-align: center;
+      display: block;
+    }
+
+    .mobile-drawer-master {
+      background: rgba(184, 165, 138, 0.15);
+      border: 1px solid rgba(184, 165, 138, 0.4);
+      color: #d8c4aa;
+      font-weight: 600;
+      font-size: 13.5px;
+      padding: 12px;
+      border-radius: 8px;
+      text-align: center;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--sans);
+    }
+
     @media (max-width: 760px) {
-      .nav-links, .nav-actions .sign-in {
+      nav.site-nav {
+        padding: 0 4vw;
+        height: 60px;
+      }
+      .nav-brand {
+        font-size: 20px;
+        margin-right: 0;
+      }
+      .nav-links, .nav-actions .sign-in, .nav-actions .nav-pill {
+        display: none !important;
+      }
+      .nav-master-btn {
+        padding: 6px 9px;
+      }
+      .nav-master-btn span {
         display: none;
+      }
+      .mobile-menu-btn {
+        display: flex;
+      }
+      main.page-container {
+        padding: 85px 4vw 60px;
+      }
+      .page-title {
+        font-size: clamp(28px, 6.5vw, 44px);
+      }
+      .skills-filter {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        padding-bottom: 8px;
+        -webkit-overflow-scrolling: touch;
+      }
+      .filter-btn {
+        flex-shrink: 0;
       }
       .skills-grid {
         grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .skill-card {
+        padding: 20px;
+      }
+      .modal-card {
+        width: 94vw;
+        max-height: 82vh;
       }
     }
   
@@ -557,8 +737,52 @@
       </button>
       <a href="submit.html" class="sign-in">Submit Skill</a>
       <a href="explore.html" class="nav-pill">Explore 2,900+ Skills ↗</a>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Navigation">
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </nav>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer-links">
+      <a href="index.html" class="mobile-drawer-link">Home <span>↗</span></a>
+      
+      <div>
+        <a href="skills.html" class="mobile-drawer-link active">Skills <span>↗</span></a>
+        <div class="mobile-drawer-sublinks">
+          <a href="skills.html?cat=all" class="mobile-drawer-sublink">All Skills</a>
+          <a href="skills.html?cat=design" class="mobile-drawer-sublink">Design & UI</a>
+          <a href="skills.html?cat=engineering" class="mobile-drawer-sublink">Engineering</a>
+          <a href="skills.html?cat=audit" class="mobile-drawer-sublink">Audits</a>
+          <a href="skills.html?cat=frameworks" class="mobile-drawer-sublink">Frameworks</a>
+        </div>
+      </div>
+      
+      <a href="foundations.html" class="mobile-drawer-link">Foundations <span>↗</span></a>
+      <a href="workflows.html" class="mobile-drawer-link">Workflows <span>↗</span></a>
+      
+      <div>
+        <a href="more.html" class="mobile-drawer-link">More <span>↗</span></a>
+        <div class="mobile-drawer-sublinks">
+          <a href="more.html#mcp" class="mobile-drawer-sublink">MCP Servers</a>
+          <a href="more.html#guidelines" class="mobile-drawer-sublink">Guidelines</a>
+          <a href="more.html#faq" class="mobile-drawer-sublink">FAQ</a>
+        </div>
+      </div>
+      
+      <a href="submit.html" class="mobile-drawer-link">Submit a Playbook <span>↗</span></a>
+    </div>
+
+    <div class="mobile-drawer-actions">
+      <a href="explore.html" class="mobile-drawer-pill">Explore 2,900+ Community Skills ↗</a>
+      <button class="mobile-drawer-master" onclick="copyMasterSkillBundle()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#b8a58a" stroke="#b8a58a"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        <span>Copy Master Skill Bundle</span>
+      </button>
+    </div>
+  </div>
 
   <!-- Main Content -->
   <main class="page-container">
@@ -902,6 +1126,30 @@
     }
 
     renderSkills();
+
+    // Mobile Menu Toggle
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    if (mobileBtn && mobileDrawer) {
+      mobileBtn.addEventListener('click', () => {
+        const isOpen = mobileBtn.classList.toggle('active');
+        mobileDrawer.classList.toggle('active');
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+      });
+
+      mobileDrawer.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileBtn.classList.remove('active');
+          mobileDrawer.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      });
+    }
+          mobileDrawer.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      });
+    }
   </script>
 <script>
     const MASTER_BUNDLE_TEXT = `# Skilla Master Skill Bundle · All 20 Curated Playbooks\n\n1. Impeccable (pbakaus): https://github.com/pbakaus/impeccable\n2. Taste (Leonxlnx): https://github.com/Leonxlnx/taste-skill\n3. UI UX Pro Max (nextlevelbuilder): https://github.com/nextlevelbuilder/ui-ux-pro-max-skill\n4. Apple Design (dickwu): https://github.com/dickwu/apple-design-skill\n5. Anthropic Frontend Design: https://github.com/anthropics/skills/tree/main/skills/frontend-design\n6. Emil Kowalski Design Engineering: https://github.com/emilkowalski/skills\n7. Vercel Web Design Guidelines: https://github.com/vercel-labs/agent-skills\n8. Vercel React Best Practices: https://github.com/vercel-labs/agent-skills\n9. Anthropic Canvas Design: https://github.com/anthropics/skills/tree/main/skills/canvas-design\n10. Claude Code Frontend Skills: https://github.com/JaimeJunr/claude-code-frontend-skills\n11. Awesome Claude Design Skills: https://github.com/zhuyansen/awesome-claude-design-skills\n12. Awesome Claude Skills: https://github.com/karanb192/awesome-claude-skills\n13. Awesome Skills: https://github.com/gmh5225/awesome-skills\n14. Antigravity Awesome Skills: https://github.com/sickn33/antigravity-awesome-skills\n15. Awesome Claude Code: https://github.com/hesreallyhim/awesome-claude-code\n16. Awesome Design MD: https://github.com/VoltAgent/awesome-design-md\n17. Claude Skills Library: https://github.com/ViggyV/claude-skills\n18. Awesome Claude Code Skills: https://github.com/sujayjayjay/awesome-claude-code-skills\n19. SwiftUIX: https://github.com/SwiftUIX/SwiftUIX\n20. ECC Monolith Core: https://github.com/affaan-m/ECC\n\n---\nQuick CLI Install:\nagy skill add https://github.com/pbakaus/impeccable https://github.com/Leonxlnx/taste-skill https://github.com/nextlevelbuilder/ui-ux-pro-max-skill https://github.com/dickwu/apple-design-skill https://github.com/emilkowalski/skills https://github.com/vercel-labs/agent-skills https://github.com/sickn33/antigravity-awesome-skills https://github.com/affaan-m/ECC`;
