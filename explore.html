@@ -64,22 +64,26 @@
     }
 
     .nav-brand {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 12px;
       text-decoration: none;
-      color: inherit;
+      color: #ffffff;
+      font-family: var(--serif);
+      font-size: 23px;
+      letter-spacing: -0.01em;
+      line-height: 1;
+      margin-right: 36px;
+      transition: opacity 0.2s ease;
     }
 
-    
+    .nav-brand:hover {
+      opacity: 0.85;
+    }
 
-    
-
-    
-
-    
-
-    
+    .nav-left {
+      display: flex;
+      align-items: center;
+    }
 
     .nav-links {
       display: flex;
@@ -634,37 +638,40 @@
 
   <!-- Top Nav -->
   <nav class="site-nav">
-    <div class="nav-links">
-      <div class="nav-item">
-        <a href="index.html" class="nav-link">Home</a>
-      </div>
-      
-      <div class="nav-item">
-        <a href="skills.html" class="nav-link">Skills 
-          <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-        </a>
-        <div class="dropdown-menu">
-          <a href="skills.html?cat=all">All Skills</a>
-          <a href="skills.html?cat=design">Frontend & Design</a>
-          <a href="skills.html?cat=engineering">Design Engineering</a>
-          <a href="skills.html?cat=audit">Audits & Hardening</a>
-          <a href="skills.html?cat=frameworks">Frameworks & Next.js</a>
+    <div class="nav-left">
+      <a href="index.html" class="nav-brand">Skilla</a>
+      <div class="nav-links">
+        <div class="nav-item">
+          <a href="index.html" class="nav-link">Home</a>
         </div>
-      </div>
-      <div class="nav-item">
-        <a href="foundations.html" class="nav-link">Foundations</a>
-      </div>
-      <div class="nav-item">
-        <a href="workflows.html" class="nav-link">Workflows</a>
-      </div>
-      <div class="nav-item">
-        <a href="more.html" class="nav-link">More 
-          <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-        </a>
-        <div class="dropdown-menu">
-          <a href="more.html#mcp">MCP Servers</a>
-          <a href="more.html#guidelines">Playbook Guidelines</a>
-          <a href="more.html#faq">FAQ & Documentation</a>
+        
+        <div class="nav-item">
+          <a href="skills.html" class="nav-link">Skills 
+            <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <div class="dropdown-menu">
+            <a href="skills.html?cat=all">All Skills</a>
+            <a href="skills.html?cat=design">Frontend & Design</a>
+            <a href="skills.html?cat=engineering">Design Engineering</a>
+            <a href="skills.html?cat=audit">Audits & Hardening</a>
+            <a href="skills.html?cat=frameworks">Frameworks & Next.js</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="foundations.html" class="nav-link">Foundations</a>
+        </div>
+        <div class="nav-item">
+          <a href="workflows.html" class="nav-link">Workflows</a>
+        </div>
+        <div class="nav-item">
+          <a href="more.html" class="nav-link">More 
+            <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <div class="dropdown-menu">
+            <a href="more.html#mcp">MCP Servers</a>
+            <a href="more.html#guidelines">Playbook Guidelines</a>
+            <a href="more.html#faq">FAQ & Documentation</a>
+          </div>
         </div>
       </div>
     </div>

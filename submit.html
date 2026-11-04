@@ -63,22 +63,26 @@
     }
 
     .nav-brand {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 12px;
       text-decoration: none;
-      color: inherit;
+      color: #ffffff;
+      font-family: var(--serif);
+      font-size: 23px;
+      letter-spacing: -0.01em;
+      line-height: 1;
+      margin-right: 36px;
+      transition: opacity 0.2s ease;
     }
 
-    
+    .nav-brand:hover {
+      opacity: 0.85;
+    }
 
-    
-
-    
-
-    
-
-    
+    .nav-left {
+      display: flex;
+      align-items: center;
+    }
 
     .nav-links {
       display: flex;
@@ -188,48 +192,48 @@
 
     /* Main Container */
     main.page-container {
-      max-width: 1100px;
+      max-width: 1120px;
       margin: 0 auto;
-      padding: 130px 5vw 80px;
+      padding: 96px 5vw 40px;
     }
 
     .header-hero {
       text-align: center;
-      margin-bottom: 50px;
+      margin-bottom: 24px;
     }
 
     .category-tag {
       display: inline-block;
       font-family: var(--mono);
-      font-size: 11px;
+      font-size: 10.5px;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: #b8a58a;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
     }
 
     .page-title {
       font-family: var(--serif);
-      font-size: clamp(38px, 5.5vw, 68px);
+      font-size: clamp(30px, 3.8vw, 44px);
       font-weight: 400;
-      line-height: 1.05;
+      line-height: 1.1;
       letter-spacing: -0.02em;
-      margin-bottom: 16px;
+      margin-bottom: 10px;
     }
 
     .page-subtitle {
-      font-size: 16px;
+      font-size: 15px;
       color: var(--muted);
-      max-width: 640px;
+      max-width: 620px;
       margin: 0 auto;
-      line-height: 1.6;
+      line-height: 1.5;
     }
 
     /* Submit Form & Live Preview Layout */
     .submit-layout {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 32px;
+      gap: 28px;
       align-items: start;
     }
 
@@ -237,18 +241,18 @@
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 14px;
-      padding: 32px;
+      padding: 24px 26px;
     }
 
     .form-group {
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
 
     .form-label {
       display: block;
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 600;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       color: #ddd;
     }
 
@@ -257,10 +261,10 @@
       background: #000;
       border: 1px solid rgba(255, 255, 255, 0.14);
       border-radius: 8px;
-      padding: 12px 16px;
+      padding: 10px 14px;
       color: #fff;
       font-family: var(--sans);
-      font-size: 14px;
+      font-size: 13.5px;
       outline: none;
       transition: border-color 0.2s;
     }
@@ -270,7 +274,7 @@
     }
 
     .form-textarea {
-      height: 110px;
+      height: 90px;
       resize: vertical;
       line-height: 1.5;
     }
@@ -281,7 +285,7 @@
       border-radius: 14px;
       overflow: hidden;
       position: sticky;
-      top: 100px;
+      top: 90px;
     }
 
     .preview-header {
@@ -302,14 +306,30 @@
     }
 
     pre.preview-code {
-      padding: 24px;
+      padding: 20px 22px;
       font-family: var(--mono);
       font-size: 12px;
       line-height: 1.6;
       color: #e2e8f0;
       background: #060608;
-      max-height: 480px;
+      max-height: 440px;
       overflow-y: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    pre.preview-code::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    pre.preview-code::-webkit-scrollbar-track {
+      background: #060608;
+    }
+
+    pre.preview-code::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 3px;
     }
 
     .submit-btn {
@@ -318,8 +338,8 @@
       color: #000000;
       border: none;
       border-radius: 8px;
-      padding: 14px;
-      font-size: 14px;
+      padding: 12px;
+      font-size: 13.5px;
       font-weight: 600;
       cursor: pointer;
       display: flex;
@@ -327,7 +347,7 @@
       justify-content: center;
       gap: 8px;
       transition: background 0.15s, transform 0.15s;
-      margin-top: 24px;
+      margin-top: 18px;
     }
 
     .submit-btn:hover {
@@ -397,37 +417,40 @@
 
   <!-- Top Nav -->
   <nav class="site-nav">
-    <div class="nav-links">
-      <div class="nav-item">
-        <a href="index.html" class="nav-link">Home</a>
-      </div>
-      
-      <div class="nav-item">
-        <a href="skills.html" class="nav-link">Skills 
-          <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-        </a>
-        <div class="dropdown-menu">
-          <a href="skills.html?cat=all">All Skills</a>
-          <a href="skills.html?cat=design">Frontend & Design</a>
-          <a href="skills.html?cat=engineering">Design Engineering</a>
-          <a href="skills.html?cat=audit">Audits & Hardening</a>
-          <a href="skills.html?cat=frameworks">Frameworks & Next.js</a>
+    <div class="nav-left">
+      <a href="index.html" class="nav-brand">Skilla</a>
+      <div class="nav-links">
+        <div class="nav-item">
+          <a href="index.html" class="nav-link">Home</a>
         </div>
-      </div>
-      <div class="nav-item">
-        <a href="foundations.html" class="nav-link">Foundations</a>
-      </div>
-      <div class="nav-item">
-        <a href="workflows.html" class="nav-link">Workflows</a>
-      </div>
-      <div class="nav-item">
-        <a href="more.html" class="nav-link">More 
-          <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-        </a>
-        <div class="dropdown-menu">
-          <a href="more.html#mcp">MCP Servers</a>
-          <a href="more.html#guidelines">Playbook Guidelines</a>
-          <a href="more.html#faq">FAQ & Documentation</a>
+        
+        <div class="nav-item">
+          <a href="skills.html" class="nav-link">Skills 
+            <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <div class="dropdown-menu">
+            <a href="skills.html?cat=all">All Skills</a>
+            <a href="skills.html?cat=design">Frontend & Design</a>
+            <a href="skills.html?cat=engineering">Design Engineering</a>
+            <a href="skills.html?cat=audit">Audits & Hardening</a>
+            <a href="skills.html?cat=frameworks">Frameworks & Next.js</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="foundations.html" class="nav-link">Foundations</a>
+        </div>
+        <div class="nav-item">
+          <a href="workflows.html" class="nav-link">Workflows</a>
+        </div>
+        <div class="nav-item">
+          <a href="more.html" class="nav-link">More 
+            <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <div class="dropdown-menu">
+            <a href="more.html#mcp">MCP Servers</a>
+            <a href="more.html#guidelines">Playbook Guidelines</a>
+            <a href="more.html#faq">FAQ & Documentation</a>
+          </div>
         </div>
       </div>
     </div>
@@ -469,7 +492,7 @@
             <option value="Frontend & UI">Frontend & UI</option>
             <option value="Design Engineering" selected>Design Engineering</option>
             <option value="Audits & Hardening">Audits & Hardening</option>
-            <option value="Multi-Putting the Pieces Together">Multi-Putting the Pieces Together</option>
+            <option value="Multi-Agent Workflows">Multi-Agent Workflows</option>
           </select>
         </div>
 
@@ -550,7 +573,7 @@ ${rules.split('\n').map(l => `- ${l}`).join('\n')}
     });
 
     prBtn.addEventListener('click', () => {
-      window.open('https://github.com/sickn33/antigravity-awesome-skills', '_blank');
+      window.open('https://github.com/Maahirrrr/Skilla/pulls', '_blank');
     });
 
     updatePreview();
