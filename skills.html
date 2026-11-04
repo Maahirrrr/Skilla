@@ -61,22 +61,57 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    .nav-brand {
+        .nav-brand {
       display: inline-flex;
       align-items: center;
+      gap: 12px;
       text-decoration: none;
       color: #ffffff;
-      font-family: var(--serif);
-      font-size: 23px;
-      letter-spacing: -0.01em;
-      line-height: 1;
-      margin-right: 36px;
+      margin-right: 32px;
       transition: opacity 0.2s ease;
     }
-
     .nav-brand:hover {
       opacity: 0.85;
     }
+
+    .brand-tile {
+      width: 28px;
+      height: 32px;
+      min-width: 28px;
+      min-height: 32px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.45);
+    }
+
+    .brand-meta {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+      text-align: left;
+    }
+
+    .brand-title {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      color: #ffffff;
+    }
+
+    .brand-sub {
+      font-family: var(--sans);
+      font-size: 9.5px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.45);
+      letter-spacing: -0.01em;
+      margin-top: 2px;
+      white-space: nowrap;
+    }
+
 
     .nav-left {
       display: flex;
@@ -357,6 +392,18 @@
       font-size: 10.5px;
       color: var(--dim);
       letter-spacing: 0.08em;
+    }
+
+    .card-stars {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: rgba(234, 179, 8, 0.12);
+      color: #facc15;
+      border: 1px solid rgba(234, 179, 8, 0.28);
+      letter-spacing: 0.02em;
     }
 
     .card-badge {
@@ -693,7 +740,26 @@
   <!-- Top Nav -->
   <nav class="site-nav">
     <div class="nav-left">
-      <a href="index.html" class="nav-brand">Skilla</a>
+      <a href="index.html" class="nav-brand">
+        <div class="brand-tile">
+          <svg width="28" height="32" viewBox="0 0 32 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="32" height="36" rx="7" fill="url(#skillaBg)"/>
+            <rect x="0.5" y="0.5" width="31" height="35" rx="6.5" stroke="rgba(255,255,255,0.25)"/>
+            <path d="M19.5 8.5C21.5 8.5 23 9.8 23 11.8C23 14.5 19.8 15.6 16.5 16.8C13.2 18 10 19.2 10 22.2C10 24.5 11.8 26.5 14.8 26.5C18.2 26.5 21 24.2 21.8 22H24C23.2 25.5 19.6 28.5 14.8 28.5C10.2 28.5 7.5 25.4 7.5 22C7.5 18.8 11 17.5 14.5 16.2C18 15 20.8 13.8 20.8 11.8C20.8 10.2 19.5 9.8 17.8 9.8C15 9.8 12.8 11.5 12 13.5H9.8C10.6 10.5 13.8 8.5 19.5 8.5Z" fill="#14110c"/>
+            <rect x="4.8" y="7" width="1.5" height="22" rx="0.75" fill="rgba(20,17,12,0.3)"/>
+            <defs>
+              <linearGradient id="skillaBg" x1="0" y1="0" x2="32" y2="36" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#d0ba9b"/>
+                <stop offset="1" stop-color="#a69072"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="brand-meta">
+          <span class="brand-title">Skilla</span>
+          <span class="brand-sub">curated agent playbooks</span>
+        </div>
+      </a>
       <div class="nav-links">
         <div class="nav-item">
           <a href="index.html" class="nav-link">Home</a>
@@ -802,10 +868,10 @@
       <div class="filters-row">
         <button class="filter-btn active" data-cat="all">All Skills (20)</button>
         <button class="filter-btn" data-cat="design">Frontend & UI (6)</button>
-        <button class="filter-btn" data-cat="engineering">Design Eng (4)</button>
+        <button class="filter-btn" data-cat="engineering">Design Eng (3)</button>
         <button class="filter-btn" data-cat="audit">Audits & Rules (3)</button>
         <button class="filter-btn" data-cat="curated">Anthropic & Official (4)</button>
-        <button class="filter-btn" data-cat="community">Community (3)</button>
+        <button class="filter-btn" data-cat="community">Community (4)</button>
       </div>
     </div>
 
@@ -818,226 +884,266 @@
   <script>
     const SKILLS = [
       {
-        num: "01",
-        title: "Impeccable",
-        author: "pbakaus",
-        cat: "audit",
-        desc: "Plan, audit, polish, and harden agent-crafted web interfaces with surgical precision.",
-        badge: "AUDIT & POLISH",
-        spine: "#16171a",
-        repo: "pbakaus/impeccable",
-        url: "https://github.com/pbakaus/impeccable"
+            "num": "01",
+            "title": "ECC Monolith",
+            "author": "affaan-m",
+            "stars": 296868,
+            "starsFormatted": "296.9k",
+            "cat": "engineering",
+            "desc": "Autonomous software engineering and code synthesis agent core playbooks.",
+            "badge": "AUTONOMOUS ENG",
+            "spine": "#1c2333",
+            "repo": "affaan-m/ECC",
+            "url": "https://github.com/affaan-m/ECC"
       },
       {
-        num: "02",
-        title: "Taste",
-        author: "Leonxlnx",
-        cat: "design",
-        desc: "Anti-generic frontend design rules, typographic hierarchy & art direction for LLMs.",
-        badge: "ART DIRECTION",
-        spine: "#c62420",
-        repo: "Leonxlnx/taste-skill",
-        url: "https://github.com/Leonxlnx/taste-skill"
+            "num": "02",
+            "title": "Frontend Design",
+            "author": "anthropics",
+            "stars": 187268,
+            "starsFormatted": "187.3k",
+            "cat": "curated",
+            "desc": "Distinctive UI direction & anti-template defaults directly from Anthropic.",
+            "badge": "CLAUDE OFFICIAL",
+            "spine": "#c76743",
+            "repo": "anthropics/skills",
+            "url": "https://github.com/anthropics/skills/tree/main/skills/frontend-design"
       },
       {
-        num: "03",
-        title: "UI UX Pro Max",
-        author: "nextlevelbuilder",
-        cat: "design",
-        desc: "Design intelligence system, palettes, font pairings, and usability rules.",
-        badge: "UX INTELLIGENCE",
-        spine: "#1b4bd1",
-        repo: "nextlevelbuilder/ui-ux-pro-max-skill",
-        url: "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill"
+            "num": "03",
+            "title": "UI UX Pro Max",
+            "author": "nextlevelbuilder",
+            "stars": 145015,
+            "starsFormatted": "145.0k",
+            "cat": "design",
+            "desc": "Design intelligence system, palettes, font pairings, and usability rules.",
+            "badge": "UX INTELLIGENCE",
+            "spine": "#1b4bd1",
+            "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
+            "url": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill"
       },
       {
-        num: "04",
-        title: "Apple Design",
-        author: "dickwu",
-        cat: "design",
-        desc: "Apple-style fluid motion, spatial materials, haptics & interaction patterns.",
-        badge: "HUMAN INTERFACE",
-        spine: "#1c1c1e",
-        repo: "dickwu/apple-design-skill",
-        url: "https://github.com/dickwu/apple-design-skill"
+            "num": "04",
+            "title": "Taste",
+            "author": "Leonxlnx",
+            "stars": 109785,
+            "starsFormatted": "109.8k",
+            "cat": "design",
+            "desc": "Anti-generic frontend design rules, typographic hierarchy & art direction.",
+            "badge": "ART DIRECTION",
+            "spine": "#c62420",
+            "repo": "Leonxlnx/taste-skill",
+            "url": "https://github.com/Leonxlnx/taste-skill"
       },
       {
-        num: "05",
-        title: "Anthropic Frontend Design",
-        author: "anthropics",
-        cat: "curated",
-        desc: "Distinctive UI direction & anti-template defaults directly from Anthropic.",
-        badge: "CLAUDE OFFICIAL",
-        spine: "#c76743",
-        repo: "anthropics/skills",
-        url: "https://github.com/anthropics/skills/tree/main/skills/frontend-design"
+            "num": "05",
+            "title": "Impeccable",
+            "author": "pbakaus",
+            "stars": 102022,
+            "starsFormatted": "102.0k",
+            "cat": "audit",
+            "desc": "Plan, audit, polish, and harden agent-crafted web interfaces with surgical precision.",
+            "badge": "AUDIT & POLISH",
+            "spine": "#16171a",
+            "repo": "pbakaus/impeccable",
+            "url": "https://github.com/pbakaus/impeccable"
       },
       {
-        num: "06",
-        title: "Emil Kowalski Design Engineering",
-        author: "emilkowalski",
-        cat: "engineering",
-        desc: "Kinetic animation, micro-interactions, polish, and production prototypes.",
-        badge: "ANIMATION ENGINE",
-        spine: "#5244d4",
-        repo: "emilkowalski/skills",
-        url: "https://github.com/emilkowalski/skills"
+            "num": "06",
+            "title": "Awesome Claude",
+            "author": "hesreallyhim",
+            "stars": 57221,
+            "starsFormatted": "57.2k",
+            "cat": "community",
+            "desc": "Skills, hooks, custom commands, devtools and plugins for Claude Code agent workflows.",
+            "badge": "ECOSYSTEM HUB",
+            "spine": "#7c3aed",
+            "repo": "hesreallyhim/awesome-claude-code",
+            "url": "https://github.com/hesreallyhim/awesome-claude-code"
       },
       {
-        num: "07",
-        title: "Vercel Web Design Guidelines",
-        author: "vercel-labs",
-        cat: "audit",
-        desc: "100-rule comprehensive UI audit for accessibility, speed, and typography.",
-        badge: "DESIGN AUDIT",
-        spine: "#0a0a0a",
-        repo: "vercel-labs/agent-skills",
-        url: "https://github.com/vercel-labs/agent-skills"
+            "num": "07",
+            "title": "Design Eng.",
+            "author": "emilkowalski",
+            "stars": 53397,
+            "starsFormatted": "53.4k",
+            "cat": "engineering",
+            "desc": "Kinetic animation, micro-interactions, polish, and production prototypes.",
+            "badge": "ANIMATION ENGINE",
+            "spine": "#2563eb",
+            "repo": "emilkowalski/skills",
+            "url": "https://github.com/emilkowalski/skills"
       },
       {
-        num: "08",
-        title: "Vercel React Best Practices",
-        author: "vercel-labs",
-        cat: "engineering",
-        desc: "Deep React 19, Server Components & Next.js performance architecture.",
-        badge: "NEXT.JS ENGINE",
-        spine: "#006adc",
-        repo: "vercel-labs/agent-skills",
-        url: "https://github.com/vercel-labs/agent-skills"
+            "num": "08",
+            "title": "Antigravity Skills",
+            "author": "sickn33",
+            "stars": 49130,
+            "starsFormatted": "49.1k",
+            "cat": "curated",
+            "desc": "1,400+ installable agent playbooks covering modern frontend and systems engineering.",
+            "badge": "PLAYBOOK REPO",
+            "spine": "#059669",
+            "repo": "sickn33/antigravity-awesome-skills",
+            "url": "https://github.com/sickn33/antigravity-awesome-skills"
       },
       {
-        num: "09",
-        title: "Anthropic Canvas Design",
-        author: "anthropics",
-        cat: "curated",
-        desc: "Posters, graphic covers, vector layouts, and static visual composition.",
-        badge: "POSTER & COVER",
-        spine: "#d95f43",
-        repo: "anthropics/skills",
-        url: "https://github.com/anthropics/skills/tree/main/skills/canvas-design"
+            "num": "09",
+            "title": "React Best Practices",
+            "author": "vercel-labs",
+            "stars": 33511,
+            "starsFormatted": "33.5k",
+            "cat": "curated",
+            "desc": "React and Next.js performance patterns, clean architecture, and server components.",
+            "badge": "PERFORMANCE",
+            "spine": "#0284c7",
+            "repo": "vercel-labs/agent-skills",
+            "url": "https://github.com/vercel-labs/agent-skills"
       },
       {
-        num: "10",
-        title: "Claude Code Frontend Skills",
-        author: "JaimeJunr",
-        cat: "curated",
-        desc: "Curated bundle of Impeccable, Taste, UI UX Pro Max, Emil & Anthropic.",
-        badge: "CURATED BUNDLE",
-        spine: "#b45309",
-        repo: "JaimeJunr/claude-code-frontend-skills",
-        url: "https://github.com/JaimeJunr/claude-code-frontend-skills"
+            "num": "10",
+            "title": "Vercel UI Audit",
+            "author": "vercel-labs",
+            "stars": 33511,
+            "starsFormatted": "33.5k",
+            "cat": "audit",
+            "desc": "Strict production audits, bundle hygiene, accessibility and typography rules.",
+            "badge": "VERCEL QUALITY",
+            "spine": "#171717",
+            "repo": "vercel-labs/agent-skills",
+            "url": "https://github.com/vercel-labs/agent-skills"
       },
       {
-        num: "11",
-        title: "Awesome Claude Design Skills",
-        author: "zhuyansen",
-        cat: "design",
-        desc: "Curated directory of high-craft Claude Code design instructions.",
-        badge: "DIRECTORY",
-        spine: "#047857",
-        repo: "zhuyansen/awesome-claude-design-skills",
-        url: "https://github.com/zhuyansen/awesome-claude-design-skills"
+            "num": "11",
+            "title": "Canvas Design",
+            "author": "anthropics",
+            "stars": 28400,
+            "starsFormatted": "28.4k",
+            "cat": "curated",
+            "desc": "Anthropic official design skills for static covers, editorial art direction, and layouts.",
+            "badge": "POSTER & COVER",
+            "spine": "#d97706",
+            "repo": "anthropics/skills",
+            "url": "https://github.com/anthropics/skills/tree/main/skills/canvas-design"
       },
       {
-        num: "12",
-        title: "Awesome Claude Skills",
-        author: "karanb192",
-        cat: "community",
-        desc: "50+ verified skills & prompts hardened for Claude Code workflows.",
-        badge: "VERIFIED 50+",
-        spine: "#6d28d9",
-        repo: "karanb192/awesome-claude-skills",
-        url: "https://github.com/karanb192/awesome-claude-skills"
+            "num": "12",
+            "title": "SwiftUIX",
+            "author": "SwiftUIX",
+            "stars": 8198,
+            "starsFormatted": "8.2k",
+            "cat": "engineering",
+            "desc": "SwiftUI component architecture alongside native Apple-style agent skills.",
+            "badge": "SWIFTUI & NATIVE",
+            "spine": "#0284c7",
+            "repo": "SwiftUIX/SwiftUIX",
+            "url": "https://github.com/SwiftUIX/SwiftUIX"
       },
       {
-        num: "13",
-        title: "Awesome Skills",
-        author: "gmh5225",
-        cat: "community",
-        desc: "Comprehensive playbook directory for Claude, Codex, Copilot and beyond.",
-        badge: "MULTI-AGENT",
-        spine: "#be185d",
-        repo: "gmh5225/awesome-skills",
-        url: "https://github.com/gmh5225/awesome-skills"
+            "num": "13",
+            "title": "Apple Design",
+            "author": "dickwu",
+            "stars": 2758,
+            "starsFormatted": "2.8k",
+            "cat": "design",
+            "desc": "Apple-style fluid motion, spatial materials, haptics & interaction patterns.",
+            "badge": "HUMAN INTERFACE",
+            "spine": "#1c1c1e",
+            "repo": "dickwu/apple-design-skill",
+            "url": "https://github.com/dickwu/apple-design-skill"
       },
       {
-        num: "14",
-        title: "Antigravity Awesome Skills",
-        author: "sickn33",
-        cat: "community",
-        desc: "1,400+ installable SKILL.md playbooks for autonomous agentic engineering.",
-        badge: "1,400+ PLAYBOOKS",
-        spine: "#1d4ed8",
-        repo: "sickn33/antigravity-awesome-skills",
-        url: "https://github.com/sickn33/antigravity-awesome-skills"
+            "num": "14",
+            "title": "Verified Skills",
+            "author": "karanb192",
+            "stars": 584,
+            "starsFormatted": "584",
+            "cat": "audit",
+            "desc": "50+ verified enterprise-grade skill workflows for Claude Code and coding agents.",
+            "badge": "VERIFIED PROTOCOL",
+            "spine": "#9333ea",
+            "repo": "karanb192/awesome-claude-skills",
+            "url": "https://github.com/karanb192/awesome-claude-skills"
       },
       {
-        num: "15",
-        title: "Awesome Claude Code",
-        author: "hesreallyhim",
-        cat: "curated",
-        desc: "Curated collection of skills, hooks, commands, tools and plugins.",
-        badge: "CLI TOOLING",
-        spine: "#059669",
-        repo: "hesreallyhim/awesome-claude-code",
-        url: "https://github.com/hesreallyhim/awesome-claude-code"
+            "num": "15",
+            "title": "Frontend Skills",
+            "author": "JaimeJunr",
+            "stars": 420,
+            "starsFormatted": "420",
+            "cat": "design",
+            "desc": "Curated bundle of Impeccable, Taste, UI UX Pro Max, Emil, and Anthropic skills.",
+            "badge": "FRONTEND BUNDLE",
+            "spine": "#db2777",
+            "repo": "JaimeJunr/claude-code-frontend-skills",
+            "url": "https://github.com/JaimeJunr/claude-code-frontend-skills"
       },
       {
-        num: "16",
-        title: "Awesome Design MD",
-        author: "VoltAgent",
-        cat: "design",
-        desc: "Brand-inspired DESIGN.md systems for autonomous UI scaffolding.",
-        badge: "DESIGN SYSTEMS",
-        spine: "#d97706",
-        repo: "VoltAgent/awesome-design-md",
-        url: "https://github.com/VoltAgent/awesome-design-md"
+            "num": "16",
+            "title": "Skills Library",
+            "author": "ViggyV",
+            "stars": 340,
+            "starsFormatted": "340",
+            "cat": "community",
+            "desc": "Comprehensive library combining official and community agent playbooks.",
+            "badge": "COMBINED LIBRARY",
+            "spine": "#2563eb",
+            "repo": "ViggyV/claude-skills",
+            "url": "https://github.com/ViggyV/claude-skills"
       },
       {
-        num: "17",
-        title: "Claude Skills Library",
-        author: "ViggyV",
-        cat: "community",
-        desc: "242 combined official and community-tested agent skill modules.",
-        badge: "LIBRARY 242",
-        spine: "#4338ca",
-        repo: "ViggyV/claude-skills",
-        url: "https://github.com/ViggyV/claude-skills"
+            "num": "17",
+            "title": "Design MD",
+            "author": "VoltAgent",
+            "stars": 215,
+            "starsFormatted": "215",
+            "cat": "design",
+            "desc": "Brand-inspired DESIGN.md systems for reliable UI scaffolding.",
+            "badge": "DESIGN SYSTEM",
+            "spine": "#ea580c",
+            "repo": "VoltAgent/awesome-design-md",
+            "url": "https://github.com/VoltAgent/awesome-design-md"
       },
       {
-        num: "18",
-        title: "Curated Code Skills",
-        author: "sujayjayjay",
-        cat: "community",
-        desc: "Selectively curated quality-first Claude Code playbook list.",
-        badge: "QUALITY FIRST",
-        spine: "#db2777",
-        repo: "sujayjayjay/awesome-claude-code-skills",
-        url: "https://github.com/sujayjayjay/awesome-claude-code-skills"
+            "num": "18",
+            "title": "Curated Skills",
+            "author": "sujayjayjay",
+            "stars": 160,
+            "starsFormatted": "160",
+            "cat": "community",
+            "desc": "Selectively curated quality-first Claude Code playbook list.",
+            "badge": "QUALITY FIRST",
+            "spine": "#db2777",
+            "repo": "sujayjayjay/awesome-claude-code-skills",
+            "url": "https://github.com/sujayjayjay/awesome-claude-code-skills"
       },
       {
-        num: "19",
-        title: "SwiftUIX",
-        author: "SwiftUIX",
-        cat: "engineering",
-        desc: "SwiftUI component architecture alongside native Apple-style agent skills.",
-        badge: "SWIFTUI & NATIVE",
-        spine: "#0284c7",
-        repo: "SwiftUIX/SwiftUIX",
-        url: "https://github.com/SwiftUIX/SwiftUIX"
+            "num": "19",
+            "title": "Awesome Skills",
+            "author": "gmh5225",
+            "stars": 97,
+            "starsFormatted": "97",
+            "cat": "community",
+            "desc": "Agent skills for Claude Code, OpenAI Codex, GitHub Copilot, and Cursor.",
+            "badge": "CROSS AGENT",
+            "spine": "#ca8a04",
+            "repo": "gmh5225/awesome-skills",
+            "url": "https://github.com/gmh5225/awesome-skills"
       },
       {
-        num: "20",
-        title: "ECC Monolith",
-        author: "affaan-m",
-        cat: "engineering",
-        desc: "Engineering and code synthesis agent core playbooks and workflows.",
-        badge: "CORE ENGINE",
-        spine: "#334155",
-        repo: "affaan-m/ECC",
-        url: "https://github.com/affaan-m/ECC"
+            "num": "20",
+            "title": "Claude Design",
+            "author": "zhuyansen",
+            "stars": 8,
+            "starsFormatted": "8",
+            "cat": "design",
+            "desc": "Specialized directory of aesthetic frontend and interface design playbooks.",
+            "badge": "DESIGN DIRECTORY",
+            "spine": "#475569",
+            "repo": "zhuyansen/awesome-claude-design-skills",
+            "url": "https://github.com/zhuyansen/awesome-claude-design-skills"
       }
-    ];
+];
 
     const grid = document.getElementById('skillsGrid');
     const searchInput = document.getElementById('searchInput');
@@ -1063,6 +1169,8 @@
         return matchesCat && matchesQuery;
       });
 
+      filtered.sort((a, b) => (b.stars || 0) - (a.stars || 0));
+
       if (filtered.length === 0) {
         grid.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 60px 0; color: #888;">
           No agent skills found matching your search.
@@ -1076,7 +1184,10 @@
           <div>
             <div class="card-top">
               <span class="card-num">VOLUME // ${s.num}</span>
-              <span class="card-badge">${s.badge}</span>
+              <div style="display:flex;align-items:center;gap:6px;">
+                <span class="card-stars">★ ${s.starsFormatted}</span>
+                <span class="card-badge">${s.badge}</span>
+              </div>
             </div>
             <h3 class="card-title">${s.title}</h3>
             <p class="card-desc">${s.desc}</p>
