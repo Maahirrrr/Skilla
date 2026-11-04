@@ -1,4 +1,4 @@
-# Skilla — 3D AI Agent Skills Archive
+# Skilla · 3D AI Agent Skills Archive
 
 > **An interactive 3D hero and registry of 2,900+ installable AI Agent Skills, system prompts, and autonomous coding playbooks.**
 

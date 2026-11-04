@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Submit a Skill — Skilla</title>
+  <title>Share a Playbook · Skilla</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -392,6 +392,37 @@
       .submit-layout { grid-template-columns: 1fr; }
       .nav-links, .nav-actions .sign-in { display: none; }
     }
+  
+    .nav-master-btn {
+      background: rgba(184, 165, 138, 0.12);
+      border: 1px solid rgba(184, 165, 138, 0.35);
+      color: #d8c4aa;
+      border-radius: 6px;
+      padding: 7px 13px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--sans);
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .nav-master-btn:hover {
+      background: rgba(184, 165, 138, 0.25);
+      color: #fff;
+      border-color: #b8a58a;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(184, 165, 138, 0.2);
+    }
+    .nav-master-btn svg {
+      width: 12px;
+      height: 12px;
+      stroke: #b8a58a;
+      fill: #b8a58a;
+    }
+
   </style>
 </head>
 <body>
@@ -399,10 +430,10 @@
   <!-- Top Nav -->
   <nav class="site-nav">
     <a href="index.html" class="nav-brand">
-      <div class="brand-tile"></div>
+      <div class="brand-tile"><svg width="28" height="32" viewBox="0 0 32 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="36" rx="7" fill="url(#skillaBg)"/><rect x="0.5" y="0.5" width="31" height="35" rx="6.5" stroke="rgba(255,255,255,0.22)"/><path d="M19.5 8.5C21.5 8.5 23 9.8 23 11.8C23 14.5 19.8 15.6 16.5 16.8C13.2 18 10 19.2 10 22.2C10 24.5 11.8 26.5 14.8 26.5C18.2 26.5 21 24.2 21.8 22H24C23.2 25.5 19.6 28.5 14.8 28.5C10.2 28.5 7.5 25.4 7.5 22C7.5 18.8 11 17.5 14.5 16.2C18 15 20.8 13.8 20.8 11.8C20.8 10.2 19.5 9.8 17.8 9.8C15 9.8 12.8 11.5 12 13.5H9.8C10.6 10.5 13.8 8.5 19.5 8.5Z" fill="#14110c"/><rect x="4.8" y="7" width="1.5" height="22" rx="0.75" fill="rgba(20,17,12,0.3)"/><defs><linearGradient id="skillaBg" x1="0" y1="0" x2="32" y2="36" gradientUnits="userSpaceOnUse"><stop stop-color="#d0ba9b"/><stop offset="1" stop-color="#a69072"/></linearGradient></defs></svg></div>
       <div class="brand-meta">
         <span class="brand-title">Skilla</span>
-        <span class="brand-sub">ai agent playbooks</span>
+        <span class="brand-sub">curated agent playbooks</span>
       </div>
     </a>
 
@@ -438,6 +469,10 @@
     </div>
 
     <div class="nav-actions">
+      <button class="nav-master-btn" onclick="copyMasterSkillBundle()" title="Copy all curated skill links and install script">
+        <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        <span>Master Skill</span>
+      </button>
       <a href="submit.html" class="sign-in active">Submit Skill</a>
       <a href="explore.html" class="nav-pill">Explore 2,900+ Skills ↗</a>
     </div>
@@ -446,9 +481,9 @@
   <!-- Main Content -->
   <main class="page-container">
     <div class="header-hero">
-      <span class="category-tag">CONTRIBUTE // OPEN REGISTRY</span>
-      <h1 class="page-title">Submit a Skill</h1>
-      <p class="page-subtitle">Publish your SKILL.md playbook to the Skilla ecosystem. Formatted live to match the official spec for Antigravity, Claude Code, and Codex.</p>
+      <span class="category-tag">SHARE YOUR WORK</span>
+      <h1 class="page-title">Share a Playbook</h1>
+      <p class="page-subtitle">Built a skill that makes coding agents write better software or design tastier layouts? Share it with the community.</p>
     </div>
 
     <div class="submit-layout">
@@ -470,7 +505,7 @@
             <option value="Frontend & UI">Frontend & UI</option>
             <option value="Design Engineering" selected>Design Engineering</option>
             <option value="Audits & Hardening">Audits & Hardening</option>
-            <option value="Multi-Agent Workflows">Multi-Agent Workflows</option>
+            <option value="Multi-Putting the Pieces Together">Multi-Putting the Pieces Together</option>
           </select>
         </div>
 
@@ -556,5 +591,23 @@ ${rules.split('\n').map(l => `- ${l}`).join('\n')}
 
     updatePreview();
   </script>
+<script>
+    const MASTER_BUNDLE_TEXT = `# Skilla Master Skill Bundle · All 20 Curated Playbooks\n\n1. Impeccable (pbakaus): https://github.com/pbakaus/impeccable\n2. Taste (Leonxlnx): https://github.com/Leonxlnx/taste-skill\n3. UI UX Pro Max (nextlevelbuilder): https://github.com/nextlevelbuilder/ui-ux-pro-max-skill\n4. Apple Design (dickwu): https://github.com/dickwu/apple-design-skill\n5. Anthropic Frontend Design: https://github.com/anthropics/skills/tree/main/skills/frontend-design\n6. Emil Kowalski Design Engineering: https://github.com/emilkowalski/skills\n7. Vercel Web Design Guidelines: https://github.com/vercel-labs/agent-skills\n8. Vercel React Best Practices: https://github.com/vercel-labs/agent-skills\n9. Anthropic Canvas Design: https://github.com/anthropics/skills/tree/main/skills/canvas-design\n10. Claude Code Frontend Skills: https://github.com/JaimeJunr/claude-code-frontend-skills\n11. Awesome Claude Design Skills: https://github.com/zhuyansen/awesome-claude-design-skills\n12. Awesome Claude Skills: https://github.com/karanb192/awesome-claude-skills\n13. Awesome Skills: https://github.com/gmh5225/awesome-skills\n14. Antigravity Awesome Skills: https://github.com/sickn33/antigravity-awesome-skills\n15. Awesome Claude Code: https://github.com/hesreallyhim/awesome-claude-code\n16. Awesome Design MD: https://github.com/VoltAgent/awesome-design-md\n17. Claude Skills Library: https://github.com/ViggyV/claude-skills\n18. Awesome Claude Code Skills: https://github.com/sujayjayjay/awesome-claude-code-skills\n19. SwiftUIX: https://github.com/SwiftUIX/SwiftUIX\n20. ECC Monolith Core: https://github.com/affaan-m/ECC\n\n---\nQuick CLI Install:\nagy skill add https://github.com/pbakaus/impeccable https://github.com/Leonxlnx/taste-skill https://github.com/nextlevelbuilder/ui-ux-pro-max-skill https://github.com/dickwu/apple-design-skill https://github.com/emilkowalski/skills https://github.com/vercel-labs/agent-skills https://github.com/sickn33/antigravity-awesome-skills https://github.com/affaan-m/ECC`;
+
+    window.copyMasterSkillBundle = function() {
+      navigator.clipboard.writeText(MASTER_BUNDLE_TEXT).then(() => {
+        let toast = document.getElementById('toast');
+        if (!toast) {
+          toast = document.createElement('div');
+          toast.id = 'toast';
+          toast.className = 'toast';
+          document.body.appendChild(toast);
+        }
+        toast.textContent = '✓ Master Skill Bundle copied! All 20 playbooks ready.';
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2600);
+      });
+    };
+</script>
 </body>
 </html>

@@ -259,7 +259,7 @@
     "id": "2slides-ppt-generator",
     "name": "2slides Ppt Generator",
     "category": "api-integration",
-    "description": "AI-powered presentation generation via the 2slides API — create slides from text, match a reference image style, summarize documents into decks, add AI voice narration, and export pages/audio. Use for any \"make slides\", \"create a deck\", or \"slides from this document\" request.",
+    "description": "AI-powered presentation generation via the 2slides API : create slides from text, match a reference image style, summarize documents into decks, add AI voice narration, and export pages/audio. Use for any \"make slides\", \"create a deck\", or \"slides from this document\" request.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/2slides-ppt-generator",
     "tags": [
@@ -503,7 +503,7 @@
     "id": "accesslint-audit",
     "name": "Accesslint Audit",
     "category": "web-development",
-    "description": "Find and fix WCAG 2.2 accessibility issues. Two modes — report (sweep a codebase or page, produce a prioritized written report, no edits) and fix (audit→edit→verify loop on a target). Prefers direct-CDP live-DOM auditing; falls back to a browser-MCP composition or HTML-string audits.",
+    "description": "Find and fix WCAG 2.2 accessibility issues. Two modes : report (sweep a codebase or page, produce a prioritized written report, no edits) and fix (audit→edit→verify loop on a target). Prefers direct-CDP live-DOM auditing; falls back to a browser-MCP composition or HTML-string audits.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/accesslint-audit",
     "tags": [
@@ -517,7 +517,7 @@
     "id": "accesslint-diff",
     "name": "Accesslint Diff",
     "category": "design",
-    "description": "Diff a live page's accessibility violations against a baseline — by default compares uncommitted changes (stash-based), or pass --branch [<name>] to diff against a branch. Reports only new violations introduced, violations fixed, and pre-existing count. Use `scan` for a full audit with no diffing.",
+    "description": "Diff a live page's accessibility violations against a baseline : by default compares uncommitted changes (stash-based), or pass --branch [<name>] to diff against a branch. Reports only new violations introduced, violations fixed, and pre-existing count. Use `scan` for a full audit with no diffing.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/accesslint-diff",
     "tags": [
@@ -559,7 +559,7 @@
     "id": "accint-frames",
     "name": "Accint Frames",
     "category": "ai-agents",
-    "description": "Drain acc's deliberation queue — open/waiting brain_frames checkpointed by headless runs — via acc_act(runtime=\"continue\").",
+    "description": "Drain acc's deliberation queue : open/waiting brain_frames checkpointed by headless runs : via acc_act(runtime=\"continue\").",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/accint-frames",
     "tags": [
@@ -1272,7 +1272,7 @@
     "id": "agentphone",
     "name": "Agentphone",
     "category": "ai-ml",
-    "description": "Build AI phone agents with AgentPhone API. Use when the user wants to make phone calls, send/receive SMS, manage phone numbers, create voice agents, set up webhooks, or check usage — anything related to telephony, phone numbers, or voice AI.",
+    "description": "Build AI phone agents with AgentPhone API. Use when the user wants to make phone calls, send/receive SMS, manage phone numbers, create voice agents, set up webhooks, or check usage : anything related to telephony, phone numbers, or voice AI.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/agentphone",
     "tags": [
@@ -2202,7 +2202,7 @@
     "id": "akf-trust-metadata",
     "name": "Akf Trust Metadata",
     "category": "security",
-    "description": "The AI native file format. EXIF for AI — stamps every file with trust scores, source provenance, and compliance metadata. Embeds into 20+ formats (DOCX, PDF, images, code). EU AI Act, SOX, HIPAA auditing.",
+    "description": "The AI native file format. EXIF for AI : stamps every file with trust scores, source provenance, and compliance metadata. Embeds into 20+ formats (DOCX, PDF, images, code). EU AI Act, SOX, HIPAA auditing.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/akf-trust-metadata",
     "tags": [
@@ -2391,7 +2391,7 @@
     "id": "analytics-product",
     "name": "Analytics Product",
     "category": "data",
-    "description": "Analytics de produto — PostHog, Mixpanel, eventos, funnels, cohorts, retencao, north star metric, OKRs e dashboards de produto.",
+    "description": "Analytics de produto : PostHog, Mixpanel, eventos, funnels, cohorts, retencao, north star metric, OKRs e dashboards de produto.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/analytics-product",
     "tags": [
@@ -2908,7 +2908,7 @@
     "id": "anywrite",
     "name": "Anywrite",
     "category": "productivity",
-    "description": "Compiled CLI covering all 52 endpoints of the Anytype local API — objects, properties, tags, search, chat, files — one binary, no MCP server needed.",
+    "description": "Compiled CLI covering all 52 endpoints of the Anytype local API : objects, properties, tags, search, chat, files : one binary, no MCP server needed.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/anywrite",
     "tags": [
@@ -4053,7 +4053,7 @@
     "id": "astro",
     "name": "Astro",
     "category": "frontend",
-    "description": "Build content-focused websites with Astro — zero JS by default, islands architecture, multi-framework components, and Markdown/MDX support.",
+    "description": "Build content-focused websites with Astro : zero JS by default, islands architecture, multi-framework components, and Markdown/MDX support.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/astro",
     "tags": [
@@ -4864,7 +4864,7 @@
     "id": "awt-e2e-testing",
     "name": "Awt E2e Testing",
     "category": "test-automation",
-    "description": "AI-powered E2E web testing — eyes and hands for AI coding tools. Declarative YAML scenarios, Playwright execution, visual matching (OpenCV + OCR), platform auto-detection (Flutter/React/Vue), learning DB. Install: npx skills add ksgisang/awt-skill --skill awt -g",
+    "description": "AI-powered E2E web testing : eyes and hands for AI coding tools. Declarative YAML scenarios, Playwright execution, visual matching (OpenCV + OCR), platform auto-detection (Flutter/React/Vue), learning DB. Install: npx skills add ksgisang/awt-skill --skill awt -g",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/awt-e2e-testing",
     "tags": [
@@ -7028,7 +7028,7 @@
     "id": "bdistill-behavioral-xray",
     "name": "Bdistill Behavioral Xray",
     "category": "ai-testing",
-    "description": "X-ray any AI model's behavioral patterns — refusal boundaries, hallucination tendencies, reasoning style, formatting defaults. No API key needed.",
+    "description": "X-ray any AI model's behavioral patterns : refusal boundaries, hallucination tendencies, reasoning style, formatting defaults. No API key needed.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/bdistill-behavioral-xray",
     "tags": [
@@ -7379,7 +7379,7 @@
     "id": "blog-writing-guide",
     "name": "Blog Writing Guide",
     "category": "content",
-    "description": "This skill enforces Sentry's blog writing standards across every post — whether you're helping an engineer write their first blog post or a marketer draft a product announcement.",
+    "description": "This skill enforces Sentry's blog writing standards across every post : whether you're helping an engineer write their first blog post or a marketer draft a product announcement.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/blog-writing-guide",
     "tags": [
@@ -7425,7 +7425,7 @@
     "id": "blueprint",
     "name": "Blueprint",
     "category": "planning",
-    "description": "Turn a one-line objective into a step-by-step construction plan any coding agent can execute cold. Each step has a self-contained context brief — a fresh agent in a new session can pick up any step without reading prior steps.",
+    "description": "Turn a one-line objective into a step-by-step construction plan any coding agent can execute cold. Each step has a self-contained context brief : a fresh agent in a new session can pick up any step without reading prior steps.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/blueprint",
     "tags": [
@@ -7460,7 +7460,7 @@
     "id": "boost-asio-pro",
     "name": "Boost Asio Pro",
     "category": "development",
-    "description": "Use when writing asynchronous C++ networking code with Boost.Asio or standalone Asio — TCP/UDP servers and clients, SSL/TLS, timers, strands, composed async ops. Covers io_context, co_spawn, awaitable, async_read/async_write, asio::spawn, yield_context, and pre-C++20 callback styles.",
+    "description": "Use when writing asynchronous C++ networking code with Boost.Asio or standalone Asio : TCP/UDP servers and clients, SSL/TLS, timers, strands, composed async ops. Covers io_context, co_spawn, awaitable, async_read/async_write, asio::spawn, yield_context, and pre-C++20 callback styles.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/boost-asio-pro",
     "tags": [
@@ -7797,7 +7797,7 @@
     "id": "brooks-debt",
     "name": "Brooks Debt",
     "category": "code-quality",
-    "description": "Tech debt assessment that identifies, classifies, and prioritizes maintainability problems — helping teams build a refactoring roadmap — drawing on twelve classic engineering books.",
+    "description": "Tech debt assessment that identifies, classifies, and prioritizes maintainability problems : helping teams build a refactoring roadmap : drawing on twelve classic engineering books.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/brooks-debt",
     "tags": [
@@ -7857,7 +7857,7 @@
     "id": "brooks-sweep",
     "name": "Brooks Sweep",
     "category": "code-quality",
-    "description": "Full-sweep mode: runs a unified analysis across all quality dimensions — code decay, architecture, tech debt, and test quality — then applies fixes directly to the codebase. Safe changes are auto-applied; risky changes are confirmed before execution.",
+    "description": "Full-sweep mode: runs a unified analysis across all quality dimensions : code decay, architecture, tech debt, and test quality : then applies fixes directly to the codebase. Safe changes are auto-applied; risky changes are confirmed before execution.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/brooks-sweep",
     "tags": [
@@ -10638,7 +10638,7 @@
     "id": "compile-knowledge",
     "name": "Compile Knowledge",
     "category": "productivity",
-    "description": "Compile durable, non-obvious findings into an interlinked markdown knowledge store — atomic files, [[wiki-links]], a maintained index — so an agent gets smarter across sessions instead of relearning the same facts.",
+    "description": "Compile durable, non-obvious findings into an interlinked markdown knowledge store : atomic files, [[wiki-links]], a maintained index : so an agent gets smarter across sessions instead of relearning the same facts.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/compile-knowledge",
     "tags": [
@@ -11670,7 +11670,7 @@
     "id": "cro",
     "name": "Cro",
     "category": "marketing",
-    "description": "When the user wants to optimize, improve, or increase conversions on any marketing page or form — including homepage, landing pages, pricing pages, feature pages, lead capture forms, or contact forms.",
+    "description": "When the user wants to optimize, improve, or increase conversions on any marketing page or form : including homepage, landing pages, pricing pages, feature pages, lead capture forms, or contact forms.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/cro",
     "tags": [
@@ -12250,7 +12250,7 @@
     "id": "daily-gift",
     "name": "Daily Gift",
     "category": "productivity",
-    "description": "Relationship-aware daily gift engine with five-stage creative pipeline — editorial judgment, synthesis, concept generation, visual strategy, and rendering in H5, image, or video",
+    "description": "Relationship-aware daily gift engine with five-stage creative pipeline : editorial judgment, synthesis, concept generation, visual strategy, and rendering in H5, image, or video",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/daily-gift",
     "tags": [
@@ -12517,7 +12517,7 @@
     "id": "data-structure-protocol",
     "name": "Data Structure Protocol",
     "category": "data-science",
-    "description": "Give agents persistent structural memory of a codebase — navigate dependencies, track public APIs, and understand why connections exist without re-reading the whole repo.",
+    "description": "Give agents persistent structural memory of a codebase : navigate dependencies, track public APIs, and understand why connections exist without re-reading the whole repo.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/data-structure-protocol",
     "tags": [
@@ -12966,7 +12966,7 @@
     "id": "debugging-code",
     "name": "Debugging Code",
     "category": "development",
-    "description": "Interactively debug source code — set breakpoints, step through execution line by line, inspect live variable state, evaluate expressions against the running program, and navigate the call stack to trace root causes.",
+    "description": "Interactively debug source code : set breakpoints, step through execution line by line, inspect live variable state, evaluate expressions against the running program, and navigate the call stack to trace root causes.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/debugging-code",
     "tags": [
@@ -13450,7 +13450,7 @@
     "id": "design-spatial",
     "name": "Design Spatial",
     "category": "design",
-    "description": "Design — spatial composition",
+    "description": "Design : spatial composition",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/design-spatial",
     "tags": [
@@ -13570,7 +13570,7 @@
     "id": "design-ux",
     "name": "Design Ux",
     "category": "web-development",
-    "description": "UX / usability audit — heuristic evaluation of INTERACTIVE UIs (not just visual polish). Load with design when a UI \"feels off\", \"sucks to use\", is hard to learn, needs an instruction wall, or before shipping an interactive tool/editor/app.",
+    "description": "UX / usability audit : heuristic evaluation of INTERACTIVE UIs (not just visual polish). Load with design when a UI \"feels off\", \"sucks to use\", is hard to learn, needs an instruction wall, or before shipping an interactive tool/editor/app.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/design-ux",
     "tags": [
@@ -13584,7 +13584,7 @@
     "id": "detect-ai-text",
     "name": "Detect Ai Text",
     "category": "document-verification",
-    "description": "Estimate whether a document's prose was written by AI, with the linguistic tells and honest abstention on non-prose. Use when the user asks whether an essay, report, CV, submission, or article was AI-generated — for triage, not proof.",
+    "description": "Estimate whether a document's prose was written by AI, with the linguistic tells and honest abstention on non-prose. Use when the user asks whether an essay, report, CV, submission, or article was AI-generated : for triage, not proof.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/detect-ai-text",
     "tags": [
@@ -13802,7 +13802,7 @@
     "id": "devops-deploy",
     "name": "Devops Deploy",
     "category": "devops",
-    "description": "DevOps e deploy de aplicacoes — Docker, CI/CD com GitHub Actions, AWS Lambda, SAM, Terraform, infraestrutura como codigo e monitoramento.",
+    "description": "DevOps e deploy de aplicacoes : Docker, CI/CD com GitHub Actions, AWS Lambda, SAM, Terraform, infraestrutura como codigo e monitoramento.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/devops-deploy",
     "tags": [
@@ -14491,7 +14491,7 @@
     "id": "dos-verify-done-claims",
     "name": "Dos Verify Done Claims",
     "category": "quality",
-    "description": "Before accepting an agent's 'done / shipped / fixed' claim, verify it against ground truth (git ancestry + the commit's own diff) using the DOS kernel's `dos verify` and `dos commit-audit` — never the agent's own narration.",
+    "description": "Before accepting an agent's 'done / shipped / fixed' claim, verify it against ground truth (git ancestry + the commit's own diff) using the DOS kernel's `dos verify` and `dos commit-audit` : never the agent's own narration.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/dos-verify-done-claims",
     "tags": [
@@ -14628,7 +14628,7 @@
     "id": "drizzle-orm-expert",
     "name": "Drizzle Orm Expert",
     "category": "database",
-    "description": "Expert in Drizzle ORM for TypeScript — schema design, relational queries, migrations, and serverless database integration. Use when building type-safe database layers with Drizzle.",
+    "description": "Expert in Drizzle ORM for TypeScript : schema design, relational queries, migrations, and serverless database integration. Use when building type-safe database layers with Drizzle.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/drizzle-orm-expert",
     "tags": [
@@ -14791,7 +14791,7 @@
     "id": "earllm-build",
     "name": "Earllm Build",
     "category": "mobile",
-    "description": "Build, maintain, and extend the EarLLM One Android project — a Kotlin/Compose app that connects Bluetooth earbuds to an LLM via voice pipeline.",
+    "description": "Build, maintain, and extend the EarLLM One Android project : a Kotlin/Compose app that connects Bluetooth earbuds to an LLM via voice pipeline.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/earllm-build",
     "tags": [
@@ -14893,7 +14893,7 @@
     "id": "ebpf-observability",
     "name": "Ebpf Observability",
     "category": "devops",
-    "description": "Use eBPF for deep kernel-level observability — trace syscalls, network flows, and application behavior without code changes using Cilium, Tetragon, and bpftrace.",
+    "description": "Use eBPF for deep kernel-level observability : trace syscalls, network flows, and application behavior without code changes using Cilium, Tetragon, and bpftrace.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/ebpf-observability",
     "tags": [
@@ -15669,7 +15669,7 @@
     "id": "event-staffing-compliance",
     "name": "Event Staffing Compliance",
     "category": "legal",
-    "description": "Assess worker-classification and compliance risk for temporary event staffing in the US and Canada — W-2 vs 1099, misclassification penalties, joint-employer liability, COI, and wage/hour rules. Includes live state-by-state lookups via MCP.",
+    "description": "Assess worker-classification and compliance risk for temporary event staffing in the US and Canada : W-2 vs 1099, misclassification penalties, joint-employer liability, COI, and wage/hour rules. Includes live state-by-state lookups via MCP.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/event-staffing-compliance",
     "tags": [
@@ -15949,7 +15949,7 @@
     "id": "expo-examples",
     "name": "Expo Examples",
     "category": "mobile",
-    "description": "Expo's official example projects — the expo/examples repo of ~70 `with-*` integrations (Stripe, Clerk, Supabase, OpenAI, maps, Reanimated, SQLite, Skia, NativeWind, and more).",
+    "description": "Expo's official example projects : the expo/examples repo of ~70 `with-*` integrations (Stripe, Clerk, Supabase, OpenAI, maps, Reanimated, SQLite, Skia, NativeWind, and more).",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/expo-examples",
     "tags": [
@@ -16047,7 +16047,7 @@
     "id": "extract-document-data",
     "name": "Extract Document Data",
     "category": "document-verification",
-    "description": "Extract structured, grounded fields from documents — values cite their page, missing values abstain instead of hallucinating. Use for parsing invoices, payslips, statements, contracts.",
+    "description": "Extract structured, grounded fields from documents : values cite their page, missing values abstain instead of hallucinating. Use for parsing invoices, payslips, statements, contracts.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/extract-document-data",
     "tags": [
@@ -16128,7 +16128,7 @@
     "id": "faf-context",
     "name": "Faf Context",
     "category": "meta",
-    "description": "Get your project to 100% ✪ AI-readiness, fast — the AI auto-detects your stack and only asks for what it can't know (your goal and the human \"why\"). Least typing, maximum context. For time-conscious builders; feeds into faf-expert for depth.",
+    "description": "Get your project to 100% ✪ AI-readiness, fast : the AI auto-detects your stack and only asks for what it can't know (your goal and the human \"why\"). Least typing, maximum context. For time-conscious builders; feeds into faf-expert for depth.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/faf-context",
     "tags": [
@@ -17097,7 +17097,7 @@
     "id": "form-cro",
     "name": "Form Cro",
     "category": "marketing",
-    "description": "Optimize any form that is NOT signup or account registration — including lead capture, contact, demo request, application, survey, quote, and checkout forms.",
+    "description": "Optimize any form that is NOT signup or account registration : including lead capture, contact, demo request, application, survey, quote, and checkout forms.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/form-cro",
     "tags": [
@@ -18309,7 +18309,7 @@
     "id": "geo-content",
     "name": "Geo Content",
     "category": "seo",
-    "description": "Content quality and E-E-A-T assessment for AI citability — evaluate experience, expertise, authoritativeness, trustworthiness, and content structure",
+    "description": "Content quality and E-E-A-T assessment for AI citability : evaluate experience, expertise, authoritativeness, trustworthiness, and content structure",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/geo-content",
     "tags": [
@@ -18385,7 +18385,7 @@
     "id": "geo-platform-optimizer",
     "name": "Geo Platform Optimizer",
     "category": "seo",
-    "description": "Platform-specific AI search optimization — audit and optimize for Google AI Overviews, ChatGPT, Perplexity, Gemini, and Bing Copilot individually",
+    "description": "Platform-specific AI search optimization : audit and optimize for Google AI Overviews, ChatGPT, Perplexity, Gemini, and Bing Copilot individually",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/geo-platform-optimizer",
     "tags": [
@@ -18479,7 +18479,7 @@
     "id": "geo-schema",
     "name": "Geo Schema",
     "category": "seo",
-    "description": "Schema.org structured data audit and generation optimized for AI discoverability — detect, validate, and generate JSON-LD markup",
+    "description": "Schema.org structured data audit and generation optimized for AI discoverability : detect, validate, and generate JSON-LD markup",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/geo-schema",
     "tags": [
@@ -18498,7 +18498,7 @@
     "id": "geo-technical",
     "name": "Geo Technical",
     "category": "seo",
-    "description": "Technical SEO audit with GEO-specific checks — crawlability, indexability, security, performance, SSR, and AI crawler access",
+    "description": "Technical SEO audit with GEO-specific checks : crawlability, indexability, security, performance, SSR, and AI crawler access",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/geo-technical",
     "tags": [
@@ -18518,7 +18518,7 @@
     "id": "geoffrey-hinton",
     "name": "Geoffrey Hinton",
     "category": "ai-ml",
-    "description": "Agente que simula Geoffrey Hinton — Godfather of Deep Learning, Prêmio Turing 2018, coautor do trabalho de 1986 que popularizou backpropagation e das Deep Belief Networks.",
+    "description": "Agente que simula Geoffrey Hinton : Godfather of Deep Learning, Prêmio Turing 2018, coautor do trabalho de 1986 que popularizou backpropagation e das Deep Belief Networks.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/geoffrey-hinton",
     "tags": [
@@ -19068,7 +19068,7 @@
     "id": "go-in-depth",
     "name": "Go In Depth",
     "category": "development",
-    "description": "Go in depth harness — fan-out web searches, fetch sources, adversarially verify claims, synthesize a cited report.",
+    "description": "Go in depth harness : fan-out web searches, fetch sources, adversarially verify claims, synthesize a cited report.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/go-in-depth",
     "tags": [
@@ -19269,7 +19269,7 @@
     "id": "google-no-code",
     "name": "Google No Code",
     "category": "automation",
-    "description": "Design Google Forms and wire Apps Script triggers (onFormSubmit) for email alerts, spreadsheet logging, and dynamic questions — no code editor required.",
+    "description": "Design Google Forms and wire Apps Script triggers (onFormSubmit) for email alerts, spreadsheet logging, and dynamic questions : no code editor required.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/google-no-code",
     "tags": [
@@ -20183,7 +20183,7 @@
     "id": "hono",
     "name": "Hono",
     "category": "backend",
-    "description": "Build ultra-fast web APIs and full-stack apps with Hono — runs on Cloudflare Workers, Deno, Bun, Node.js, and any WinterCG-compatible runtime.",
+    "description": "Build ultra-fast web APIs and full-stack apps with Hono : runs on Cloudflare Workers, Deno, Bun, Node.js, and any WinterCG-compatible runtime.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/hono",
     "tags": [
@@ -20570,7 +20570,7 @@
     "id": "huggingface-spaces",
     "name": "Huggingface Spaces",
     "category": "ai-ml",
-    "description": "Build, deploy, and maintain applications on Hugging Face Spaces — Gradio / Docker / Static SDKs, ZeroGPU and dedicated hardware, model loading, debugging, buckets, inference providers, community grants.",
+    "description": "Build, deploy, and maintain applications on Hugging Face Spaces : Gradio / Docker / Static SDKs, ZeroGPU and dedicated hardware, model loading, debugging, buckets, inference providers, community grants.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/huggingface-spaces",
     "tags": [
@@ -21632,7 +21632,7 @@
     "id": "idea-darwin",
     "name": "Idea Darwin",
     "category": "workflow",
-    "description": "Darwinian idea evolution engine — toss rough ideas onto an evolution island, let them compete, crossbreed, and mutate through structured rounds to surface your strongest concepts.",
+    "description": "Darwinian idea evolution engine : toss rough ideas onto an evolution island, let them compete, crossbreed, and mutate through structured rounds to surface your strongest concepts.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/idea-darwin",
     "tags": [
@@ -21831,7 +21831,7 @@
     "id": "ilya-sutskever",
     "name": "Ilya Sutskever",
     "category": "ai-ml",
-    "description": "Agente que simula Ilya Sutskever — co-fundador da OpenAI, ex-Chief Scientist, fundador da SSI. Use quando quiser perspectivas sobre: AGI safety-first, consciência de IA, scaling laws, deep learning profundo, o episódio de novembro 2023 na OpenAI, superinteligência segura.",
+    "description": "Agente que simula Ilya Sutskever : co-fundador da OpenAI, ex-Chief Scientist, fundador da SSI. Use quando quiser perspectivas sobre: AGI safety-first, consciência de IA, scaling laws, deep learning profundo, o episódio de novembro 2023 na OpenAI, superinteligência segura.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/ilya-sutskever",
     "tags": [
@@ -21880,7 +21880,7 @@
     "id": "image-studio",
     "name": "Image Studio",
     "category": "graphics-processing",
-    "description": "Studio de geracao de imagens inteligente — roteamento automatico entre ai-studio-image (fotos humanizadas/influencer) e stability-ai (arte/ ilustracao/edicao). Detecta o tipo de imagem solicitada e escolhe o modelo ideal automaticamente.",
+    "description": "Studio de geracao de imagens inteligente : roteamento automatico entre ai-studio-image (fotos humanizadas/influencer) e stability-ai (arte/ ilustracao/edicao). Detecta o tipo de imagem solicitada e escolhe o modelo ideal automaticamente.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/image-studio",
     "tags": [
@@ -22363,7 +22363,7 @@
     "id": "interview-coach",
     "name": "Interview Coach",
     "category": "productivity",
-    "description": "Full job search coaching system — JD decoding, resume, storybank, mock interviews, transcript analysis, comp negotiation. Coaching guide with an optional separately installed command package and scoped state.",
+    "description": "Full job search coaching system : JD decoding, resume, storybank, mock interviews, transcript analysis, comp negotiation. Coaching guide with an optional separately installed command package and scoped state.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/interview-coach",
     "tags": [
@@ -22382,7 +22382,7 @@
     "id": "interview-me",
     "name": "Interview Me",
     "category": "productivity",
-    "description": "Draw out what the user actually wants with one-question-at-a-time interviews until intent is clear — before any plan, spec, or code exists.",
+    "description": "Draw out what the user actually wants with one-question-at-a-time interviews until intent is clear : before any plan, spec, or code exists.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/interview-me",
     "tags": [
@@ -24193,7 +24193,7 @@
     "id": "lightning-factory-explainer",
     "name": "Lightning Factory Explainer",
     "category": "blockchain",
-    "description": "Explain Bitcoin Lightning channel factories and the SuperScalar protocol — scalable Lightning onboarding using shared UTXOs, Decker-Wattenhofer trees, timeout-signature trees, MuSig2, and Taproot. No soft fork required.",
+    "description": "Explain Bitcoin Lightning channel factories and the SuperScalar protocol : scalable Lightning onboarding using shared UTXOs, Decker-Wattenhofer trees, timeout-signature trees, MuSig2, and Taproot. No soft fork required.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/lightning-factory-explainer",
     "tags": [
@@ -24549,7 +24549,7 @@
     "id": "liuguang-banlan-ui",
     "name": "Liuguang Banlan Ui",
     "category": "creative",
-    "description": "Builds two parameterized UI modes—流光溢彩白 (iridescent white) and 五彩斑斓黑 (colorful black)—with OKLCH, WebGL/CSS fallback, vision gating, screenshot QA, and total/per-color intensity reports. Use when a UI request names either mode or needs measured color parameters.",
+    "description": "Builds two parameterized UI modes - 流光溢彩白 (iridescent white) and 五彩斑斓黑 (colorful black) - with OKLCH, WebGL/CSS fallback, vision gating, screenshot QA, and total/per-color intensity reports. Use when a UI request names either mode or needs measured color parameters.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/liuguang-banlan-ui",
     "tags": [
@@ -25156,7 +25156,7 @@
     "id": "longbridge",
     "name": "Longbridge",
     "category": "finance",
-    "description": "Guide to using a separately installed Longbridge integration — real-time quotes, charts, fundamentals, portfolio analysis, options, and more for HK/US/A-share/SG markets. Trilingual: Simplified Chinese, Traditional Chinese, English.",
+    "description": "Guide to using a separately installed Longbridge integration : real-time quotes, charts, fundamentals, portfolio analysis, options, and more for HK/US/A-share/SG markets. Trilingual: Simplified Chinese, Traditional Chinese, English.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/longbridge",
     "tags": [
@@ -25278,7 +25278,7 @@
     "id": "lookdev-auto",
     "name": "Lookdev Auto",
     "category": "design",
-    "description": "Automated visual tuning: a vision or video model rates rendered variants in a loop. Render several labeled variants into one artifact, ask the model to rate them and suggest better values, render the suggestions, ask it to pick the best, repeat until good — the model is the eye, you run the loop.",
+    "description": "Automated visual tuning: a vision or video model rates rendered variants in a loop. Render several labeled variants into one artifact, ask the model to rate them and suggest better values, render the suggestions, ask it to pick the best, repeat until good : the model is the eye, you run the loop.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/lookdev-auto",
     "tags": [
@@ -25381,7 +25381,7 @@
     "id": "lovable-cleanup",
     "name": "Lovable Cleanup",
     "category": "code-quality",
-    "description": "Audits and strips Lovable scaffolding from Vite + React projects — removes lovable-tagger, swaps placeholder assets, prunes unused Radix deps, cleans generated docs, and neutralizes stale favicon/CDN caching so the codebase ships as yours.",
+    "description": "Audits and strips Lovable scaffolding from Vite + React projects : removes lovable-tagger, swaps placeholder assets, prunes unused Radix deps, cleans generated docs, and neutralizes stale favicon/CDN caching so the codebase ships as yours.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/lovable-cleanup",
     "tags": [
@@ -25546,7 +25546,7 @@
     "id": "macos-screen-recorder",
     "name": "Macos Screen Recorder",
     "category": "media",
-    "description": "macOS screen recorder that captures the main display PLUS system audio via ScreenCaptureKit — no BlackHole/loopback driver, no sudo, just the standard Screen Recording permission. CLI-driven; fills the headless-screen-recording-with-system-sound gap QuickTime and `screencapture -v` can't.",
+    "description": "macOS screen recorder that captures the main display PLUS system audio via ScreenCaptureKit : no BlackHole/loopback driver, no sudo, just the standard Screen Recording permission. CLI-driven; fills the headless-screen-recording-with-system-sound gap QuickTime and `screencapture -v` can't.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/macos-screen-recorder",
     "tags": [
@@ -26061,7 +26061,7 @@
     "id": "marketing-mindset",
     "name": "Marketing Mindset",
     "category": "marketing",
-    "description": "Use when a user asks how to win first customers, whether doing X will produce Y, how to write an ad or judge a marketing test — a marketer's decision framework, not a tactic library.",
+    "description": "Use when a user asks how to win first customers, whether doing X will produce Y, how to write an ad or judge a marketing test : a marketer's decision framework, not a tactic library.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/marketing-mindset",
     "tags": [
@@ -26390,7 +26390,7 @@
     "id": "mathguard",
     "name": "Mathguard",
     "category": "science",
-    "description": "Math-heavy escalation for n >= 10^6 — Bloom, HyperLogLog, Count-Min, MinHash/LSH, FFT, JL projection, sweep line. Use when classical O(n log n) is the floor and approximate or math wins.",
+    "description": "Math-heavy escalation for n >= 10^6 : Bloom, HyperLogLog, Count-Min, MinHash/LSH, FFT, JL projection, sweep line. Use when classical O(n log n) is the floor and approximate or math wins.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/mathguard",
     "tags": [
@@ -27785,7 +27785,7 @@
     "id": "multi-advisor",
     "name": "Multi Advisor",
     "category": "ai-agents",
-    "description": "Conselho de especialistas — consulta multiplos agentes do ecossistema em paralelo para analise multi-perspectiva de qualquer topico. Ativa personas, especialistas e agentes tecnicos simultaneamente, cada um pela sua otica unica, e consolida em sintese decisoria final.",
+    "description": "Conselho de especialistas : consulta multiplos agentes do ecossistema em paralelo para analise multi-perspectiva de qualquer topico. Ativa personas, especialistas e agentes tecnicos simultaneamente, cada um pela sua otica unica, e consolida em sintese decisoria final.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/multi-advisor",
     "tags": [
@@ -29478,7 +29478,7 @@
     "id": "odw",
     "name": "Odw",
     "category": "ai-ml",
-    "description": "Dynamic multi-agent workflows — plan first, then orchestrate parallel agents with adversarial verification via the local odw daemon. Use when the user asks for a \"workflow\", says \"ultracode\", or hands you a task spanning many files/items that benefits from parallel agents.",
+    "description": "Dynamic multi-agent workflows : plan first, then orchestrate parallel agents with adversarial verification via the local odw daemon. Use when the user asks for a \"workflow\", says \"ultracode\", or hands you a task spanning many files/items that benefits from parallel agents.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/odw",
     "tags": [
@@ -29548,7 +29548,7 @@
     "id": "offers",
     "name": "Offers",
     "category": "marketing",
-    "description": "When the user wants to design, construct, or improve an offer — the thing they actually sell — including value framing, bonus stacking, guarantee design, scarcity/urgency, naming, and payment structure.",
+    "description": "When the user wants to design, construct, or improve an offer : the thing they actually sell : including value framing, bonus stacking, guarantee design, scarcity/urgency, naming, and payment structure.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/offers",
     "tags": [
@@ -30365,7 +30365,7 @@
     "id": "pagespeed-enhancer",
     "name": "Pagespeed Enhancer",
     "category": "web-development",
-    "description": "Scan, audit, and fix web performance issues across all four Lighthouse/PageSpeed Insights pillars — Performance, Accessibility, Best Practices, and SEO — in structured batches.",
+    "description": "Scan, audit, and fix web performance issues across all four Lighthouse/PageSpeed Insights pillars : Performance, Accessibility, Best Practices, and SEO : in structured batches.",
     "author": "community",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/pagespeed-enhancer",
     "tags": [
@@ -31508,7 +31508,7 @@
     "id": "polis-protocol",
     "name": "Polis Protocol",
     "category": "orchestration",
-    "description": "Coordinate multi-vendor AI agents as a self-improving team — a learning router assigns work by track record and citizens can amend the protocol's own rules.",
+    "description": "Coordinate multi-vendor AI agents as a self-improving team : a learning router assigns work by track record and citizens can amend the protocol's own rules.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/polis-protocol",
     "tags": [
@@ -32065,7 +32065,7 @@
     "id": "privacy-by-design",
     "name": "Privacy By Design",
     "category": "security",
-    "description": "Use when building apps that collect user data. Ensures privacy protections are built in from the start—data minimization, consent, encryption.",
+    "description": "Use when building apps that collect user data. Ensures privacy protections are built in from the start - data minimization, consent, encryption.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/privacy-by-design",
     "tags": [
@@ -32079,7 +32079,7 @@
     "id": "privacy-mask",
     "name": "Privacy Mask",
     "category": "security",
-    "description": "Mask, redact, anonymize and censor sensitive information (PII) in screenshots and images — phone numbers, emails, IDs, API keys, crypto wallets, credit cards, passwords, and more.",
+    "description": "Mask, redact, anonymize and censor sensitive information (PII) in screenshots and images : phone numbers, emails, IDs, API keys, crypto wallets, credit cards, passwords, and more.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/privacy-mask",
     "tags": [
@@ -32196,7 +32196,7 @@
     "id": "product-design",
     "name": "Product Design",
     "category": "business",
-    "description": "Design de produto nivel Apple — sistemas visuais, UX flows, acessibilidade, linguagem visual proprietaria, design tokens, prototipagem e handoff. Cobre Figma, design systems, tipografia, cor, espacamento, motion design e principios de design cognitivo.",
+    "description": "Design de produto nivel Apple : sistemas visuais, UX flows, acessibilidade, linguagem visual proprietaria, design tokens, prototipagem e handoff. Cobre Figma, design systems, tipografia, cor, espacamento, motion design e principios de design cognitivo.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/product-design",
     "tags": [
@@ -32231,7 +32231,7 @@
     "id": "product-inventor",
     "name": "Product Inventor",
     "category": "business",
-    "description": "Product Inventor e Design Alchemist de nivel maximo — combina Product Thinking, Design Systems, UI Engineering, Psicologia Cognitiva, Storytelling e execucao impecavel nivel Jobs/Apple.",
+    "description": "Product Inventor e Design Alchemist de nivel maximo : combina Product Thinking, Design Systems, UI Engineering, Psicologia Cognitiva, Storytelling e execucao impecavel nivel Jobs/Apple.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/product-inventor",
     "tags": [
@@ -32732,7 +32732,7 @@
     "id": "protect-mcp-governance",
     "name": "Protect Mcp Governance",
     "category": "mcp",
-    "description": "Agent governance skill for MCP tool calls — Cedar policy authoring, shadow-to-enforce rollout, and Ed25519 receipt verification.",
+    "description": "Agent governance skill for MCP tool calls : Cedar policy authoring, shadow-to-enforce rollout, and Ed25519 receipt verification.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/protect-mcp-governance",
     "tags": [
@@ -32774,7 +32774,7 @@
     "id": "prototype",
     "name": "Prototype",
     "category": "development",
-    "description": "Build a throwaway prototype to flesh out a design — a runnable terminal app for state/business-logic questions, or several radically different UI variations toggleable from one route.",
+    "description": "Build a throwaway prototype to flesh out a design : a runnable terminal app for state/business-logic questions, or several radically different UI variations toggleable from one route.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/prototype",
     "tags": [
@@ -32902,7 +32902,7 @@
     "id": "pydantic-ai",
     "name": "Pydantic Ai",
     "category": "ai-agents",
-    "description": "Build production-ready AI agents with PydanticAI — type-safe tool use, structured outputs, dependency injection, and multi-model support.",
+    "description": "Build production-ready AI agents with PydanticAI : type-safe tool use, structured outputs, dependency injection, and multi-model support.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/pydantic-ai",
     "tags": [
@@ -35511,7 +35511,7 @@
     "id": "screen-adverse-media",
     "name": "Screen Adverse Media",
     "category": "document-verification",
-    "description": "Screen a person or organisation for adverse media coverage, PEP status, and sanctions exposure — corroboration-gated, returns \"review\" never \"guilty\". Use when the user asks to screen someone before onboarding, partnership, or investment; for AML/CTF flows; or for ongoing counterparty monitoring.",
+    "description": "Screen a person or organisation for adverse media coverage, PEP status, and sanctions exposure : corroboration-gated, returns \"review\" never \"guilty\". Use when the user asks to screen someone before onboarding, partnership, or investment; for AML/CTF flows; or for ongoing counterparty monitoring.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/screen-adverse-media",
     "tags": [
@@ -35556,7 +35556,7 @@
     "id": "screenstudio-alt",
     "name": "Screenstudio Alt",
     "category": "media",
-    "description": "Open-source headless Screen Studio alternative: auto speed-up of idle, auto-zoom on click clusters, keystroke overlay chips, smoothed synthetic cursor, and 9:16 vertical export that follows the action — post-production for screen recordings from the CLI.",
+    "description": "Open-source headless Screen Studio alternative: auto speed-up of idle, auto-zoom on click clusters, keystroke overlay chips, smoothed synthetic cursor, and 9:16 vertical export that follows the action : post-production for screen recordings from the CLI.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/screenstudio-alt",
     "tags": [
@@ -35589,7 +35589,7 @@
     "id": "sdk-dx",
     "name": "Sdk Dx",
     "category": "api-integration",
-    "description": "Design SDKs that developers love to use—APIs that feel native, error messages that guide, and experiences that reduce friction. This skill covers creating SDKs that drive adoption through exceptional developer experience rather than aggressive marketing.",
+    "description": "Design SDKs that developers love to use - APIs that feel native, error messages that guide, and experiences that reduce friction. This skill covers creating SDKs that drive adoption through exceptional developer experience rather than aggressive marketing.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/sdk-dx",
     "tags": [
@@ -35968,7 +35968,7 @@
     "id": "sendblue-api",
     "name": "Sendblue Api",
     "category": "api-integration",
-    "description": "Send and receive iMessage, SMS, and RCS from application code via the Sendblue HTTP API — text, media, group messages, send styles, reactions, typing indicators, status callbacks, and inbound webhooks.",
+    "description": "Send and receive iMessage, SMS, and RCS from application code via the Sendblue HTTP API : text, media, group messages, send styles, reactions, typing indicators, status callbacks, and inbound webhooks.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/sendblue/sendblue-api",
     "tags": [
@@ -35988,7 +35988,7 @@
     "id": "sendblue-cli",
     "name": "Sendblue Cli",
     "category": "api-integration",
-    "description": "Send iMessage and SMS from the shell via the @sendblue/cli npm package — outbound sends, contact management, and account setup with no API client or webhook server required.",
+    "description": "Send iMessage and SMS from the shell via the @sendblue/cli npm package : outbound sends, contact management, and account setup with no API client or webhook server required.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/sendblue/sendblue-cli",
     "tags": [
@@ -36007,7 +36007,7 @@
     "id": "sendblue-notify",
     "name": "Sendblue Notify",
     "category": "automation",
-    "description": "Text the user's phone when a long-running task, agent turn, or scheduled job finishes — via @sendblue/cli for outbound, optionally wired to a Claude Code Stop hook for automatic fire.",
+    "description": "Text the user's phone when a long-running task, agent turn, or scheduled job finishes : via @sendblue/cli for outbound, optionally wired to a Claude Code Stop hook for automatic fire.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/sendblue/sendblue-notify",
     "tags": [
@@ -36828,7 +36828,7 @@
     "id": "setup-matt-pocock-skills",
     "name": "Setup Matt Pocock Skills",
     "category": "development",
-    "description": "Configure this repo for the engineering skills — set up its issue tracker, triage label vocabulary, and domain doc layout. Run once before first use of the other engineering skills.",
+    "description": "Configure this repo for the engineering skills : set up its issue tracker, triage label vocabulary, and domain doc layout. Run once before first use of the other engineering skills.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/setup-matt-pocock-skills",
     "tags": [
@@ -37399,7 +37399,7 @@
     "id": "skill-issue",
     "name": "Skill Issue",
     "category": "meta",
-    "description": "Find out why a coding-agent skill won't fire — grade each SKILL.md A–F on activation, simulate which skill a prompt triggers, and flag collisions where one silently shadows another.",
+    "description": "Find out why a coding-agent skill won't fire : grade each SKILL.md A–F on activation, simulate which skill a prompt triggers, and flag collisions where one silently shadows another.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/skill-issue",
     "tags": [
@@ -37599,7 +37599,7 @@
     "id": "skyvern-browser-automation",
     "name": "Skyvern Browser Automation",
     "category": "browser-automation",
-    "description": "AI-powered browser automation — navigate sites, fill forms, extract structured data, log in with stored credentials, and build reusable workflows.",
+    "description": "AI-powered browser automation : navigate sites, fill forms, extract structured data, log in with stored credentials, and build reusable workflows.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/skyvern-browser-automation",
     "tags": [
@@ -37774,7 +37774,7 @@
     "id": "smartui-skill",
     "name": "Smartui Skill",
     "category": "testing",
-    "description": "Generates SmartUI visual regression test configurations for screenshot comparison on TestMu AI cloud. Framework-agnostic — works with Playwright, Selenium, Cypress, Puppeteer. Use when user mentions \"SmartUI\", \"visual regression\", \"screenshot comparison\", \"visual testing\".",
+    "description": "Generates SmartUI visual regression test configurations for screenshot comparison on TestMu AI cloud. Framework-agnostic : works with Playwright, Selenium, Cypress, Puppeteer. Use when user mentions \"SmartUI\", \"visual regression\", \"screenshot comparison\", \"visual testing\".",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/smartui-skill",
     "tags": [
@@ -37890,7 +37890,7 @@
     "id": "social-orchestrator",
     "name": "Social Orchestrator",
     "category": "marketing",
-    "description": "Orquestrador unificado de canais sociais — coordena Instagram, Telegram e WhatsApp em um unico fluxo de trabalho. Publicacao cross-channel, metricas unificadas, reutilizacao de conteudo por formato, agendamento sincronizado e gestao centralizada de campanhas em todos os canais simultaneamente.",
+    "description": "Orquestrador unificado de canais sociais : coordena Instagram, Telegram e WhatsApp em um unico fluxo de trabalho. Publicacao cross-channel, metricas unificadas, reutilizacao de conteudo por formato, agendamento sincronizado e gestao centralizada de campanhas em todos os canais simultaneamente.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/social-orchestrator",
     "tags": [
@@ -37939,7 +37939,7 @@
     "id": "socialclaw",
     "name": "Socialclaw",
     "category": "marketing",
-    "description": "Agent-first social media publishing skill — schedule and publish posts across the listed platforms (X, LinkedIn, Instagram, Facebook Pages, TikTok, Discord, Telegram, YouTube, Reddit, WordPress, Pinterest) via a single workspace API key.",
+    "description": "Agent-first social media publishing skill : schedule and publish posts across the listed platforms (X, LinkedIn, Instagram, Facebook Pages, TikTok, Discord, Telegram, YouTube, Reddit, WordPress, Pinterest) via a single workspace API key.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/socialclaw",
     "tags": [
@@ -38563,7 +38563,7 @@
     "id": "sshepherd",
     "name": "Sshepherd",
     "category": "devops",
-    "description": "Zero-knowledge SSH ops CLI — server health checks, docker/systemd control, log tailing, Postgres introspection, and declarative deploys, without ever exposing credentials to the agent.",
+    "description": "Zero-knowledge SSH ops CLI : server health checks, docker/systemd control, log tailing, Postgres introspection, and declarative deploys, without ever exposing credentials to the agent.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/sshepherd",
     "tags": [
@@ -38838,7 +38838,7 @@
     "id": "steve-jobs",
     "name": "Steve Jobs",
     "category": "agent-persona",
-    "description": "Agente que simula Steve Jobs — cofundador da Apple, CEO da Pixar, fundador da NeXT, o maior designer de produtos tecnologicos da historia e o mais influente apresentador de produtos do mundo.",
+    "description": "Agente que simula Steve Jobs : cofundador da Apple, CEO da Pixar, fundador da NeXT, o maior designer de produtos tecnologicos da historia e o mais influente apresentador de produtos do mundo.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/steve-jobs",
     "tags": [
@@ -38977,7 +38977,7 @@
     "id": "styleseed-design-review",
     "name": "Styleseed Design Review",
     "category": "web-development",
-    "description": "Reviews UI/frontend code and tells you exactly why it \"looks AI-generated\" — then how to fix it.",
+    "description": "Reviews UI/frontend code and tells you exactly why it \"looks AI-generated\" : then how to fix it.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/styleseed-design-review",
     "tags": [
@@ -39214,7 +39214,7 @@
     "id": "sveltekit",
     "name": "Sveltekit",
     "category": "frontend",
-    "description": "Build full-stack web applications with SvelteKit — file-based routing, SSR, SSG, API routes, and form actions in one framework.",
+    "description": "Build full-stack web applications with SvelteKit : file-based routing, SSR, SSG, API routes, and form actions in one framework.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/sveltekit",
     "tags": [
@@ -39578,7 +39578,7 @@
     "id": "tanstack-query-expert",
     "name": "Tanstack Query Expert",
     "category": "framework",
-    "description": "Expert in TanStack Query (React Query) — asynchronous state management. Covers data fetching, stale time configuration, mutations, optimistic updates, and Next.js App Router (SSR) integration.",
+    "description": "Expert in TanStack Query (React Query) : asynchronous state management. Covers data fetching, stale time configuration, mutations, optimistic updates, and Next.js App Router (SSR) integration.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/tanstack-query-expert",
     "tags": [
@@ -39592,7 +39592,7 @@
     "id": "task-intelligence",
     "name": "Task Intelligence",
     "category": "workflow",
-    "description": "Protocolo de Inteligência Pré-Tarefa — planeja a tarefa e consulta apenas agentes disponíveis, relevantes e autorizados quando o benefício justificar o custo.",
+    "description": "Protocolo de Inteligência Pré-Tarefa : planeja a tarefa e consulta apenas agentes disponíveis, relevantes e autorizados quando o benefício justificar o custo.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/task-intelligence",
     "tags": [
@@ -40139,7 +40139,7 @@
     "id": "terraform-aws-modules",
     "name": "Terraform Aws Modules",
     "category": "devops",
-    "description": "Terraform module creation for AWS — reusable modules, state management, and HCL best practices. Use when building or reviewing Terraform AWS infrastructure.",
+    "description": "Terraform module creation for AWS : reusable modules, state management, and HCL best practices. Use when building or reviewing Terraform AWS infrastructure.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/terraform-aws-modules",
     "tags": [
@@ -40397,7 +40397,7 @@
     "id": "textme",
     "name": "Textme",
     "category": "automation",
-    "description": "Text Claude from your phone — set up the njerschow/textme daemon so inbound iMessages drive a Claude Code session on your laptop, with voice notes, image input, code execution, and a phone-number whitelist.",
+    "description": "Text Claude from your phone : set up the njerschow/textme daemon so inbound iMessages drive a Claude Code session on your laptop, with voice notes, image input, code execution, and a phone-number whitelist.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/sendblue/textme",
     "tags": [
@@ -40712,7 +40712,7 @@
     "id": "time-ledger",
     "name": "Time Ledger",
     "category": "productivity",
-    "description": "Natural-language time tracking: parse what the user says they did into Activity/Minutes/Date rows in their own Notion database — asking instead of guessing when unsure.",
+    "description": "Natural-language time tracking: parse what the user says they did into Activity/Minutes/Date rows in their own Notion database : asking instead of guessing when unsure.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/time-ledger",
     "tags": [
@@ -40802,7 +40802,7 @@
     "id": "to-prd",
     "name": "To Prd",
     "category": "project-management",
-    "description": "Turn the current conversation into a PRD and publish it to the project issue tracker — no interview, just synthesis of what you've already discussed.",
+    "description": "Turn the current conversation into a PRD and publish it to the project issue tracker : no interview, just synthesis of what you've already discussed.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/to-prd",
     "tags": [
@@ -41223,7 +41223,7 @@
     "id": "triage",
     "name": "Triage",
     "category": "development",
-    "description": "Move issues and external PRs through a state machine of triage roles — categorise, verify, grill if needed, and write agent-ready briefs.",
+    "description": "Move issues and external PRs through a state machine of triage roles : categorise, verify, grill if needed, and write agent-ready briefs.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/triage",
     "tags": [
@@ -41299,7 +41299,7 @@
     "id": "trpc-fullstack",
     "name": "Trpc Fullstack",
     "category": "framework",
-    "description": "Build end-to-end type-safe APIs with tRPC — routers, procedures, middleware, subscriptions, and Next.js/React integration patterns.",
+    "description": "Build end-to-end type-safe APIs with tRPC : routers, procedures, middleware, subscriptions, and Next.js/React integration patterns.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/trpc-fullstack",
     "tags": [
@@ -41557,7 +41557,7 @@
     "id": "ui-lint",
     "name": "Ui Lint",
     "category": "code-quality",
-    "description": "Quick automated lint — detects common design system violations in seconds",
+    "description": "Quick automated lint : detects common design system violations in seconds",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/ui-lint",
     "tags": [
@@ -41571,7 +41571,7 @@
     "id": "ui-motion",
     "name": "Ui Motion",
     "category": "web-development",
-    "description": "Apply a named StyleSeed motion to a component — either one of the 5 personality seeds (Spring/Silk/Snap/Float/Pulse × entrance/exit/hover/press/layout) or a distinctive keyword move from the motion library (toggle-flip, toggle-curtain, reveal-blur, pop-in, shimmer, …).",
+    "description": "Apply a named StyleSeed motion to a component : either one of the 5 personality seeds (Spring/Silk/Snap/Float/Pulse × entrance/exit/hover/press/layout) or a distinctive keyword move from the motion library (toggle-flip, toggle-curtain, reveal-blur, pop-in, shimmer, …).",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/ui-motion",
     "tags": [
@@ -41627,7 +41627,7 @@
     "id": "ui-score",
     "name": "Ui Score",
     "category": "design",
-    "description": "Score a UI file's design quality 0-100 against StyleSeed's design language — per-category breakdown, the worst offenders, and a prioritized fix list. A quantified version of /ss-review.",
+    "description": "Score a UI file's design quality 0-100 against StyleSeed's design language : per-category breakdown, the worst offenders, and a prioritized fix list. A quantified version of /ss-review.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/ui-score",
     "tags": [
@@ -41641,7 +41641,7 @@
     "id": "ui-setup",
     "name": "Ui Setup",
     "category": "design",
-    "description": "Interactive setup wizard — guides you step-by-step to configure the design system for your project",
+    "description": "Interactive setup wizard : guides you step-by-step to configure the design system for your project",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/ui-setup",
     "tags": [
@@ -41716,7 +41716,7 @@
     "id": "ui-update",
     "name": "Ui Update",
     "category": "development",
-    "description": "Update StyleSeed engine in your project — analyzes what's outdated and updates safely",
+    "description": "Update StyleSeed engine in your project : analyzes what's outdated and updates safely",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/ui-update",
     "tags": [
@@ -42676,7 +42676,7 @@
     "id": "vercel-cli-with-tokens",
     "name": "Vercel Cli With Tokens",
     "category": "devops",
-    "description": "Deploy and manage projects on Vercel using token-based authentication. Use when working with Vercel CLI using access tokens rather than interactive login — e.g. \"deploy to vercel\", \"set up vercel\", \"add environment variables to vercel\".",
+    "description": "Deploy and manage projects on Vercel using token-based authentication. Use when working with Vercel CLI using access tokens rather than interactive login : e.g. \"deploy to vercel\", \"set up vercel\", \"add environment variables to vercel\".",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/vercel-cli-with-tokens",
     "tags": [
@@ -42911,7 +42911,7 @@
     "id": "viboscope",
     "name": "Viboscope",
     "category": "collaboration",
-    "description": "Psychological compatibility matching — find cofounders, collaborators, and friends with explicit consent and unverified provider scoring",
+    "description": "Psychological compatibility matching : find cofounders, collaborators, and friends with explicit consent and unverified provider scoring",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/viboscope",
     "tags": [
@@ -43355,7 +43355,7 @@
     "id": "warren-buffett",
     "name": "Warren Buffett",
     "category": "finance",
-    "description": "Agente que simula Warren Buffett — o maior investidor do seculo XX e XXI, historicamente associado a Berkshire Hathaway, discipulo de Benjamin Graham e socio intelectual de Charlie Munger.",
+    "description": "Agente que simula Warren Buffett : o maior investidor do seculo XX e XXI, historicamente associado a Berkshire Hathaway, discipulo de Benjamin Graham e socio intelectual de Charlie Munger.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/warren-buffett",
     "tags": [
@@ -44083,7 +44083,7 @@
     "id": "wiki-onboarding",
     "name": "Wiki Onboarding",
     "category": "content",
-    "description": "Generate two complementary onboarding documents that together give any engineer — from newcomer to principal — a complete understanding of a codebase. Use when user asks for onboarding docs or getting-started guides, user runs /deep-wiki, or user wants to help new team members understand a codebase.",
+    "description": "Generate two complementary onboarding documents that together give any engineer : from newcomer to principal : a complete understanding of a codebase. Use when user asks for onboarding docs or getting-started guides, user runs /deep-wiki, or user wants to help new team members understand a codebase.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/wiki-onboarding",
     "tags": [
@@ -44582,7 +44582,7 @@
     "id": "writing-great-skills",
     "name": "Writing Great Skills",
     "category": "skill-authoring",
-    "description": "Reference for writing and editing skills well — the vocabulary and principles that make a skill predictable.",
+    "description": "Reference for writing and editing skills well : the vocabulary and principles that make a skill predictable.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/writing-great-skills",
     "tags": [
@@ -44873,7 +44873,7 @@
     "id": "yield-intelligence",
     "name": "Yield Intelligence",
     "category": "finance",
-    "description": "Passive income portfolio analysis — activate when user asks about dividend yields, Treasury rates, REIT income, monthly passive income goals, or portfolio yield optimization. Scans 4 asset classes, ranks by risk-adjusted return, and builds allocations targeting a specific monthly income.",
+    "description": "Passive income portfolio analysis : activate when user asks about dividend yields, Treasury rates, REIT income, monthly passive income goals, or portfolio yield optimization. Scans 4 asset classes, ranks by risk-adjusted return, and builds allocations targeting a specific monthly income.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/yield-intelligence",
     "tags": [
@@ -44901,7 +44901,7 @@
     "id": "youtube-full",
     "name": "Youtube Full",
     "category": "api-integration",
-    "description": "Fetch YouTube transcripts, search videos, browse channels, and extract playlists via TranscriptAPI — no yt-dlp, no Google API key, works from any cloud server.",
+    "description": "Fetch YouTube transcripts, search videos, browse channels, and extract playlists via TranscriptAPI : no yt-dlp, no Google API key, works from any cloud server.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/youtube-full",
     "tags": [
@@ -44937,7 +44937,7 @@
     "id": "youtube-seo-optimizer",
     "name": "Youtube Seo Optimizer",
     "category": "content",
-    "description": "Generate complete YouTube & podcast SEO packages with live-researched keywords — titles, descriptions, tags, hashtags, chapters, and audit fixes. Use for new or underperforming content.\n",
+    "description": "Generate complete YouTube & podcast SEO packages with live-researched keywords : titles, descriptions, tags, hashtags, chapters, and audit fixes. Use for new or underperforming content.\n",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/youtube-seo-optimizer",
     "tags": [
@@ -45169,7 +45169,7 @@
     "id": "zod-validation-expert",
     "name": "Zod Validation Expert",
     "category": "framework",
-    "description": "Expert in Zod — TypeScript-first schema validation. Covers parsing, custom errors, refinements, type inference, and integration with React Hook Form, Next.js, and tRPC.",
+    "description": "Expert in Zod : TypeScript-first schema validation. Covers parsing, custom errors, refinements, type inference, and integration with React Hook Form, Next.js, and tRPC.",
     "author": "sickn33",
     "repo_url": "https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/zod-validation-expert",
     "tags": [
