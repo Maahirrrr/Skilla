@@ -548,18 +548,6 @@
     <div class="wordmark">Skilla</div>
   </div>
 
-  <!-- Link row: z 1 -->
-  <div class="link-row" id="linkRow">
-    <a href="https://github.com/pbakaus/impeccable" target="_blank">Impeccable</a>
-    <a href="https://github.com/Leonxlnx/taste-skill" target="_blank">Taste</a>
-    <a href="https://github.com/nextlevelbuilder/ui-ux-pro-max-skill" target="_blank">UI UX Pro Max</a>
-    <a href="https://github.com/dickwu/apple-design-skill" target="_blank">Apple Design</a>
-    <a href="https://github.com/anthropics/skills" target="_blank">Anthropic Frontend</a>
-    <a href="https://github.com/emilkowalski/skills" target="_blank">Design Engineering</a>
-    <a href="https://github.com/vercel-labs/agent-skills" target="_blank">Vercel Best Practices</a>
-    <a href="https://github.com/sickn33/antigravity-awesome-skills" target="_blank">Awesome Skills</a>
-  </div>
-
   <!-- 3D Canvas: z 2 -->
   <div id="canvas-container"></div>
 
@@ -1274,17 +1262,19 @@
       fill: 'forwards'
     });
 
-    // Link row: fades up from 1.2vh at 850ms (900ms long)
+    // Link row animation (if present)
     const linkRowEl = document.getElementById('linkRow');
-    linkRowEl.animate([
-      { opacity: 0, transform: 'translateY(1.2vh)' },
-      { opacity: 1, transform: 'translateY(0)' }
-    ], {
-      duration: 900,
-      delay: 850,
-      easing: 'cubic-bezier(0.2, 0.8, 0.2, 1)',
-      fill: 'forwards'
-    });
+    if (linkRowEl) {
+      linkRowEl.animate([
+        { opacity: 0, transform: 'translateY(1.2vh)' },
+        { opacity: 1, transform: 'translateY(0)' }
+      ], {
+        duration: 900,
+        delay: 850,
+        easing: 'cubic-bezier(0.2, 0.8, 0.2, 1)',
+        fill: 'forwards'
+      });
+    }
 
     // --- ANIMATION LOOP WITH 4 SUB-STEP SPRINGS ---
     const K = 70;
