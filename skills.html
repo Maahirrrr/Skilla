@@ -797,7 +797,7 @@
     </div>
 
     <div class="nav-actions">
-      <button class="nav-master-btn" onclick="copyMasterSkillBundle()" title="Copy all curated skill links and install script">
+      <button class="nav-master-btn" onclick="copyMasterSkillBundle()" title="Copy top 3 free skills from each category (21 playbooks)">
         <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
         <span>Master Skill</span>
       </button>
@@ -1263,7 +1263,68 @@
     }
   </script>
 <script>
-    const MASTER_BUNDLE_TEXT = `# Skilla Master Skill Bundle · All 20 Curated Playbooks\n\n1. Impeccable (pbakaus): https://github.com/pbakaus/impeccable\n2. Taste (Leonxlnx): https://github.com/Leonxlnx/taste-skill\n3. UI UX Pro Max (nextlevelbuilder): https://github.com/nextlevelbuilder/ui-ux-pro-max-skill\n4. Apple Design (dickwu): https://github.com/dickwu/apple-design-skill\n5. Anthropic Frontend Design: https://github.com/anthropics/skills/tree/main/skills/frontend-design\n6. Emil Kowalski Design Engineering: https://github.com/emilkowalski/skills\n7. Vercel Web Design Guidelines: https://github.com/vercel-labs/agent-skills\n8. Vercel React Best Practices: https://github.com/vercel-labs/agent-skills\n9. Anthropic Canvas Design: https://github.com/anthropics/skills/tree/main/skills/canvas-design\n10. Claude Code Frontend Skills: https://github.com/JaimeJunr/claude-code-frontend-skills\n11. Awesome Claude Design Skills: https://github.com/zhuyansen/awesome-claude-design-skills\n12. Awesome Claude Skills: https://github.com/karanb192/awesome-claude-skills\n13. Awesome Skills: https://github.com/gmh5225/awesome-skills\n14. Antigravity Awesome Skills: https://github.com/sickn33/antigravity-awesome-skills\n15. Awesome Claude Code: https://github.com/hesreallyhim/awesome-claude-code\n16. Awesome Design MD: https://github.com/VoltAgent/awesome-design-md\n17. Claude Skills Library: https://github.com/ViggyV/claude-skills\n18. Awesome Claude Code Skills: https://github.com/sujayjayjay/awesome-claude-code-skills\n19. SwiftUIX: https://github.com/SwiftUIX/SwiftUIX\n20. ECC Monolith Core: https://github.com/affaan-m/ECC\n\n---\nQuick CLI Install:\nagy skill add https://github.com/pbakaus/impeccable https://github.com/Leonxlnx/taste-skill https://github.com/nextlevelbuilder/ui-ux-pro-max-skill https://github.com/dickwu/apple-design-skill https://github.com/emilkowalski/skills https://github.com/vercel-labs/agent-skills https://github.com/sickn33/antigravity-awesome-skills https://github.com/affaan-m/ECC`;
+    const MASTER_BUNDLE_TEXT = `# Skilla Master Skill Bundle · Top 3 Free Skills Per Category
+# 21 highest-performing open-source agent playbooks across all 7 core categories
+
+## 1. Frontend & UI/UX
+1. Frontend Design (@anthropics · ★ 187.3k)
+   https://github.com/anthropics/skills/tree/main/skills/frontend-design
+2. UI UX Pro Max Intelligence (@nextlevelbuilder · ★ 145.0k)
+   https://github.com/nextlevelbuilder/ui-ux-pro-max-skill
+3. Taste Anti-Generic Rules (@Leonxlnx · ★ 109.8k)
+   https://github.com/Leonxlnx/taste-skill
+
+## 2. Development
+1. ECC Autonomous Engineering Core (@affaan-m · ★ 296.9k)
+   https://github.com/affaan-m/ECC
+2. React Best Practices & Performance (@vercel-labs · ★ 33.5k)
+   https://github.com/vercel-labs/agent-skills
+3. Rayden Fullstack Code Synthesis (@sickn33 · ★ 44.9k)
+   https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/rayden-code
+
+## 3. Security & Hardening
+1. Host Header & Web Exploit Hunter (@sickn33 · ★ 46.5k)
+   https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/hunt-host-header
+2. Firmware & Binary Security Analyst (@sickn33 · ★ 46.4k)
+   https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/firmware-analyst
+3. Vercel UI & Security Audit Rules (@vercel-labs · ★ 33.5k)
+   https://github.com/vercel-labs/agent-skills
+
+## 4. DevOps & Cloud
+1. OpenTofu Infrastructure Migration (@sickn33 · ★ 41.7k)
+   https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/opentofu-migration
+2. Logbrew Production Debugger (@sickn33 · ★ 40.8k)
+   https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/logbrew-debug-production
+3. Docker & Container Fleet Management (@sickn33 · ★ 40.2k)
+   https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/docker-management
+
+## 5. AI & Machine Learning
+1. Multi-Agent Brainstorming & Review (@sickn33 · ★ 43.6k)
+   https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/multi-agent-brainstorming
+2. Anthropic Claude API & Tool Architecture (@sickn33 · ★ 43.5k)
+   https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/claude-api
+3. Context Management & State Persistence (@sickn33 · ★ 43.4k)
+   https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/context-management-context-save
+
+## 6. Workflows & Multi-Agent
+1. Awesome Claude Code Hub (@hesreallyhim · ★ 57.2k)
+   https://github.com/hesreallyhim/awesome-claude-code
+2. Conductor Lifecycle Manager (@sickn33 · ★ 36.1k)
+   https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/conductor-manage
+3. Closed-Loop Autonomous Delivery (@sickn33 · ★ 33.2k)
+   https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/closed-loop-delivery
+
+## 7. Data & Databases
+1. SQL Pro & Analytical Optimization (@sickn33 · ★ 34.4k)
+   https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/sql-pro
+2. Cloud Database Cost & Scaling Optimizer (@sickn33 · ★ 16.9k)
+   https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/database-cloud-optimization-cost-optimize
+3. Weaviate Vector DB & Semantic Search (@sickn33 · ★ 15.2k)
+   https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/weaviate
+
+---
+# One-Line CLI Install:
+agy skill add https://github.com/anthropics/skills/tree/main/skills/frontend-design https://github.com/nextlevelbuilder/ui-ux-pro-max-skill https://github.com/Leonxlnx/taste-skill https://github.com/affaan-m/ECC https://github.com/vercel-labs/agent-skills https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/rayden-code https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/hunt-host-header https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/firmware-analyst https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/opentofu-migration https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/logbrew-debug-production https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/docker-management https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/multi-agent-brainstorming https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/claude-api https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/context-management-context-save https://github.com/hesreallyhim/awesome-claude-code https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/conductor-manage https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/closed-loop-delivery https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/sql-pro https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/database-cloud-optimization-cost-optimize https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/weaviate`;
 
     window.copyMasterSkillBundle = function() {
       navigator.clipboard.writeText(MASTER_BUNDLE_TEXT).then(() => {
@@ -1274,7 +1335,7 @@
           toast.className = 'toast';
           document.body.appendChild(toast);
         }
-        toast.textContent = '✓ Master Skill Bundle copied! All 20 playbooks ready.';
+        toast.textContent = '✓ Master Skill Bundle copied! Top 3 free skills across all 7 categories ready.';
         toast.classList.add('show');
         setTimeout(() => toast.classList.remove('show'), 2600);
       });
