@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit a Skill — Skilla</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Libre+Caslon+Display&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #000000;
+      --card-bg: #09090b;
+      --card-border: rgba(255, 255, 255, 0.1);
+      --text: #ffffff;
+      --muted: rgba(255, 255, 255, 0.65);
+      --dim: rgba(255, 255, 255, 0.38);
+      --pill-bg: #ffffff;
+      --pill-text: #000000;
+      --accent: #b8a58a;
+      --serif: "Libre Caslon Display", Georgia, serif;
+      --sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono: "JetBrains Mono", monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Top Nav */
+    nav.site-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 72px;
+      padding: 0 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 100;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand-tile {
+      width: 28px;
+      height: 32px;
+      background: #b8a58a;
+      border-radius: 4px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+
+    .brand-tile::after {
+      content: "";
+      position: absolute;
+      left: 32%;
+      width: 24%;
+      height: 64%;
+      background: #16120d;
+      border-radius: 1px;
+    }
+
+    .brand-meta {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .brand-title {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+
+    .brand-sub {
+      font-family: var(--sans);
+      font-size: 9px;
+      color: rgba(255, 255, 255, 0.6);
+      letter-spacing: 0.04em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 500;
+      transition: color 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 0;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: #fff;
+    }
+
+    .nav-link svg {
+      width: 10px;
+      height: 10px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: -12px;
+      min-width: 180px;
+      background: #0e0e11;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      padding: 6px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(8px);
+      transition: opacity 0.2s, transform 0.2s;
+      box-shadow: 0 16px 36px rgba(0,0,0,0.7);
+    }
+
+    .nav-item:hover .dropdown-menu {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 8px 12px;
+      font-size: 12.5px;
+      color: var(--muted);
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .dropdown-menu a:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-actions .sign-in {
+      color: #fff;
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-pill {
+      background: var(--pill-bg);
+      color: var(--pill-text);
+      border: none;
+      border-radius: 6px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .nav-pill:hover {
+      transform: translateY(-1px);
+    }
+
+    /* Main Container */
+    main.page-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 130px 5vw 80px;
+    }
+
+    .header-hero {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .category-tag {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #b8a58a;
+      margin-bottom: 12px;
+    }
+
+    .page-title {
+      font-family: var(--serif);
+      font-size: clamp(38px, 5.5vw, 68px);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .page-subtitle {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 640px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Submit Form & Live Preview Layout */
+    .submit-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .form-panel {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 32px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #ddd;
+    }
+
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      background: #000;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 8px;
+      padding: 12px 16px;
+      color: #fff;
+      font-family: var(--sans);
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .form-textarea {
+      height: 110px;
+      resize: vertical;
+      line-height: 1.5;
+    }
+
+    .preview-panel {
+      background: #09090c;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 14px;
+      overflow: hidden;
+      position: sticky;
+      top: 100px;
+    }
+
+    .preview-header {
+      background: #111116;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .preview-title {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: #b8a58a;
+      text-transform: uppercase;
+    }
+
+    pre.preview-code {
+      padding: 24px;
+      font-family: var(--mono);
+      font-size: 12px;
+      line-height: 1.6;
+      color: #e2e8f0;
+      background: #060608;
+      max-height: 480px;
+      overflow-y: auto;
+    }
+
+    .submit-btn {
+      width: 100%;
+      background: #ffffff;
+      color: #000000;
+      border: none;
+      border-radius: 8px;
+      padding: 14px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background 0.15s, transform 0.15s;
+      margin-top: 24px;
+    }
+
+    .submit-btn:hover {
+      background: #e2e2e2;
+      transform: translateY(-1px);
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #fff;
+      color: #000;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s;
+      z-index: 1000;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    @media (max-width: 860px) {
+      .submit-layout { grid-template-columns: 1fr; }
+      .nav-links, .nav-actions .sign-in { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Nav -->
+  <nav class="site-nav">
+    <a href="index.html" class="nav-brand">
+      <div class="brand-tile"></div>
+      <div class="brand-meta">
+        <span class="brand-title">Skilla</span>
+        <span class="brand-sub">ai agent playbooks</span>
+      </div>
+    </a>
+
+    <div class="nav-links">
+      <div class="nav-item">
+        <a href="skills.html" class="nav-link">Skills 
+          <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </a>
+        <div class="dropdown-menu">
+          <a href="skills.html?cat=all">All Skills</a>
+          <a href="skills.html?cat=design">Frontend & Design</a>
+          <a href="skills.html?cat=engineering">Design Engineering</a>
+          <a href="skills.html?cat=audit">Audits & Hardening</a>
+          <a href="skills.html?cat=frameworks">Frameworks & Next.js</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="foundations.html" class="nav-link">Foundations</a>
+      </div>
+      <div class="nav-item">
+        <a href="workflows.html" class="nav-link">Workflows</a>
+      </div>
+      <div class="nav-item">
+        <a href="more.html" class="nav-link">More 
+          <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </a>
+        <div class="dropdown-menu">
+          <a href="more.html#mcp">MCP Servers</a>
+          <a href="more.html#guidelines">Playbook Guidelines</a>
+          <a href="more.html#faq">FAQ & Documentation</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-actions">
+      <a href="submit.html" class="sign-in active">Submit Skill</a>
+      <a href="explore.html" class="nav-pill">Explore 2,900+ Skills ↗</a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="page-container">
+    <div class="header-hero">
+      <span class="category-tag">CONTRIBUTE // OPEN REGISTRY</span>
+      <h1 class="page-title">Submit a Skill</h1>
+      <p class="page-subtitle">Publish your SKILL.md playbook to the Skilla ecosystem. Formatted live to match the official spec for Antigravity, Claude Code, and Codex.</p>
+    </div>
+
+    <div class="submit-layout">
+      <!-- Input Form -->
+      <div class="form-panel">
+        <div class="form-group">
+          <label class="form-label">Skill Name</label>
+          <input type="text" id="skillName" class="form-input" value="Fluid Physics Springs" placeholder="e.g. Taste, Impeccable, Apple Motion">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Author GitHub Handle</label>
+          <input type="text" id="authorHandle" class="form-input" value="@yourname" placeholder="e.g. @pbakaus, @Leonxlnx">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Category</label>
+          <select id="skillCategory" class="form-select">
+            <option value="Frontend & UI">Frontend & UI</option>
+            <option value="Design Engineering" selected>Design Engineering</option>
+            <option value="Audits & Hardening">Audits & Hardening</option>
+            <option value="Multi-Agent Workflows">Multi-Agent Workflows</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">GitHub Repository URL</label>
+          <input type="text" id="githubRepo" class="form-input" value="https://github.com/yourname/fluid-physics-skill" placeholder="https://github.com/org/repo">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Core Directives / Anti-Generic Rules</label>
+          <textarea id="skillRules" class="form-textarea" placeholder="What negative constraints and instructions should the AI execute?">Integrate 4 sub-steps per frame for spring physics (K=70, C=12.5). Avoid default CSS transitions on interactive elements. Guarantee 60-120fps smoothness.</textarea>
+        </div>
+
+        <button class="submit-btn" id="submitPRBtn">
+          Submit to Skilla Registry via Pull Request ↗
+        </button>
+      </div>
+
+      <!-- Live Generated SKILL.md Preview -->
+      <div class="preview-panel">
+        <div class="preview-header">
+          <span class="preview-title">LIVE PREVIEW // SKILL.MD</span>
+          <button class="copy-code-btn" id="copyLiveBtn" style="background:rgba(255,255,255,0.1); border:none; color:#fff; padding:4px 10px; border-radius:4px; font-family:var(--mono); font-size:11px; cursor:pointer;">Copy SKILL.md</button>
+        </div>
+        <pre class="preview-code" id="previewCode"></pre>
+      </div>
+    </div>
+  </main>
+
+  <div class="toast" id="toast">Copied generated SKILL.md</div>
+
+  <script>
+    const nameInput = document.getElementById('skillName');
+    const authorInput = document.getElementById('authorHandle');
+    const catInput = document.getElementById('skillCategory');
+    const repoInput = document.getElementById('githubRepo');
+    const rulesInput = document.getElementById('skillRules');
+    const previewCode = document.getElementById('previewCode');
+    const copyBtn = document.getElementById('copyLiveBtn');
+    const prBtn = document.getElementById('submitPRBtn');
+    const toast = document.getElementById('toast');
+
+    function updatePreview() {
+      const slug = nameInput.value.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      const author = authorInput.value.trim().replace(/^@/, '');
+      const cat = catInput.value;
+      const rules = rulesInput.value.trim();
+
+      const md = `---
+name: ${slug || 'my-skill'}
+description: "${nameInput.value || 'Custom AI Playbook'}"
+author: "@${author || 'contributor'}"
+category: "${cat}"
+compatibility: ["antigravity", "claude-code", "codex", "cursor"]
+---
+
+# Operational Directives
+When generating or auditing code under this playbook:
+${rules.split('\n').map(l => `- ${l}`).join('\n')}
+
+## Verification Checklist
+1. Inspect generated AST for clean token usage.
+2. Confirm no generic styling presets are used.
+3. Validate sub-stepped physics and interactive states.`;
+
+      previewCode.textContent = md;
+    }
+
+    [nameInput, authorInput, catInput, repoInput, rulesInput].forEach(el => {
+      el.addEventListener('input', updatePreview);
+    });
+
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(previewCode.textContent).then(() => {
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2000);
+      });
+    });
+
+    prBtn.addEventListener('click', () => {
+      window.open('https://github.com/sickn33/antigravity-awesome-skills', '_blank');
+    });
+
+    updatePreview();
+  </script>
+</body>
+</html>

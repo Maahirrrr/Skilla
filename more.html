@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ecosystem & Resources — Skilla</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Libre+Caslon+Display&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #000000;
+      --card-bg: #09090b;
+      --card-border: rgba(255, 255, 255, 0.1);
+      --card-hover: rgba(255, 255, 255, 0.2);
+      --text: #ffffff;
+      --muted: rgba(255, 255, 255, 0.65);
+      --dim: rgba(255, 255, 255, 0.38);
+      --pill-bg: #ffffff;
+      --pill-text: #000000;
+      --accent: #b8a58a;
+      --serif: "Libre Caslon Display", Georgia, serif;
+      --sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono: "JetBrains Mono", monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Top Nav */
+    nav.site-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 72px;
+      padding: 0 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 100;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand-tile {
+      width: 28px;
+      height: 32px;
+      background: #b8a58a;
+      border-radius: 4px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+
+    .brand-tile::after {
+      content: "";
+      position: absolute;
+      left: 32%;
+      width: 24%;
+      height: 64%;
+      background: #16120d;
+      border-radius: 1px;
+    }
+
+    .brand-meta {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .brand-title {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+
+    .brand-sub {
+      font-family: var(--sans);
+      font-size: 9px;
+      color: rgba(255, 255, 255, 0.6);
+      letter-spacing: 0.04em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 500;
+      transition: color 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 0;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: #fff;
+    }
+
+    .nav-link svg {
+      width: 10px;
+      height: 10px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: -12px;
+      min-width: 180px;
+      background: #0e0e11;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      padding: 6px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(8px);
+      transition: opacity 0.2s, transform 0.2s;
+      box-shadow: 0 16px 36px rgba(0,0,0,0.7);
+    }
+
+    .nav-item:hover .dropdown-menu {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 8px 12px;
+      font-size: 12.5px;
+      color: var(--muted);
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .dropdown-menu a:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-actions .sign-in {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-actions .sign-in:hover {
+      color: #fff;
+    }
+
+    .nav-pill {
+      background: var(--pill-bg);
+      color: var(--pill-text);
+      border: none;
+      border-radius: 6px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .nav-pill:hover {
+      transform: translateY(-1px);
+    }
+
+    /* Main Container */
+    main.page-container {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 130px 5vw 80px;
+    }
+
+    .header-hero {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .category-tag {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #b8a58a;
+      margin-bottom: 12px;
+    }
+
+    .page-title {
+      font-family: var(--serif);
+      font-size: clamp(38px, 5.5vw, 68px);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .page-subtitle {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 680px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Sections */
+    .content-section {
+      margin-bottom: 60px;
+    }
+
+    .section-heading {
+      font-size: 26px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-heading::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* MCP Cards */
+    .grid-two {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    .mcp-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .mcp-name {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .mcp-desc {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.55;
+      margin-bottom: 16px;
+    }
+
+    .mcp-cmd {
+      background: #000;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-family: var(--mono);
+      font-size: 11.5px;
+      color: #93c5fd;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Accordion */
+    .faq-accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .faq-item {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 20px 24px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: color 0.15s;
+    }
+
+    .faq-question:hover {
+      color: #b8a58a;
+    }
+
+    .faq-icon {
+      font-family: var(--mono);
+      font-size: 18px;
+      transition: transform 0.2s;
+    }
+
+    .faq-item.active .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 24px;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+      padding-bottom: 20px;
+    }
+
+    @media (max-width: 760px) {
+      .nav-links, .nav-actions .sign-in { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Nav -->
+  <nav class="site-nav">
+    <a href="index.html" class="nav-brand">
+      <div class="brand-tile"></div>
+      <div class="brand-meta">
+        <span class="brand-title">Skilla</span>
+        <span class="brand-sub">ai agent playbooks</span>
+      </div>
+    </a>
+
+    <div class="nav-links">
+      <div class="nav-item">
+        <a href="skills.html" class="nav-link">Skills 
+          <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </a>
+        <div class="dropdown-menu">
+          <a href="skills.html?cat=all">All Skills</a>
+          <a href="skills.html?cat=design">Frontend & Design</a>
+          <a href="skills.html?cat=engineering">Design Engineering</a>
+          <a href="skills.html?cat=audit">Audits & Hardening</a>
+          <a href="skills.html?cat=frameworks">Frameworks & Next.js</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="foundations.html" class="nav-link">Foundations</a>
+      </div>
+      <div class="nav-item">
+        <a href="workflows.html" class="nav-link">Workflows</a>
+      </div>
+      <div class="nav-item">
+        <a href="more.html" class="nav-link active">More 
+          <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </a>
+        <div class="dropdown-menu">
+          <a href="more.html#mcp">MCP Servers</a>
+          <a href="more.html#guidelines">Playbook Guidelines</a>
+          <a href="more.html#faq">FAQ & Documentation</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-actions">
+      <a href="submit.html" class="sign-in">Submit Skill</a>
+      <a href="explore.html" class="nav-pill">Explore 2,900+ Skills ↗</a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="page-container">
+    <div class="header-hero">
+      <span class="category-tag">ECOSYSTEM // PROTOCOLS & FAQ</span>
+      <h1 class="page-title">More & Resources</h1>
+      <p class="page-subtitle">Tools, Model Context Protocol connectors, and authoring guidelines powering the open agent playbook ecosystem.</p>
+    </div>
+
+    <!-- MCP Section -->
+    <section class="content-section" id="mcp">
+      <h2 class="section-heading">Model Context Protocol (MCP) Connectors</h2>
+      <div class="grid-two">
+        <div class="mcp-card">
+          <div>
+            <h3 class="mcp-name">Browserbase MCP</h3>
+            <p class="mcp-desc">Gives autonomous agents live headless Chromium browsers to execute end-to-end visual QA and design audit playbooks.</p>
+          </div>
+          <div class="mcp-cmd">npx -y @browserbase/mcp-server</div>
+        </div>
+
+        <div class="mcp-card">
+          <div>
+            <h3 class="mcp-name">GitHub & Git MCP</h3>
+            <p class="mcp-desc">Allows skills like ECC and Impeccable to draft PRs, read AST commits, and synthesize clean patches directly.</p>
+          </div>
+          <div class="mcp-cmd">npx -y @modelcontextprotocol/server-github</div>
+        </div>
+
+        <div class="mcp-card">
+          <div>
+            <h3 class="mcp-name">Figma Code Connect</h3>
+            <p class="mcp-desc">Binds live Figma design token variables and vector component trees directly into agent context.</p>
+          </div>
+          <div class="mcp-cmd">npx -y @figma/code-connect-mcp</div>
+        </div>
+
+        <div class="mcp-card">
+          <div>
+            <h3 class="mcp-name">Skilla Registry MCP</h3>
+            <p class="mcp-desc">Allows your local agent to search, query, and hot-load all 1,400+ SKILL.md playbooks on the fly.</p>
+          </div>
+          <div class="mcp-cmd">npx -y @skilla/mcp-server</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="content-section" id="faq">
+      <h2 class="section-heading">Frequently Asked Questions</h2>
+      <div class="faq-accordion">
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>What is a SKILL.md file?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            A SKILL.md file is a standardized markdown document containing YAML frontmatter and domain-specific engineering playbooks. It instructs LLMs on design aesthetics, architecture constraints, and tool usage without requiring fine-tuning.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Which runtimes support Skilla playbooks?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            Skilla playbooks run out-of-the-box on Antigravity (Google DeepMind), Claude Code (Anthropic CLI), Cursor, Windsurf, Codex, and any agent supporting system prompt extensions or MCP tools.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How do skills prevent generic AI UI code?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            Skills like Taste, Impeccable, and Emil Kowalski enforce negative constraints: banning default Tailwind template styles, requiring custom fonts (e.g. Libre Caslon, Newsreader, Inter), demanding high contrast ratios, and mandating sub-stepped spring physics.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => {
+        const item = q.parentElement;
+        item.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skills Directory — Skilla</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Libre+Caslon+Display&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #000000;
+      --card-bg: #09090b;
+      --card-border: rgba(255, 255, 255, 0.1);
+      --card-hover: rgba(255, 255, 255, 0.18);
+      --text: #ffffff;
+      --muted: rgba(255, 255, 255, 0.65);
+      --dim: rgba(255, 255, 255, 0.38);
+      --pill-bg: #ffffff;
+      --pill-text: #000000;
+      --serif: "Libre Caslon Display", Georgia, serif;
+      --sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono: "JetBrains Mono", monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      overflow-x: hidden;
+    }
+
+    /* Fixed Top Nav */
+    nav.site-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 72px;
+      padding: 0 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 100;
+      background: rgba(0, 0, 0, 0.82);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand-tile {
+      width: 28px;
+      height: 32px;
+      background: #b8a58a;
+      border-radius: 4px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+
+    .brand-tile::after {
+      content: "";
+      position: absolute;
+      left: 32%;
+      width: 24%;
+      height: 64%;
+      background: #16120d;
+      border-radius: 1px;
+    }
+
+    .brand-meta {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .brand-title {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+
+    .brand-sub {
+      font-family: var(--sans);
+      font-size: 9px;
+      color: rgba(255, 255, 255, 0.6);
+      letter-spacing: 0.04em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 500;
+      transition: color 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 0;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: #fff;
+    }
+
+    .nav-link svg {
+      width: 10px;
+      height: 10px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+    }
+
+    /* Dropdown */
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: -12px;
+      min-width: 180px;
+      background: #0e0e11;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      padding: 6px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(8px);
+      transition: opacity 0.2s, transform 0.2s;
+      box-shadow: 0 16px 36px rgba(0,0,0,0.7);
+    }
+
+    .nav-item:hover .dropdown-menu {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 8px 12px;
+      font-size: 12.5px;
+      color: var(--muted);
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .dropdown-menu a:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-actions .sign-in {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-actions .sign-in:hover, .nav-actions .sign-in.active {
+      color: #fff;
+    }
+
+    .nav-pill {
+      background: var(--pill-bg);
+      color: var(--pill-text);
+      border: none;
+      border-radius: 6px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .nav-pill:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(255, 255, 255, 0.25);
+    }
+
+    /* Main Container */
+    main.page-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 130px 5vw 80px;
+    }
+
+    /* Header Section */
+    .header-hero {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .category-tag {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #b8a58a;
+      margin-bottom: 12px;
+    }
+
+    .page-title {
+      font-family: var(--serif);
+      font-size: clamp(38px, 5.5vw, 68px);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .page-subtitle {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 620px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Search & Filter Toolbar */
+    .toolbar-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .search-bar-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .search-input {
+      width: 100%;
+      background: #0d0d11;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 10px;
+      padding: 14px 20px 14px 46px;
+      color: #fff;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .search-input:focus {
+      border-color: rgba(255, 255, 255, 0.35);
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.08);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: var(--dim);
+      stroke-width: 2;
+    }
+
+    .filters-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: #111116;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      padding: 7px 16px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .filter-btn:hover {
+      border-color: rgba(255, 255, 255, 0.25);
+      color: #fff;
+    }
+
+    .filter-btn.active {
+      background: #ffffff;
+      color: #000000;
+      border-color: #ffffff;
+      font-weight: 600;
+    }
+
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 22px;
+    }
+
+    .skill-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--card-hover);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .skill-spine-accent {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 4px;
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .card-num {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      color: var(--dim);
+      letter-spacing: 0.08em;
+    }
+
+    .card-badge {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+    }
+
+    .card-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      line-height: 1.3;
+      color: #fff;
+    }
+
+    .card-desc {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.55;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: auto;
+    }
+
+    .author-tag {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      color: var(--dim);
+    }
+
+    .card-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .copy-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #ddd;
+      border-radius: 6px;
+      padding: 5px 10px;
+      font-size: 11px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-family: var(--mono);
+      transition: background 0.15s;
+    }
+
+    .copy-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+    }
+
+    .card-btn {
+      background: #ffffff;
+      color: #000000;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: background 0.15s;
+    }
+
+    .card-btn:hover {
+      background: #e2e2e2;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #fff;
+      color: #000;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s;
+      z-index: 1000;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    @media (max-width: 760px) {
+      .nav-links, .nav-actions .sign-in {
+        display: none;
+      }
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Nav -->
+  <nav class="site-nav">
+    <a href="index.html" class="nav-brand">
+      <div class="brand-tile"></div>
+      <div class="brand-meta">
+        <span class="brand-title">Skilla</span>
+        <span class="brand-sub">ai agent playbooks</span>
+      </div>
+    </a>
+
+    <div class="nav-links">
+      <div class="nav-item">
+        <a href="skills.html" class="nav-link active">Skills 
+          <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </a>
+        <div class="dropdown-menu">
+          <a href="skills.html?cat=all">All Skills</a>
+          <a href="skills.html?cat=design">Frontend & Design</a>
+          <a href="skills.html?cat=engineering">Design Engineering</a>
+          <a href="skills.html?cat=audit">Audits & Hardening</a>
+          <a href="skills.html?cat=frameworks">Frameworks & Next.js</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="foundations.html" class="nav-link">Foundations</a>
+      </div>
+      <div class="nav-item">
+        <a href="workflows.html" class="nav-link">Workflows</a>
+      </div>
+      <div class="nav-item">
+        <a href="more.html" class="nav-link">More 
+          <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </a>
+        <div class="dropdown-menu">
+          <a href="more.html#mcp">MCP Servers</a>
+          <a href="more.html#guidelines">Playbook Guidelines</a>
+          <a href="more.html#faq">FAQ & Documentation</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-actions">
+      <a href="submit.html" class="sign-in">Submit Skill</a>
+      <a href="explore.html" class="nav-pill">Explore 2,900+ Skills ↗</a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="page-container">
+    <div class="header-hero">
+      <span class="category-tag">CURATED REGISTRY // 2026 EDITION</span>
+      <h1 class="page-title">Curated Agent Skills</h1>
+      <p class="page-subtitle">Standardized, battle-tested SKILL.md playbooks for autonomous agentic workflows, interface engineering, and anti-generic code synthesis.</p>
+    </div>
+
+    <!-- Toolbar: Search & Categories -->
+    <div class="toolbar-container">
+      <div class="search-bar-wrap">
+        <svg class="search-icon" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        <input type="text" id="searchInput" class="search-input" placeholder="Search skills by title, author, category, or capability...">
+      </div>
+
+      <div class="filters-row">
+        <button class="filter-btn active" data-cat="all">All Skills (20)</button>
+        <button class="filter-btn" data-cat="design">Frontend & UI (6)</button>
+        <button class="filter-btn" data-cat="engineering">Design Eng (4)</button>
+        <button class="filter-btn" data-cat="audit">Audits & Rules (3)</button>
+        <button class="filter-btn" data-cat="curated">Anthropic & Official (4)</button>
+        <button class="filter-btn" data-cat="community">Community (3)</button>
+      </div>
+    </div>
+
+    <!-- Skills Grid -->
+    <div class="skills-grid" id="skillsGrid"></div>
+  </main>
+
+  <div class="toast" id="toast">Command copied to clipboard</div>
+
+  <script>
+    const SKILLS = [
+      {
+        num: "01",
+        title: "Impeccable",
+        author: "pbakaus",
+        cat: "audit",
+        desc: "Plan, audit, polish, and harden agent-crafted web interfaces with surgical precision.",
+        badge: "AUDIT & POLISH",
+        spine: "#16171a",
+        repo: "pbakaus/impeccable",
+        url: "https://github.com/pbakaus/impeccable"
+      },
+      {
+        num: "02",
+        title: "Taste",
+        author: "Leonxlnx",
+        cat: "design",
+        desc: "Anti-generic frontend design rules, typographic hierarchy & art direction for LLMs.",
+        badge: "ART DIRECTION",
+        spine: "#c62420",
+        repo: "Leonxlnx/taste-skill",
+        url: "https://github.com/Leonxlnx/taste-skill"
+      },
+      {
+        num: "03",
+        title: "UI UX Pro Max",
+        author: "nextlevelbuilder",
+        cat: "design",
+        desc: "Design intelligence system, palettes, font pairings, and usability rules.",
+        badge: "UX INTELLIGENCE",
+        spine: "#1b4bd1",
+        repo: "nextlevelbuilder/ui-ux-pro-max-skill",
+        url: "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill"
+      },
+      {
+        num: "04",
+        title: "Apple Design",
+        author: "dickwu",
+        cat: "design",
+        desc: "Apple-style fluid motion, spatial materials, haptics & interaction patterns.",
+        badge: "HUMAN INTERFACE",
+        spine: "#1c1c1e",
+        repo: "dickwu/apple-design-skill",
+        url: "https://github.com/dickwu/apple-design-skill"
+      },
+      {
+        num: "05",
+        title: "Anthropic Frontend Design",
+        author: "anthropics",
+        cat: "curated",
+        desc: "Distinctive UI direction & anti-template defaults directly from Anthropic.",
+        badge: "CLAUDE OFFICIAL",
+        spine: "#c76743",
+        repo: "anthropics/skills",
+        url: "https://github.com/anthropics/skills/tree/main/skills/frontend-design"
+      },
+      {
+        num: "06",
+        title: "Emil Kowalski Design Engineering",
+        author: "emilkowalski",
+        cat: "engineering",
+        desc: "Kinetic animation, micro-interactions, polish, and production prototypes.",
+        badge: "ANIMATION ENGINE",
+        spine: "#5244d4",
+        repo: "emilkowalski/skills",
+        url: "https://github.com/emilkowalski/skills"
+      },
+      {
+        num: "07",
+        title: "Vercel Web Design Guidelines",
+        author: "vercel-labs",
+        cat: "audit",
+        desc: "100-rule comprehensive UI audit for accessibility, speed, and typography.",
+        badge: "DESIGN AUDIT",
+        spine: "#0a0a0a",
+        repo: "vercel-labs/agent-skills",
+        url: "https://github.com/vercel-labs/agent-skills"
+      },
+      {
+        num: "08",
+        title: "Vercel React Best Practices",
+        author: "vercel-labs",
+        cat: "engineering",
+        desc: "Deep React 19, Server Components & Next.js performance architecture.",
+        badge: "NEXT.JS ENGINE",
+        spine: "#006adc",
+        repo: "vercel-labs/agent-skills",
+        url: "https://github.com/vercel-labs/agent-skills"
+      },
+      {
+        num: "09",
+        title: "Anthropic Canvas Design",
+        author: "anthropics",
+        cat: "curated",
+        desc: "Posters, graphic covers, vector layouts, and static visual composition.",
+        badge: "POSTER & COVER",
+        spine: "#d95f43",
+        repo: "anthropics/skills",
+        url: "https://github.com/anthropics/skills/tree/main/skills/canvas-design"
+      },
+      {
+        num: "10",
+        title: "Claude Code Frontend Skills",
+        author: "JaimeJunr",
+        cat: "curated",
+        desc: "Curated bundle of Impeccable, Taste, UI UX Pro Max, Emil & Anthropic.",
+        badge: "CURATED BUNDLE",
+        spine: "#b45309",
+        repo: "JaimeJunr/claude-code-frontend-skills",
+        url: "https://github.com/JaimeJunr/claude-code-frontend-skills"
+      },
+      {
+        num: "11",
+        title: "Awesome Claude Design Skills",
+        author: "zhuyansen",
+        cat: "design",
+        desc: "Curated directory of high-craft Claude Code design instructions.",
+        badge: "DIRECTORY",
+        spine: "#047857",
+        repo: "zhuyansen/awesome-claude-design-skills",
+        url: "https://github.com/zhuyansen/awesome-claude-design-skills"
+      },
+      {
+        num: "12",
+        title: "Awesome Claude Skills",
+        author: "karanb192",
+        cat: "community",
+        desc: "50+ verified skills & prompts hardened for Claude Code workflows.",
+        badge: "VERIFIED 50+",
+        spine: "#6d28d9",
+        repo: "karanb192/awesome-claude-skills",
+        url: "https://github.com/karanb192/awesome-claude-skills"
+      },
+      {
+        num: "13",
+        title: "Awesome Skills",
+        author: "gmh5225",
+        cat: "community",
+        desc: "Comprehensive playbook directory for Claude, Codex, Copilot and beyond.",
+        badge: "MULTI-AGENT",
+        spine: "#be185d",
+        repo: "gmh5225/awesome-skills",
+        url: "https://github.com/gmh5225/awesome-skills"
+      },
+      {
+        num: "14",
+        title: "Antigravity Awesome Skills",
+        author: "sickn33",
+        cat: "community",
+        desc: "1,400+ installable SKILL.md playbooks for autonomous agentic engineering.",
+        badge: "1,400+ PLAYBOOKS",
+        spine: "#1d4ed8",
+        repo: "sickn33/antigravity-awesome-skills",
+        url: "https://github.com/sickn33/antigravity-awesome-skills"
+      },
+      {
+        num: "15",
+        title: "Awesome Claude Code",
+        author: "hesreallyhim",
+        cat: "curated",
+        desc: "Curated collection of skills, hooks, commands, tools and plugins.",
+        badge: "CLI TOOLING",
+        spine: "#059669",
+        repo: "hesreallyhim/awesome-claude-code",
+        url: "https://github.com/hesreallyhim/awesome-claude-code"
+      },
+      {
+        num: "16",
+        title: "Awesome Design MD",
+        author: "VoltAgent",
+        cat: "design",
+        desc: "Brand-inspired DESIGN.md systems for autonomous UI scaffolding.",
+        badge: "DESIGN SYSTEMS",
+        spine: "#d97706",
+        repo: "VoltAgent/awesome-design-md",
+        url: "https://github.com/VoltAgent/awesome-design-md"
+      },
+      {
+        num: "17",
+        title: "Claude Skills Library",
+        author: "ViggyV",
+        cat: "community",
+        desc: "242 combined official and community-tested agent skill modules.",
+        badge: "LIBRARY 242",
+        spine: "#4338ca",
+        repo: "ViggyV/claude-skills",
+        url: "https://github.com/ViggyV/claude-skills"
+      },
+      {
+        num: "18",
+        title: "Curated Code Skills",
+        author: "sujayjayjay",
+        cat: "community",
+        desc: "Selectively curated quality-first Claude Code playbook list.",
+        badge: "QUALITY FIRST",
+        spine: "#db2777",
+        repo: "sujayjayjay/awesome-claude-code-skills",
+        url: "https://github.com/sujayjayjay/awesome-claude-code-skills"
+      },
+      {
+        num: "19",
+        title: "SwiftUIX",
+        author: "SwiftUIX",
+        cat: "engineering",
+        desc: "SwiftUI component architecture alongside native Apple-style agent skills.",
+        badge: "SWIFTUI & NATIVE",
+        spine: "#0284c7",
+        repo: "SwiftUIX/SwiftUIX",
+        url: "https://github.com/SwiftUIX/SwiftUIX"
+      },
+      {
+        num: "20",
+        title: "ECC Monolith",
+        author: "affaan-m",
+        cat: "engineering",
+        desc: "Engineering and code synthesis agent core playbooks and workflows.",
+        badge: "CORE ENGINE",
+        spine: "#334155",
+        repo: "affaan-m/ECC",
+        url: "https://github.com/affaan-m/ECC"
+      }
+    ];
+
+    const grid = document.getElementById('skillsGrid');
+    const searchInput = document.getElementById('searchInput');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const toast = document.getElementById('toast');
+
+    let currentCat = 'all';
+    let searchQuery = '';
+
+    function showToast(text) {
+      toast.textContent = text;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2200);
+    }
+
+    function renderSkills() {
+      const filtered = SKILLS.filter(s => {
+        const matchesCat = currentCat === 'all' || s.cat === currentCat;
+        const matchesQuery = s.title.toLowerCase().includes(searchQuery) ||
+                             s.author.toLowerCase().includes(searchQuery) ||
+                             s.desc.toLowerCase().includes(searchQuery) ||
+                             s.badge.toLowerCase().includes(searchQuery);
+        return matchesCat && matchesQuery;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 60px 0; color: #888;">
+          No agent skills found matching your search.
+        </div>`;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(s => `
+        <div class="skill-card">
+          <div class="skill-spine-accent" style="background: ${s.spine}"></div>
+          <div>
+            <div class="card-top">
+              <span class="card-num">VOLUME // ${s.num}</span>
+              <span class="card-badge">${s.badge}</span>
+            </div>
+            <h3 class="card-title">${s.title}</h3>
+            <p class="card-desc">${s.desc}</p>
+          </div>
+          <div class="card-meta">
+            <span class="author-tag">@${s.author}</span>
+            <div class="card-actions">
+              <button class="copy-btn" onclick="copyInstall('${s.repo}')" title="Copy install prompt">
+                copy CLI
+              </button>
+              <a href="${s.url}" target="_blank" class="card-btn">GitHub ↗</a>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    window.copyInstall = function(repo) {
+      const cmd = `agy skill add https://github.com/${repo}`;
+      navigator.clipboard.writeText(cmd).then(() => {
+        showToast(`Copied: ${cmd}`);
+      });
+    };
+
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value.toLowerCase().trim();
+      renderSkills();
+    });
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentCat = btn.getAttribute('data-cat');
+        renderSkills();
+      });
+    });
+
+    // Check URL parameters for direct category navigation
+    const urlParams = new URLSearchParams(window.location.search);
+    const catParam = urlParams.get('cat');
+    if (catParam) {
+      const targetBtn = Array.from(filterBtns).find(b => b.getAttribute('data-cat') === catParam);
+      if (targetBtn) {
+        targetBtn.click();
+      }
+    }
+
+    renderSkills();
+  </script>
+</body>
+</html>

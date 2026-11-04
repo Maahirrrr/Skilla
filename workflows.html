@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workflows & Orchestration — Skilla</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Libre+Caslon+Display&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #000000;
+      --card-bg: #09090b;
+      --card-border: rgba(255, 255, 255, 0.1);
+      --card-hover: rgba(255, 255, 255, 0.2);
+      --text: #ffffff;
+      --muted: rgba(255, 255, 255, 0.65);
+      --dim: rgba(255, 255, 255, 0.38);
+      --pill-bg: #ffffff;
+      --pill-text: #000000;
+      --accent: #b8a58a;
+      --serif: "Libre Caslon Display", Georgia, serif;
+      --sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono: "JetBrains Mono", monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Top Nav */
+    nav.site-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 72px;
+      padding: 0 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 100;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand-tile {
+      width: 28px;
+      height: 32px;
+      background: #b8a58a;
+      border-radius: 4px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+
+    .brand-tile::after {
+      content: "";
+      position: absolute;
+      left: 32%;
+      width: 24%;
+      height: 64%;
+      background: #16120d;
+      border-radius: 1px;
+    }
+
+    .brand-meta {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .brand-title {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+
+    .brand-sub {
+      font-family: var(--sans);
+      font-size: 9px;
+      color: rgba(255, 255, 255, 0.6);
+      letter-spacing: 0.04em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 500;
+      transition: color 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 0;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: #fff;
+    }
+
+    .nav-link svg {
+      width: 10px;
+      height: 10px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: -12px;
+      min-width: 180px;
+      background: #0e0e11;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      padding: 6px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(8px);
+      transition: opacity 0.2s, transform 0.2s;
+      box-shadow: 0 16px 36px rgba(0,0,0,0.7);
+    }
+
+    .nav-item:hover .dropdown-menu {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 8px 12px;
+      font-size: 12.5px;
+      color: var(--muted);
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .dropdown-menu a:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-actions .sign-in {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-actions .sign-in:hover {
+      color: #fff;
+    }
+
+    .nav-pill {
+      background: var(--pill-bg);
+      color: var(--pill-text);
+      border: none;
+      border-radius: 6px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .nav-pill:hover {
+      transform: translateY(-1px);
+    }
+
+    /* Main Container */
+    main.page-container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 130px 5vw 80px;
+    }
+
+    .header-hero {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .category-tag {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #b8a58a;
+      margin-bottom: 12px;
+    }
+
+    .page-title {
+      font-family: var(--serif);
+      font-size: clamp(38px, 5.5vw, 68px);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .page-subtitle {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 680px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Workflow Cards */
+    .workflows-list {
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+
+    .workflow-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 36px;
+      transition: border-color 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .workflow-card:hover {
+      border-color: var(--card-hover);
+    }
+
+    .workflow-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .wf-badge {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 600;
+      color: #b8a58a;
+      background: rgba(184, 165, 138, 0.12);
+      border: 1px solid rgba(184, 165, 138, 0.3);
+      padding: 3px 9px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+
+    .wf-title {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .wf-desc {
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 700px;
+    }
+
+    .copy-recipe-btn {
+      background: #fff;
+      color: #000;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.15s;
+      white-space: nowrap;
+    }
+
+    .copy-recipe-btn:hover {
+      background: #e2e2e2;
+    }
+
+    /* Steps Grid */
+    .steps-chain {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .step-box {
+      background: #111116;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 18px;
+    }
+
+    .step-num {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      color: var(--dim);
+      margin-bottom: 6px;
+      letter-spacing: 0.08em;
+    }
+
+    .step-skill-tag {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: #93c5fd;
+      margin-bottom: 6px;
+      display: inline-block;
+    }
+
+    .step-name {
+      font-size: 14.5px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .step-detail {
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #fff;
+      color: #000;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s;
+      z-index: 1000;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    @media (max-width: 760px) {
+      .nav-links, .nav-actions .sign-in { display: none; }
+      .workflow-header { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Nav -->
+  <nav class="site-nav">
+    <a href="index.html" class="nav-brand">
+      <div class="brand-tile"></div>
+      <div class="brand-meta">
+        <span class="brand-title">Skilla</span>
+        <span class="brand-sub">ai agent playbooks</span>
+      </div>
+    </a>
+
+    <div class="nav-links">
+      <div class="nav-item">
+        <a href="skills.html" class="nav-link">Skills 
+          <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </a>
+        <div class="dropdown-menu">
+          <a href="skills.html?cat=all">All Skills</a>
+          <a href="skills.html?cat=design">Frontend & Design</a>
+          <a href="skills.html?cat=engineering">Design Engineering</a>
+          <a href="skills.html?cat=audit">Audits & Hardening</a>
+          <a href="skills.html?cat=frameworks">Frameworks & Next.js</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="foundations.html" class="nav-link">Foundations</a>
+      </div>
+      <div class="nav-item">
+        <a href="workflows.html" class="nav-link active">Workflows</a>
+      </div>
+      <div class="nav-item">
+        <a href="more.html" class="nav-link">More 
+          <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </a>
+        <div class="dropdown-menu">
+          <a href="more.html#mcp">MCP Servers</a>
+          <a href="more.html#guidelines">Playbook Guidelines</a>
+          <a href="more.html#faq">FAQ & Documentation</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-actions">
+      <a href="submit.html" class="sign-in">Submit Skill</a>
+      <a href="explore.html" class="nav-pill">Explore 2,900+ Skills ↗</a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="page-container">
+    <div class="header-hero">
+      <span class="category-tag">MULTI-AGENT RECIPES // PIPELINES</span>
+      <h1 class="page-title">Agent Workflows</h1>
+      <p class="page-subtitle">Composite orchestration pipelines that chain multiple verified skills to build, harden, and deploy production software completely hands-off.</p>
+    </div>
+
+    <div class="workflows-list">
+      <!-- Workflow 1 -->
+      <div class="workflow-card">
+        <div class="workflow-header">
+          <div>
+            <span class="wf-badge">PIPELINE // 01</span>
+            <h2 class="wf-title">Zero to Production Interface</h2>
+            <p class="wf-desc">Transforms raw product requirements into a fully animated, typographically opinionated, anti-generic web application with zero boilerplate.</p>
+          </div>
+          <button class="copy-recipe-btn" onclick="copyRecipe('recipe-01')">Copy Prompt Recipe</button>
+        </div>
+
+        <div class="steps-chain">
+          <div class="step-box">
+            <div class="step-num">PHASE 01</div>
+            <span class="step-skill-tag">Taste (@Leonxlnx)</span>
+            <div class="step-name">Art Direction & Mood</div>
+            <div class="step-detail">Establishes typography pairing, palette token variables, and layout grid density.</div>
+          </div>
+
+          <div class="step-box">
+            <div class="step-num">PHASE 02</div>
+            <span class="step-skill-tag">UI UX Pro Max</span>
+            <div class="step-name">Component Hierarchy</div>
+            <div class="step-detail">Structures accessibility patterns, microcopy, visual affordances, and empty states.</div>
+          </div>
+
+          <div class="step-box">
+            <div class="step-num">PHASE 03</div>
+            <span class="step-skill-tag">Emil Kowalski Design Eng</span>
+            <div class="step-name">Motion & Micro-interactions</div>
+            <div class="step-detail">Integrates sub-stepped springs, hover gestures, and enter/exit spatial transitions.</div>
+          </div>
+
+          <div class="step-box">
+            <div class="step-num">PHASE 04</div>
+            <span class="step-skill-tag">Impeccable (@pbakaus)</span>
+            <div class="step-name">Hardening & Polish</div>
+            <div class="step-detail">Performs full layout stress testing, cross-browser audits, and contrast hardening.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Workflow 2 -->
+      <div class="workflow-card">
+        <div class="workflow-header">
+          <div>
+            <span class="wf-badge">PIPELINE // 02</span>
+            <h2 class="wf-title">100-Rule Web Performance Audit</h2>
+            <p class="wf-desc">Runs automated static analysis and dynamic DOM inspections across codebases to guarantee sub-100ms interaction latency and zero render thrash.</p>
+          </div>
+          <button class="copy-recipe-btn" onclick="copyRecipe('recipe-02')">Copy Prompt Recipe</button>
+        </div>
+
+        <div class="steps-chain">
+          <div class="step-box">
+            <div class="step-num">PHASE 01</div>
+            <span class="step-skill-tag">Vercel UI Audit</span>
+            <div class="step-name">100-Rule Checklist</div>
+            <div class="step-detail">Scans semantic HTML tags, color contrast ratios, tap targets, and typography rules.</div>
+          </div>
+
+          <div class="step-box">
+            <div class="step-num">PHASE 02</div>
+            <span class="step-skill-tag">Vercel React Best Practices</span>
+            <div class="step-name">RSC & Hydration Check</div>
+            <div class="step-detail">Detects unnecessary client component boundaries and optimizes server waterfalls.</div>
+          </div>
+
+          <div class="step-box">
+            <div class="step-num">PHASE 03</div>
+            <span class="step-skill-tag">ECC (@affaan-m)</span>
+            <div class="step-name">Automated Refactor Diffs</div>
+            <div class="step-detail">Synthesizes targeted drop-in git patch diffs fixing all flagged infractions.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Workflow 3 -->
+      <div class="workflow-card">
+        <div class="workflow-header">
+          <div>
+            <span class="wf-badge">PIPELINE // 03</span>
+            <h2 class="wf-title">Autonomous Design System Scaffolding</h2>
+            <p class="wf-desc">Generates complete design token repositories, interactive documentation, and cross-platform native component wrappers.</p>
+          </div>
+          <button class="copy-recipe-btn" onclick="copyRecipe('recipe-03')">Copy Prompt Recipe</button>
+        </div>
+
+        <div class="steps-chain">
+          <div class="step-box">
+            <div class="step-num">PHASE 01</div>
+            <span class="step-skill-tag">Awesome Design MD</span>
+            <div class="step-name">Token Scaffolding</div>
+            <div class="step-detail">Creates comprehensive DESIGN.md token maps for colors, radiuses, and shadows.</div>
+          </div>
+
+          <div class="step-box">
+            <div class="step-num">PHASE 02</div>
+            <span class="step-skill-tag">Anthropic Canvas Design</span>
+            <div class="step-name">Visual Specs & Posters</div>
+            <div class="step-detail">Renders standalone vector visual artifacts and brand assets for documentation.</div>
+          </div>
+
+          <div class="step-box">
+            <div class="step-num">PHASE 03</div>
+            <span class="step-skill-tag">Apple Design (@dickwu)</span>
+            <div class="step-name">Native UI Patterns</div>
+            <div class="step-detail">Adapts components to iOS/macOS human interface standards and SwiftUIX bindings.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="toast" id="toast">Prompt recipe copied to clipboard</div>
+
+  <script>
+    const RECIPES = {
+      'recipe-01': `/goal Build an interface with the Skilla Pipeline:
+1. Apply @Leonxlnx/taste-skill for typographic hierarchy and art direction.
+2. Apply @nextlevelbuilder/ui-ux-pro-max-skill for components and usability.
+3. Apply @emilkowalski/skills for sub-stepped spring animations and transitions.
+4. Run @pbakaus/impeccable to audit, polish, and harden all interaction states.`,
+
+      'recipe-02': `/goal Execute a full performance audit:
+1. Run @vercel-labs/agent-skills (100-Rule Web Design Guidelines).
+2. Run @vercel-labs/agent-skills (React Best Practices & Server Component audit).
+3. Generate drop-in git refactor patches using @affaan-m/ECC.`,
+
+      'recipe-03': `/goal Scaffold an enterprise design system:
+1. Synthesize DESIGN.md tokens using @VoltAgent/awesome-design-md.
+2. Generate vector artwork & posters using @anthropics/skills/canvas-design.
+3. Implement Apple human interface guidelines using @dickwu/apple-design-skill.`
+    };
+
+    const toast = document.getElementById('toast');
+
+    window.copyRecipe = function(id) {
+      const text = RECIPES[id];
+      navigator.clipboard.writeText(text).then(() => {
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2200);
+      });
+    };
+  </script>
+</body>
+</html>

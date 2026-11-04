@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skilla — 3D AI Agent Skills Archive</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Libre+Caslon+Display&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --bg: #000000;
+      --text: #ffffff;
+      --muted: rgba(255, 255, 255, 0.65);
+      --dim: rgba(255, 255, 255, 0.35);
+      --border: rgba(255, 255, 255, 0.12);
+      --pill-bg: #ffffff;
+      --pill-text: #000000;
+      --serif: "Libre Caslon Display", Georgia, serif;
+      --sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono: "JetBrains Mono", monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    /* Fixed Canvas layer */
+    #canvas-container {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: auto;
+    }
+
+    canvas {
+      width: 100% !important;
+      height: 100% !important;
+      display: block;
+    }
+
+    /* Fixed Nav: z 5 */
+    nav.hero-nav {
+      position: fixed;
+      left: 5vw;
+      right: 5vw;
+      top: 3.8vh;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 50;
+      font-size: max(12px, 0.8vw);
+      font-weight: 500;
+      color: #fff;
+      opacity: 0;
+      transform: translateY(-1.2vh);
+      pointer-events: auto;
+      max-width: 1360px;
+      margin: 0 auto;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand-tile {
+      width: 28px;
+      height: 32px;
+      min-width: 28px;
+      min-height: 32px;
+      background: #b8a58a;
+      border-radius: 4px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+
+    .brand-tile::after {
+      content: "";
+      position: absolute;
+      left: 32%;
+      width: 24%;
+      height: 64%;
+      background: #16120d;
+      border-radius: 1px;
+    }
+
+    .brand-meta {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .brand-title {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+
+    .brand-sub {
+      font-family: var(--sans);
+      font-size: 9px;
+      color: rgba(255, 255, 255, 0.7);
+      letter-spacing: 0.04em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-link {
+      color: #fff;
+      text-decoration: none;
+      opacity: 0.85;
+      transition: opacity 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      padding: 8px 0;
+    }
+
+    .nav-link:hover {
+      opacity: 1;
+    }
+
+    .nav-link svg {
+      width: 9px;
+      height: 9px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: -12px;
+      min-width: 180px;
+      background: #0e0e11;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      padding: 6px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(8px);
+      transition: opacity 0.2s, transform 0.2s;
+      box-shadow: 0 16px 36px rgba(0,0,0,0.7);
+    }
+
+    .nav-item:hover .dropdown-menu {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 8px 12px;
+      font-size: 12.5px;
+      color: var(--muted);
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .dropdown-menu a:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-actions .sign-in {
+      color: #fff;
+      text-decoration: none;
+      opacity: 0.85;
+      transition: opacity 0.2s;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .nav-actions .sign-in:hover {
+      opacity: 1;
+    }
+
+    .nav-pill {
+      background: var(--pill-bg);
+      color: var(--pill-text);
+      border: none;
+      border-radius: 6px;
+      padding: 9px 18px;
+      font-size: max(11px, 0.78vw);
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .nav-pill:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(255, 255, 255, 0.25);
+    }
+
+    /* Giant Wordmark: z 1 */
+    .wordmark-container {
+      position: fixed;
+      left: 0;
+      right: 0;
+      --fs: min(46vh, 32vw);
+      top: calc(46.5vh - var(--fs) * 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0;
+      transform: translateY(4vh);
+      filter: blur(14px);
+    }
+
+    .wordmark {
+      font-family: var(--serif);
+      font-size: var(--fs);
+      line-height: 1;
+      font-weight: 400;
+      letter-spacing: -0.025em;
+      color: #ffffff;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    /* Link row: z 1 */
+    .link-row {
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 44.5vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2.1vw;
+      font-size: max(10px, 0.74vw);
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.65);
+      z-index: 1;
+      pointer-events: auto;
+      opacity: 0;
+      transform: translateY(1.2vh);
+    }
+
+    .link-row a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s ease, transform 0.2s ease;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .link-row a:hover {
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    /* Interactive Floating HUD: z 100 */
+    .skill-card-hud {
+      position: fixed;
+      bottom: 4vh;
+      left: 4.5vw;
+      min-width: 360px;
+      max-width: 480px;
+      background: rgba(14, 14, 18, 0.92);
+      backdrop-filter: blur(24px) saturate(190%);
+      -webkit-backdrop-filter: blur(24px) saturate(190%);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 14px;
+      padding: 22px 26px;
+      z-index: 100;
+      opacity: 0;
+      transform: translateY(16px);
+      pointer-events: none;
+      transition: opacity 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+      box-shadow: 0 24px 48px rgba(0,0,0,0.85), 0 0 1px rgba(255,255,255,0.4);
+    }
+
+    .skill-card-hud.active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .hud-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .hud-num {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.12em;
+      color: #888;
+      text-transform: uppercase;
+    }
+
+    .hud-badge {
+      font-family: var(--mono);
+      font-size: 9.5px;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      letter-spacing: 0.04em;
+    }
+
+    .hud-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+
+    .hud-desc {
+      font-size: 13.5px;
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+
+    .hud-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .hud-repo {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: #aaa;
+      text-decoration: none;
+      max-width: 250px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      transition: color 0.15s;
+    }
+
+    .hud-repo:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    .hud-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #ffffff;
+      color: #000000;
+      padding: 7px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.15s, transform 0.15s;
+      white-space: nowrap;
+    }
+
+    .hud-btn:hover {
+      background: #e6e6e6;
+      transform: translateY(-1px);
+    }
+
+    /* Mobile Responsive (≤ 760px) */
+    @media (max-width: 760px) {
+      nav.hero-nav {
+        left: 5vw;
+        right: 5vw;
+        top: 2.5vh;
+      }
+      .nav-links, .nav-actions .sign-in {
+        display: none;
+      }
+      .wordmark-container {
+        --fs: 36vw;
+        top: 14vh;
+      }
+      .link-row {
+        top: 36vh;
+        flex-wrap: wrap;
+        padding: 0 8vw;
+        gap: 12px;
+        font-size: 11px;
+      }
+      .skill-card-hud {
+        left: 5vw;
+        right: 5vw;
+        bottom: 2.5vh;
+        max-width: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Nav: z 5 -->
+  <nav class="hero-nav" id="heroNav">
+    <a href="index.html" class="nav-brand">
+      <div class="brand-tile"></div>
+      <div class="brand-meta">
+        <span class="brand-title">Skilla</span>
+        <span class="brand-sub">ai agent playbooks</span>
+      </div>
+    </a>
+
+    <div class="nav-links">
+      <div class="nav-item">
+        <a href="skills.html" class="nav-link">Skills 
+          <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </a>
+        <div class="dropdown-menu">
+          <a href="skills.html?cat=all">All Skills</a>
+          <a href="skills.html?cat=design">Frontend & Design</a>
+          <a href="skills.html?cat=engineering">Design Engineering</a>
+          <a href="skills.html?cat=audit">Audits & Hardening</a>
+          <a href="skills.html?cat=frameworks">Frameworks & Next.js</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="foundations.html" class="nav-link">Foundations</a>
+      </div>
+      <div class="nav-item">
+        <a href="workflows.html" class="nav-link">Workflows</a>
+      </div>
+      <div class="nav-item">
+        <a href="more.html" class="nav-link">More 
+          <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </a>
+        <div class="dropdown-menu">
+          <a href="more.html#mcp">MCP Servers</a>
+          <a href="more.html#guidelines">Playbook Guidelines</a>
+          <a href="more.html#faq">FAQ & Documentation</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-actions">
+      <a href="submit.html" class="sign-in">Submit Skill</a>
+      <a href="explore.html" class="nav-pill">
+        Explore 2,900+ Skills ↗
+      </a>
+    </div>
+  </nav>
+
+  <!-- Giant Serif Wordmark: z 1 -->
+  <div class="wordmark-container" id="wordmarkContainer">
+    <div class="wordmark">Skilla</div>
+  </div>
+
+  <!-- Link row: z 1 -->
+  <div class="link-row" id="linkRow">
+    <a href="https://github.com/pbakaus/impeccable" target="_blank">Impeccable</a>
+    <a href="https://github.com/Leonxlnx/taste-skill" target="_blank">Taste</a>
+    <a href="https://github.com/nextlevelbuilder/ui-ux-pro-max-skill" target="_blank">UI UX Pro Max</a>
+    <a href="https://github.com/dickwu/apple-design-skill" target="_blank">Apple Design</a>
+    <a href="https://github.com/anthropics/skills" target="_blank">Anthropic Frontend</a>
+    <a href="https://github.com/emilkowalski/skills" target="_blank">Design Engineering</a>
+    <a href="https://github.com/vercel-labs/agent-skills" target="_blank">Vercel Best Practices</a>
+    <a href="https://github.com/sickn33/antigravity-awesome-skills" target="_blank">Awesome Skills</a>
+  </div>
+
+  <!-- 3D Canvas: z 2 -->
+  <div id="canvas-container"></div>
+
+  <!-- Interactive Skill HUD: z 10 -->
+  <div class="skill-card-hud" id="skillHud">
+    <div class="hud-header">
+      <span class="hud-num" id="hudIndex">VOLUME // 01</span>
+      <span class="hud-badge" id="hudBadge">SKILL.MD</span>
+    </div>
+    <h3 class="hud-title" id="hudTitle">Impeccable</h3>
+    <p class="hud-desc" id="hudDesc">Plan, audit, polish, and harden agent-crafted web interfaces.</p>
+    <div class="hud-footer">
+      <span class="hud-repo" id="hudRepo">github.com/pbakaus/impeccable</span>
+      <a href="#" target="_blank" class="hud-btn" id="hudLink">View Repository ↗</a>
+    </div>
+  </div>
+
+  <script type="module">
+    import * as THREE from 'three';
+    import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+    // 20 Curated AI Agent Skills Data
+    const SKILLS_DATA = [
+      {
+        num: "01",
+        title: "Impeccable",
+        author: "pbakaus",
+        desc: "Plan, audit, polish, and harden agent-crafted web interfaces with surgical precision.",
+        spineHex: "#16171a",
+        accentHex: "#ffffff",
+        badge: "AUDIT & POLISH",
+        github: "https://github.com/pbakaus/impeccable"
+      },
+      {
+        num: "02",
+        title: "Taste",
+        author: "Leonxlnx",
+        desc: "Anti-generic frontend design rules, typographic hierarchy & art direction.",
+        spineHex: "#c62420",
+        accentHex: "#fff1e8",
+        badge: "ART DIRECTION",
+        github: "https://github.com/Leonxlnx/taste-skill"
+      },
+      {
+        num: "03",
+        title: "UI UX Pro Max",
+        author: "nextlevelbuilder",
+        desc: "Design intelligence system, palettes, font pairings, and usability rules.",
+        spineHex: "#1b4bd1",
+        accentHex: "#e0edff",
+        badge: "UX INTELLIGENCE",
+        github: "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill"
+      },
+      {
+        num: "04",
+        title: "Apple Design",
+        author: "dickwu",
+        desc: "Apple-style fluid motion, spatial materials, haptics & interaction patterns.",
+        spineHex: "#1c1c1e",
+        accentHex: "#f5f5f7",
+        badge: "HUMAN INTERFACE",
+        github: "https://github.com/dickwu/apple-design-skill"
+      },
+      {
+        num: "05",
+        title: "Frontend Design",
+        author: "anthropics",
+        desc: "Distinctive UI direction & anti-template defaults directly from Anthropic.",
+        spineHex: "#c76743",
+        accentHex: "#fbf3ef",
+        badge: "CLAUDE OFFICIAL",
+        github: "https://github.com/anthropics/skills/tree/main/skills/frontend-design"
+      },
+      {
+        num: "06",
+        title: "Design Eng.",
+        author: "emilkowalski",
+        desc: "Kinetic animation, micro-interactions, polish, and production prototypes.",
+        spineHex: "#5244d4",
+        accentHex: "#eedaff",
+        badge: "ANIMATION ENGINE",
+        github: "https://github.com/emilkowalski/skills"
+      },
+      {
+        num: "07",
+        title: "Vercel UI Audit",
+        author: "vercel-labs",
+        desc: "100-rule comprehensive UI audit for accessibility, speed, and typography.",
+        spineHex: "#0a0a0a",
+        accentHex: "#ededed",
+        badge: "DESIGN AUDIT",
+        github: "https://github.com/vercel-labs/agent-skills"
+      },
+      {
+        num: "08",
+        title: "React Best Practices",
+        author: "vercel-labs",
+        desc: "Deep React 19, Server Components & Next.js performance architecture.",
+        spineHex: "#006adc",
+        accentHex: "#e1f0ff",
+        badge: "NEXT.JS ENGINE",
+        github: "https://github.com/vercel-labs/agent-skills"
+      },
+      {
+        num: "09",
+        title: "Canvas Design",
+        author: "anthropics",
+        desc: "Posters, graphic covers, vector layouts, and static visual composition.",
+        spineHex: "#d95f43",
+        accentHex: "#fff6f0",
+        badge: "POSTER & COVER",
+        github: "https://github.com/anthropics/skills/tree/main/skills/canvas-design"
+      },
+      {
+        num: "10",
+        title: "Frontend Skills",
+        author: "JaimeJunr",
+        desc: "Curated bundle of Impeccable, Taste, UI UX Pro Max, Emil & Anthropic.",
+        spineHex: "#b45309",
+        accentHex: "#fef3c7",
+        badge: "CURATED BUNDLE",
+        github: "https://github.com/JaimeJunr/claude-code-frontend-skills"
+      },
+      {
+        num: "11",
+        title: "Claude Design",
+        author: "zhuyansen",
+        desc: "Curated directory of high-craft Claude Code design instructions.",
+        spineHex: "#047857",
+        accentHex: "#d1fae5",
+        badge: "DIRECTORY",
+        github: "https://github.com/zhuyansen/awesome-claude-design-skills"
+      },
+      {
+        num: "12",
+        title: "Verified Skills",
+        author: "karanb192",
+        desc: "50+ verified skills & prompts hardened for Claude Code workflows.",
+        spineHex: "#6d28d9",
+        accentHex: "#ede9fe",
+        badge: "VERIFIED 50+",
+        github: "https://github.com/karanb192/awesome-claude-skills"
+      },
+      {
+        num: "13",
+        title: "Awesome Skills",
+        author: "gmh5225",
+        desc: "Comprehensive playbook directory for Claude, Codex, Copilot and beyond.",
+        spineHex: "#be185d",
+        accentHex: "#fce7f3",
+        badge: "MULTI-AGENT",
+        github: "https://github.com/gmh5225/awesome-skills"
+      },
+      {
+        num: "14",
+        title: "Antigravity Skills",
+        author: "sickn33",
+        desc: "1,400+ installable SKILL.md playbooks for autonomous agentic engineering.",
+        spineHex: "#1d4ed8",
+        accentHex: "#dbeafe",
+        badge: "1,400+ PLAYBOOKS",
+        github: "https://github.com/sickn33/antigravity-awesome-skills"
+      },
+      {
+        num: "15",
+        title: "Awesome Claude",
+        author: "hesreallyhim",
+        desc: "Curated collection of skills, hooks, commands, tools and plugins.",
+        spineHex: "#059669",
+        accentHex: "#ecfdf5",
+        badge: "CLI TOOLING",
+        github: "https://github.com/hesreallyhim/awesome-claude-code"
+      },
+      {
+        num: "16",
+        title: "Design MD",
+        author: "VoltAgent",
+        desc: "Brand-inspired DESIGN.md systems for autonomous UI scaffolding.",
+        spineHex: "#d97706",
+        accentHex: "#fffbeb",
+        badge: "DESIGN SYSTEMS",
+        github: "https://github.com/VoltAgent/awesome-design-md"
+      },
+      {
+        num: "17",
+        title: "Skills Library",
+        author: "ViggyV",
+        desc: "242 combined official and community-tested agent skill modules.",
+        spineHex: "#4338ca",
+        accentHex: "#e0e7ff",
+        badge: "LIBRARY 242",
+        github: "https://github.com/ViggyV/claude-skills"
+      },
+      {
+        num: "18",
+        title: "Curated Skills",
+        author: "sujayjayjay",
+        desc: "Selectively curated quality-first Claude Code playbook list.",
+        spineHex: "#db2777",
+        accentHex: "#fdf2f8",
+        badge: "QUALITY FIRST",
+        github: "https://github.com/sujayjayjay/awesome-claude-code-skills"
+      },
+      {
+        num: "19",
+        title: "SwiftUIX",
+        author: "SwiftUIX",
+        desc: "SwiftUI component architecture alongside native Apple-style agent skills.",
+        spineHex: "#0284c7",
+        accentHex: "#e0f2fe",
+        badge: "SWIFTUI & NATIVE",
+        github: "https://github.com/SwiftUIX/SwiftUIX"
+      },
+      {
+        num: "20",
+        title: "ECC Monolith",
+        author: "affaan-m",
+        desc: "Engineering and code synthesis agent core playbooks and workflows.",
+        spineHex: "#334155",
+        accentHex: "#f1f5f9",
+        badge: "CORE ENGINE",
+        github: "https://github.com/affaan-m/ECC"
+      }
+    ];
+
+    // Populate 32 books total by weaving the curated skills
+    const TOTAL_BOOKS = 32;
+    const booksData = [];
+    for (let i = 0; i < TOTAL_BOOKS; i++) {
+      const skill = SKILLS_DATA[i % SKILLS_DATA.length];
+      booksData.push({
+        ...skill,
+        volumeIndex: i + 1,
+        indexStr: String(i + 1).padStart(2, '0')
+      });
+    }
+
+    // --- PROCEDURAL TEXTURES ---
+    function createPageTexture(horizontal = true) {
+      const canvas = document.createElement('canvas');
+      canvas.width = 256;
+      canvas.height = 256;
+      const ctx = canvas.getContext('2d');
+
+      ctx.fillStyle = '#efe7d6';
+      ctx.fillRect(0, 0, 256, 256);
+
+      ctx.fillStyle = '#6e5d47';
+      for (let i = 0; i < 256; i += 2) {
+        const alpha = 0.05 + Math.random() * 0.12;
+        ctx.fillStyle = `rgba(110, 93, 71, ${alpha})`;
+        if (horizontal) {
+          ctx.fillRect(0, i, 256, 1);
+        } else {
+          ctx.fillRect(i, 0, 1, 256);
+        }
+      }
+
+      const texture = new THREE.CanvasTexture(canvas);
+      texture.wrapS = THREE.RepeatWrapping;
+      texture.wrapT = THREE.RepeatWrapping;
+      return texture;
+    }
+
+    function createSpineTexture(skill) {
+      const canvas = document.createElement('canvas');
+      canvas.width = 256;
+      canvas.height = 1024;
+      const ctx = canvas.getContext('2d');
+
+      ctx.fillStyle = skill.spineHex;
+      ctx.fillRect(0, 0, 256, 1024);
+
+      // Subtle vertical spine shading
+      const grad = ctx.createLinearGradient(0, 0, 256, 0);
+      grad.addColorStop(0, 'rgba(0,0,0,0.4)');
+      grad.addColorStop(0.3, 'rgba(255,255,255,0.08)');
+      grad.addColorStop(0.7, 'rgba(255,255,255,0.0)');
+      grad.addColorStop(1, 'rgba(0,0,0,0.5)');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, 256, 1024);
+
+      // Spine text (rotated 90 degrees)
+      ctx.save();
+      ctx.translate(128, 512);
+      ctx.rotate(-Math.PI / 2);
+
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+      ctx.font = "bold 44px 'Inter', sans-serif";
+      ctx.textAlign = 'center';
+      ctx.fillText(skill.title.toUpperCase(), 0, 16);
+
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.55)';
+      ctx.font = "500 24px 'JetBrains Mono', monospace";
+      ctx.fillText(`VOL.${skill.indexStr} // @${skill.author}`, 0, 56);
+
+      ctx.restore();
+
+      const texture = new THREE.CanvasTexture(canvas);
+      texture.colorSpace = THREE.SRGBColorSpace;
+      return texture;
+    }
+
+    function createCoverTexture(skill) {
+      const canvas = document.createElement('canvas');
+      canvas.width = 768;
+      canvas.height = 1152;
+      const ctx = canvas.getContext('2d');
+
+      // Base background
+      ctx.fillStyle = skill.spineHex;
+      ctx.fillRect(0, 0, 768, 1152);
+
+      // Fine linen/paper texture
+      const imgData = ctx.getImageData(0, 0, 768, 1152);
+      const data = imgData.data;
+      for (let i = 0; i < data.length; i += 4) {
+        const noise = (Math.random() - 0.5) * 14;
+        data[i] = Math.min(255, Math.max(0, data[i] + noise));
+        data[i+1] = Math.min(255, Math.max(0, data[i+1] + noise));
+        data[i+2] = Math.min(255, Math.max(0, data[i+2] + noise));
+      }
+      ctx.putImageData(imgData, 0, 0);
+
+      // Architectural margin rules
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.18)";
+      ctx.lineWidth = 2;
+      ctx.strokeRect(40, 40, 688, 1072);
+
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+      ctx.strokeRect(48, 48, 672, 1056);
+
+      // Top Tag & Index
+      ctx.fillStyle = "rgba(255, 255, 255, 0.75)";
+      ctx.font = "600 22px 'JetBrains Mono', monospace";
+      ctx.fillText(`SKILL.MD // VOL.${skill.indexStr}`, 64, 96);
+
+      ctx.textAlign = "right";
+      ctx.fillText(skill.badge, 704, 96);
+      ctx.textAlign = "left";
+
+      // Divider line
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.25)";
+      ctx.beginPath();
+      ctx.moveTo(64, 120);
+      ctx.lineTo(704, 120);
+      ctx.stroke();
+
+      // Main Graphic Motif / Minimal Swiss Art
+      ctx.save();
+      ctx.translate(384, 450);
+      
+      const seed = parseInt(skill.num, 10) || 1;
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.38)";
+      ctx.lineWidth = 3;
+
+      if (seed % 4 === 0) {
+        for (let r = 50; r <= 220; r += 40) {
+          ctx.beginPath();
+          ctx.arc(0, 0, r, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+        ctx.fillStyle = skill.accentHex;
+        ctx.beginPath();
+        ctx.arc(0, 0, 36, 0, Math.PI * 2);
+        ctx.fill();
+      } else if (seed % 4 === 1) {
+        ctx.beginPath();
+        for (let d = -180; d <= 180; d += 45) {
+          ctx.moveTo(d, -180);
+          ctx.lineTo(d, 180);
+          ctx.moveTo(-180, d);
+          ctx.lineTo(180, d);
+        }
+        ctx.stroke();
+        ctx.fillStyle = skill.accentHex;
+        ctx.fillRect(-50, -50, 100, 100);
+      } else if (seed % 4 === 2) {
+        ctx.beginPath();
+        ctx.moveTo(0, -180);
+        ctx.lineTo(180, 130);
+        ctx.lineTo(-180, 130);
+        ctx.closePath();
+        ctx.stroke();
+        ctx.fillStyle = skill.accentHex;
+        ctx.beginPath();
+        ctx.arc(0, 40, 70, 0, Math.PI);
+        ctx.fill();
+      } else {
+        for (let y = -140; y <= 140; y += 28) {
+          ctx.beginPath();
+          for (let x = -180; x <= 180; x += 10) {
+            const waveY = y + Math.sin(x * 0.03 + y * 0.02) * 18;
+            if (x === -180) ctx.moveTo(x, waveY);
+            else ctx.lineTo(x, waveY);
+          }
+          ctx.stroke();
+        }
+      }
+      ctx.restore();
+
+      // Main Title
+      ctx.fillStyle = "#ffffff";
+      ctx.font = "bold 56px 'Inter', sans-serif";
+      
+      const words = skill.title.split(' ');
+      let line = '';
+      let titleY = 770;
+      for (let n = 0; n < words.length; n++) {
+        const testLine = line + words[n] + ' ';
+        const metrics = ctx.measureText(testLine);
+        if (metrics.width > 600 && n > 0) {
+          ctx.fillText(line.trim(), 64, titleY);
+          line = words[n] + ' ';
+          titleY += 66;
+        } else {
+          line = testLine;
+        }
+      }
+      ctx.fillText(line.trim(), 64, titleY);
+
+      // Description / subtitle
+      ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+      ctx.font = "400 24px 'Inter', sans-serif";
+      ctx.fillText(skill.author ? `Curated by @${skill.author}` : "Open-Source AI Playbook", 64, titleY + 54);
+
+      // Bottom Barcode & Repo Handle
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.25)";
+      ctx.beginPath();
+      ctx.moveTo(64, 980);
+      ctx.lineTo(704, 980);
+      ctx.stroke();
+
+      ctx.fillStyle = "rgba(255, 255, 255, 0.55)";
+      ctx.font = "500 18px 'JetBrains Mono', monospace";
+      ctx.fillText(`REPO // ${skill.author}/${skill.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}`, 64, 1025);
+
+      // Barcode simulation
+      ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+      let barcodeX = 520;
+      while (barcodeX < 700) {
+        const bw = Math.random() > 0.5 ? 2 : 4;
+        ctx.fillRect(barcodeX, 1005, bw, 32);
+        barcodeX += bw + 3 + (Math.random() > 0.6 ? 2 : 0);
+      }
+
+      const texture = new THREE.CanvasTexture(canvas);
+      texture.colorSpace = THREE.SRGBColorSpace;
+      texture.anisotropy = 16;
+      return texture;
+    }
+
+    // --- THREE.JS SCENE SETUP ---
+    const container = document.getElementById('canvas-container');
+    const scene = new THREE.Scene();
+
+    const isMobile = window.innerWidth <= 760 || window.innerWidth < window.innerHeight;
+    const camera = new THREE.PerspectiveCamera(
+      isMobile ? 40 : 19.5,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      100
+    );
+    camera.position.set(3.6, 2.15, 7.4);
+    camera.lookAt(-1.4, 0.05, -0.6);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.05;
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    container.appendChild(renderer.domElement);
+
+    // Environment Lighting
+    const pmremGenerator = new THREE.PMREMGenerator(renderer);
+    pmremGenerator.compileEquirectangularShader();
+    const roomEnv = new RoomEnvironment();
+    scene.environment = pmremGenerator.fromScene(roomEnv, 0.04).texture;
+    scene.environmentIntensity = 0.55;
+
+    // Key Light: DirectionalLight #fff3e4, 2.4, at (-4, 6, 6)
+    const keyLight = new THREE.DirectionalLight(0xfff3e4, 2.4);
+    keyLight.position.set(-4, 6, 6);
+    scene.add(keyLight);
+
+    // Rim Light: #bfd2ff, 1.1, at (6, 3, -4)
+    const rimLight = new THREE.DirectionalLight(0xbfd2ff, 1.1);
+    rimLight.position.set(6, 3, -4);
+    scene.add(rimLight);
+
+    // Ambient Light: white, .12
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.12);
+    scene.add(ambientLight);
+
+    // --- SHARED GEOMETRY & MATERIALS ---
+    const pageTextureH = createPageTexture(true);
+    const pageTextureV = createPageTexture(false);
+    const bookGeometry = new THREE.BoxGeometry(1, 1.5, 0.2);
+
+    const foreEdgeMat = new THREE.MeshStandardMaterial({
+      map: pageTextureH,
+      roughness: 0.9,
+    });
+    const topBottomMat = new THREE.MeshStandardMaterial({
+      map: pageTextureV,
+      roughness: 0.9,
+    });
+
+    const books = [];
+    const raycastMeshes = [];
+
+    for (let i = 0; i < TOTAL_BOOKS; i++) {
+      const data = booksData[i];
+      const spineColor = new THREE.Color(data.spineHex).multiplyScalar(0.62);
+
+      const spineTex = createSpineTexture(data);
+      const spineMat = new THREE.MeshPhysicalMaterial({
+        map: spineTex,
+        roughness: 0.55,
+        clearcoat: 0.3
+      });
+
+      const coverTex = createCoverTexture(data);
+      const coverMat = new THREE.MeshPhysicalMaterial({
+        map: coverTex,
+        roughness: 0.42,
+        clearcoat: 0.55,
+        clearcoatRoughness: 0.35
+      });
+
+      const backMat = new THREE.MeshPhysicalMaterial({
+        color: spineColor,
+        roughness: 0.6
+      });
+
+      // Face materials in order +x, -x, +y, -y, +z, -z:
+      // 1. Fore-edge (+x)
+      // 2. Spine (-x)
+      // 3. Top (+y)
+      // 4. Bottom (-y)
+      // 5. Cover (+z)
+      // 6. Back (-z)
+      const materials = [
+        foreEdgeMat,
+        spineMat,
+        topBottomMat,
+        topBottomMat,
+        coverMat,
+        backMat
+      ];
+
+      const mesh = new THREE.Mesh(bookGeometry, materials);
+      mesh.castShadow = true;
+      mesh.receiveShadow = true;
+      mesh.userData = { index: i, data };
+
+      const group = new THREE.Group();
+      // Group position: (1.55 + i·(−.5), −1.12, .9 + i·(−.2)) with rotation.y = .32
+      group.position.set(
+        1.55 + i * -0.5,
+        -1.12,
+        0.9 + i * -0.2
+      );
+      group.rotation.y = 0.32;
+      group.add(mesh);
+      scene.add(group);
+
+      books.push({
+        group,
+        mesh,
+        data,
+        index: i,
+        y: -3,
+        vy: 0,
+        z: 0,
+        vz: 0,
+        targetY: -3,
+        targetZ: 0
+      });
+
+      raycastMeshes.push(mesh);
+    }
+
+    // --- INTERACTION & POINTER ---
+    const pointer = {
+      x: -9999,
+      y: -9999,
+      inside: false,
+      lastMoveTime: performance.now()
+    };
+
+    const raycaster = new THREE.Raycaster();
+    const mouseNDC = new THREE.Vector2(-9999, -9999);
+
+    const hudEl = document.getElementById('skillHud');
+    const hudIndex = document.getElementById('hudIndex');
+    const hudBadge = document.getElementById('hudBadge');
+    const hudTitle = document.getElementById('hudTitle');
+    const hudDesc = document.getElementById('hudDesc');
+    const hudRepo = document.getElementById('hudRepo');
+    const hudLink = document.getElementById('hudLink');
+
+    let activeBook = null;
+    let scrollActiveUntil = 0;
+    let scrollFocusedIndex = 0;
+
+    function updateHud(skill) {
+      if (!skill) return;
+      activeBook = skill;
+      hudIndex.textContent = `VOLUME // ${skill.indexStr}`;
+      hudBadge.textContent = skill.badge;
+      hudTitle.textContent = skill.title;
+      hudDesc.textContent = skill.desc;
+      hudRepo.textContent = skill.github.replace('https://', '');
+      hudLink.href = skill.github;
+      hudEl.classList.add('active');
+    }
+
+    function hideHud() {
+      if (performance.now() >= scrollActiveUntil) {
+        hudEl.classList.remove('active');
+        activeBook = null;
+      }
+    }
+
+    function onPointerMove(e) {
+      pointer.x = e.clientX;
+      pointer.y = e.clientY;
+      pointer.inside = true;
+      pointer.lastMoveTime = performance.now();
+
+      mouseNDC.x = (e.clientX / window.innerWidth) * 2 - 1;
+      mouseNDC.y = -(e.clientY / window.innerHeight) * 2 + 1;
+    }
+
+    window.addEventListener('pointermove', onPointerMove);
+    window.addEventListener('pointerleave', () => {
+      pointer.inside = false;
+      mouseNDC.set(-9999, -9999);
+      hideHud();
+    });
+    window.addEventListener('blur', () => {
+      pointer.inside = false;
+      mouseNDC.set(-9999, -9999);
+      hideHud();
+    });
+
+    // Mouse wheel scrolling across the books
+    window.addEventListener('wheel', (e) => {
+      // User is scrolling: cycle focused book
+      scrollActiveUntil = performance.now() + 2500; // keep visible for 2.5s
+      const delta = Math.sign(e.deltaY);
+      scrollFocusedIndex = Math.max(0, Math.min(books.length - 1, scrollFocusedIndex + delta));
+      const targetBook = books[scrollFocusedIndex];
+      if (targetBook) {
+        updateHud(targetBook.data);
+      }
+    }, { passive: true });
+
+    // Click raycasting directly opens the GitHub skill repository
+    window.addEventListener('click', (e) => {
+      if (e.target.closest('nav') || e.target.closest('.skill-card-hud') || e.target.closest('.link-row')) {
+        return;
+      }
+      mouseNDC.x = (e.clientX / window.innerWidth) * 2 - 1;
+      mouseNDC.y = -(e.clientY / window.innerHeight) * 2 + 1;
+      raycaster.setFromCamera(mouseNDC, camera);
+      const intersects = raycaster.intersectObjects(raycastMeshes);
+      if (intersects.length > 0) {
+        const hitMesh = intersects[0].object;
+        const skill = hitMesh.userData.data;
+        if (skill && skill.github) {
+          window.open(skill.github, '_blank');
+        }
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      const mobile = w <= 760 || w < h;
+      camera.fov = mobile ? 40 : 19.5;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    });
+
+    // --- INTRO ANIMATIONS VIA WEB ANIMATIONS API ---
+    // Wordmark: 1400ms after a 150ms delay: opacity 0 -> 1, translateY(4vh) -> 0, blur(14px) -> 0, with cubic-bezier(.2,.8,.2,1)
+    const wordmarkEl = document.getElementById('wordmarkContainer');
+    wordmarkEl.animate([
+      { opacity: 0, transform: 'translateY(4vh)', filter: 'blur(14px)' },
+      { opacity: 1, transform: 'translateY(0)', filter: 'blur(0px)' }
+    ], {
+      duration: 1400,
+      delay: 150,
+      easing: 'cubic-bezier(0.2, 0.8, 0.2, 1)',
+      fill: 'forwards'
+    });
+
+    // Nav: fades down from -1.2vh at 700ms (900ms long)
+    const navEl = document.getElementById('heroNav');
+    navEl.animate([
+      { opacity: 0, transform: 'translateY(-1.2vh)' },
+      { opacity: 1, transform: 'translateY(0)' }
+    ], {
+      duration: 900,
+      delay: 700,
+      easing: 'cubic-bezier(0.2, 0.8, 0.2, 1)',
+      fill: 'forwards'
+    });
+
+    // Link row: fades up from 1.2vh at 850ms (900ms long)
+    const linkRowEl = document.getElementById('linkRow');
+    linkRowEl.animate([
+      { opacity: 0, transform: 'translateY(1.2vh)' },
+      { opacity: 1, transform: 'translateY(0)' }
+    ], {
+      duration: 900,
+      delay: 850,
+      easing: 'cubic-bezier(0.2, 0.8, 0.2, 1)',
+      fill: 'forwards'
+    });
+
+    // --- ANIMATION LOOP WITH 4 SUB-STEP SPRINGS ---
+    const K = 70;
+    const C = 12.5;
+    const SUB_STEPS = 4;
+    let prevTime = performance.now();
+    const startTime = performance.now();
+    const tempVec = new THREE.Vector3();
+
+    function animate() {
+      requestAnimationFrame(animate);
+
+      const currentTime = performance.now();
+      const elapsedTotalSec = (currentTime - startTime) / 1000;
+      let dt = (currentTime - prevTime) / 1000;
+      prevTime = currentTime;
+      if (dt > 0.05) dt = 0.05; // Cap dt at .05s
+      const h = dt / SUB_STEPS;
+
+      // Virtual cursor sweeps along row on coarse pointer or after 4s idle
+      const isCoarse = window.matchMedia('(pointer: coarse)').matches;
+      const idle = isCoarse || !pointer.inside || (currentTime - pointer.lastMoveTime > 4000);
+      let effectivePx = pointer.x;
+      let effectivePy = pointer.y;
+
+      if (idle) {
+        // u = (sin(t·.45) + 1)/2 between book 29 and book 1 projected to screen
+        const u = (Math.sin(elapsedTotalSec * 0.45) + 1) / 2;
+        const bA = books[Math.min(29, books.length - 1)];
+        const bB = books[1];
+
+        tempVec.set(0, 0.1, 0);
+        bA.mesh.localToWorld(tempVec);
+        tempVec.project(camera);
+        const ax = (tempVec.x * 0.5 + 0.5) * window.innerWidth;
+        const ay = (-tempVec.y * 0.5 + 0.5) * window.innerHeight;
+
+        tempVec.set(0, 0.1, 0);
+        bB.mesh.localToWorld(tempVec);
+        tempVec.project(camera);
+        const bx = (tempVec.x * 0.5 + 0.5) * window.innerWidth;
+        const by = (-tempVec.y * 0.5 + 0.5) * window.innerHeight;
+
+        effectivePx = ax + (bx - ax) * u;
+        effectivePy = ay + (by - ay) * u;
+      }
+
+      // Projection influence radius: s = max(innerWidth, innerHeight)·.085
+      const s = Math.max(window.innerWidth, window.innerHeight) * 0.085;
+      const s2 = s * s;
+
+      let highestInfluence = 0;
+      let hoveredSkill = null;
+
+      // Compute targets
+      for (let i = 0; i < books.length; i++) {
+        const book = books[i];
+
+        // Intro stagger: start at y = -3 until t > .25 + (32 - i)·.035
+        const introThreshold = 0.25 + (TOTAL_BOOKS - i) * 0.035;
+        if (elapsedTotalSec < introThreshold) {
+          book.targetY = -3;
+          book.targetZ = 0;
+          continue;
+        }
+
+        // Project (0, .1, 0) of each book mesh to screen pixels (sx, sy)
+        tempVec.set(0, 0.1, 0);
+        book.mesh.localToWorld(tempVec);
+        tempVec.project(camera);
+        const sx = (tempVec.x * 0.5 + 0.5) * window.innerWidth;
+        const sy = (-tempVec.y * 0.5 + 0.5) * window.innerHeight;
+
+        // influence = exp(−((sx−x)² + ((sy−y)·.55)²) / s²)
+        const dx = sx - effectivePx;
+        const dy = (sy - effectivePy) * 0.55;
+        const dist2 = dx * dx + dy * dy;
+        const influence = Math.exp(-dist2 / s2);
+
+        if (influence > highestInfluence) {
+          highestInfluence = influence;
+          hoveredSkill = book.data;
+        }
+
+        // Target lift: .78·influence, or 0 when pointer left window or blurred
+        const lift = (pointer.inside || idle) ? 0.78 * influence : 0;
+        book.targetY = lift;
+        book.targetZ = lift * 0.35; // forward spring in local z
+      }
+
+      // If scrolling, ensure the focused book is smoothly elevated
+      const isScrollActive = performance.now() < scrollActiveUntil;
+      if (isScrollActive && books[scrollFocusedIndex]) {
+        books[scrollFocusedIndex].targetY = Math.max(books[scrollFocusedIndex].targetY, 0.78);
+        books[scrollFocusedIndex].targetZ = Math.max(books[scrollFocusedIndex].targetZ, 0.78 * 0.35);
+      }
+
+      // Integrate in 4 sub-steps per frame: v += ((target − y)·K − v·C)·h; y += v·h
+      for (let step = 0; step < SUB_STEPS; step++) {
+        for (let i = 0; i < books.length; i++) {
+          const b = books[i];
+
+          // Vertical spring
+          const fy = (b.targetY - b.y) * K - b.vy * C;
+          b.vy += fy * h;
+          b.y += b.vy * h;
+
+          // Forward spring
+          const fz = (b.targetZ - b.z) * K - b.vz * C;
+          b.vz += fz * h;
+          b.z += b.vz * h;
+        }
+      }
+
+      // Update positions and mesh lean: mesh.rotation.x = −v·.012
+      for (let i = 0; i < books.length; i++) {
+        const b = books[i];
+        b.mesh.position.y = b.y;
+        b.mesh.position.z = b.z;
+        b.mesh.rotation.x = -b.vy * 0.012;
+      }
+
+      // Interactive HUD update:
+      // STRICT REQUIREMENT: Only appear when cursor is being scrolled or hovered on the skill book!
+      // Virtual idle sweep will NEVER trigger the HUD.
+      let directHoveredSkill = null;
+      if (pointer.inside && !idle && mouseNDC.x > -2) {
+        raycaster.setFromCamera(mouseNDC, camera);
+        const intersects = raycaster.intersectObjects(raycastMeshes);
+        if (intersects.length > 0) {
+          directHoveredSkill = intersects[0].object.userData.data;
+        } else if (highestInfluence > 0.52 && pointer.y > window.innerHeight * 0.38) {
+          directHoveredSkill = hoveredSkill;
+        }
+      }
+
+      if (directHoveredSkill) {
+        updateHud(directHoveredSkill);
+      } else if (isScrollActive) {
+        // Keep currently active book visible while scrolling
+      } else {
+        // Not hovering on a book, and not actively scrolling: HIDE HUD
+        hudEl.classList.remove('active');
+        activeBook = null;
+      }
+
+      renderer.render(scene, camera);
+    }
+
+    animate();
+  </script>
+</body>
+</html>

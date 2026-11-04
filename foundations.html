@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Foundations — Skilla</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Libre+Caslon+Display&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #000000;
+      --card-bg: #09090b;
+      --card-border: rgba(255, 255, 255, 0.1);
+      --card-hover: rgba(255, 255, 255, 0.2);
+      --text: #ffffff;
+      --muted: rgba(255, 255, 255, 0.65);
+      --dim: rgba(255, 255, 255, 0.38);
+      --pill-bg: #ffffff;
+      --pill-text: #000000;
+      --accent: #b8a58a;
+      --serif: "Libre Caslon Display", Georgia, serif;
+      --sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono: "JetBrains Mono", monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Top Nav */
+    nav.site-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 72px;
+      padding: 0 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 100;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand-tile {
+      width: 28px;
+      height: 32px;
+      background: #b8a58a;
+      border-radius: 4px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+
+    .brand-tile::after {
+      content: "";
+      position: absolute;
+      left: 32%;
+      width: 24%;
+      height: 64%;
+      background: #16120d;
+      border-radius: 1px;
+    }
+
+    .brand-meta {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .brand-title {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+
+    .brand-sub {
+      font-family: var(--sans);
+      font-size: 9px;
+      color: rgba(255, 255, 255, 0.6);
+      letter-spacing: 0.04em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 500;
+      transition: color 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 0;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: #fff;
+    }
+
+    .nav-link svg {
+      width: 10px;
+      height: 10px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: -12px;
+      min-width: 180px;
+      background: #0e0e11;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      padding: 6px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(8px);
+      transition: opacity 0.2s, transform 0.2s;
+      box-shadow: 0 16px 36px rgba(0,0,0,0.7);
+    }
+
+    .nav-item:hover .dropdown-menu {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 8px 12px;
+      font-size: 12.5px;
+      color: var(--muted);
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .dropdown-menu a:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-actions .sign-in {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-actions .sign-in:hover {
+      color: #fff;
+    }
+
+    .nav-pill {
+      background: var(--pill-bg);
+      color: var(--pill-text);
+      border: none;
+      border-radius: 6px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .nav-pill:hover {
+      transform: translateY(-1px);
+    }
+
+    /* Main Container */
+    main.page-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 130px 5vw 80px;
+    }
+
+    .header-hero {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .category-tag {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #b8a58a;
+      margin-bottom: 12px;
+    }
+
+    .page-title {
+      font-family: var(--serif);
+      font-size: clamp(38px, 5.5vw, 68px);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .page-subtitle {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 680px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Grid Sections */
+    .section-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 50px;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 28px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .feature-card:hover {
+      border-color: var(--card-hover);
+      transform: translateY(-2px);
+    }
+
+    .feature-icon {
+      width: 36px;
+      height: 36px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      color: #b8a58a;
+      font-family: var(--mono);
+      font-weight: 700;
+    }
+
+    .feature-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .feature-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* Interactive Spec Viewer */
+    .spec-viewer {
+      background: #09090c;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 60px;
+    }
+
+    .spec-header {
+      background: #111116;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .spec-tabs {
+      display: flex;
+      gap: 8px;
+    }
+
+    .spec-tab {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .spec-tab.active {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+
+    .copy-code-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ddd;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 11.5px;
+      font-family: var(--mono);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .copy-code-btn:hover {
+      background: rgba(255, 255, 255, 0.18);
+      color: #fff;
+    }
+
+    pre.code-block {
+      padding: 24px;
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 1.65;
+      color: #e2e8f0;
+      overflow-x: auto;
+      background: #060608;
+    }
+
+    .code-comment { color: #64748b; }
+    .code-key { color: #93c5fd; }
+    .code-str { color: #86efac; }
+    .code-head { color: #f472b6; font-weight: 600; }
+
+    /* Architecture Flow */
+    .arch-container {
+      background: #09090c;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 36px;
+      margin-bottom: 60px;
+    }
+
+    .arch-title {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .arch-desc {
+      font-size: 14.5px;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .arch-flow {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .arch-node {
+      flex: 1;
+      min-width: 200px;
+      background: #121217;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      padding: 18px;
+      text-align: center;
+    }
+
+    .arch-node-title {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: #b8a58a;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .arch-node-content {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .arch-arrow {
+      color: rgba(255, 255, 255, 0.3);
+      font-size: 20px;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #fff;
+      color: #000;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s;
+      z-index: 1000;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    @media (max-width: 760px) {
+      .nav-links, .nav-actions .sign-in { display: none; }
+      .arch-arrow { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Nav -->
+  <nav class="site-nav">
+    <a href="index.html" class="nav-brand">
+      <div class="brand-tile"></div>
+      <div class="brand-meta">
+        <span class="brand-title">Skilla</span>
+        <span class="brand-sub">ai agent playbooks</span>
+      </div>
+    </a>
+
+    <div class="nav-links">
+      <div class="nav-item">
+        <a href="skills.html" class="nav-link">Skills 
+          <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </a>
+        <div class="dropdown-menu">
+          <a href="skills.html?cat=all">All Skills</a>
+          <a href="skills.html?cat=design">Frontend & Design</a>
+          <a href="skills.html?cat=engineering">Design Engineering</a>
+          <a href="skills.html?cat=audit">Audits & Hardening</a>
+          <a href="skills.html?cat=frameworks">Frameworks & Next.js</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="foundations.html" class="nav-link active">Foundations</a>
+      </div>
+      <div class="nav-item">
+        <a href="workflows.html" class="nav-link">Workflows</a>
+      </div>
+      <div class="nav-item">
+        <a href="more.html" class="nav-link">More 
+          <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </a>
+        <div class="dropdown-menu">
+          <a href="more.html#mcp">MCP Servers</a>
+          <a href="more.html#guidelines">Playbook Guidelines</a>
+          <a href="more.html#faq">FAQ & Documentation</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-actions">
+      <a href="submit.html" class="sign-in">Submit Skill</a>
+      <a href="explore.html" class="nav-pill">Explore 2,900+ Skills ↗</a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="page-container">
+    <div class="header-hero">
+      <span class="category-tag">SYSTEM ARCHITECTURE // SPECIFICATION</span>
+      <h1 class="page-title">Skill Foundations</h1>
+      <p class="page-subtitle">The standard protocol for authoring deterministic, anti-generic AI agent playbooks that execute seamlessly across Antigravity, Claude Code, and Codex runtimes.</p>
+    </div>
+
+    <!-- Core Pillars -->
+    <div class="section-grid">
+      <div class="feature-card">
+        <div class="feature-icon">01</div>
+        <h3 class="feature-title">Standardized Frontmatter</h3>
+        <p class="feature-desc">Every playbook starts with strict YAML frontmatter defining its invocation trigger, description, dependencies, and capability tags for agentic discovery.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">02</div>
+        <h3 class="feature-title">Context Budgeting</h3>
+        <p class="feature-desc">Playbooks are optimized for sub-1,500 token footprints, utilizing progressive disclosure and lazy references rather than context-polluting system prompts.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">03</div>
+        <h3 class="feature-title">Deterministic Tool Calls</h3>
+        <p class="feature-desc">Explicit instructions and schemas prevent hallucinated API arguments, binding directly into Model Context Protocol (MCP) servers and shell harnesses.</p>
+      </div>
+    </div>
+
+    <!-- Interactive Spec Viewer -->
+    <div class="spec-viewer">
+      <div class="spec-header">
+        <div class="spec-tabs">
+          <button class="spec-tab active" data-tab="skill">SKILL.md Spec</button>
+          <button class="spec-tab" data-tab="config">antigravity.json</button>
+          <button class="spec-tab" data-tab="mcp">mcp-server.json</button>
+        </div>
+        <button class="copy-code-btn" id="copyCodeBtn">Copy Spec</button>
+      </div>
+      <pre class="code-block" id="specCodeBlock"><code><span class="code-comment">---</span>
+<span class="code-key">name</span>: <span class="code-str">impeccable-design-audit</span>
+<span class="code-key">description</span>: <span class="code-str">"Audit frontend code for typographic hierarchy, layout bugs, and anti-generic visual polish."</span>
+<span class="code-key">version</span>: <span class="code-str">"1.4.0"</span>
+<span class="code-key">author</span>: <span class="code-str">"@pbakaus"</span>
+<span class="code-key">compatibility</span>: [<span class="code-str">"claude-code"</span>, <span class="code-str">"antigravity"</span>, <span class="code-str">"cursor"</span>]
+<span class="code-comment">---</span>
+
+<span class="code-head"># Operational Philosophy</span>
+When auditing or generating interfaces, avoid generic corporate AI templates:
+- Use intentional, opinionated typography (pairing distinctive serif with high-legibility sans).
+- Ensure high contrast ratios and purposeful negative space.
+- Sub-step all fluid physics springs for continuous 60-120fps rendering.
+
+<span class="code-head">## Step-by-Step Execution</span>
+1. Inspect DOM structure and inspect element hierarchy.
+2. Verify token budgets and font rendering metrics.
+3. Validate interactive hover, active, and focus states.
+4. Run automated test pass and emit actionable diffs.</code></pre>
+    </div>
+
+    <!-- Architecture Flow -->
+    <div class="arch-container">
+      <h3 class="arch-title">Lifecycle of an Agent Skill Execution</h3>
+      <p class="arch-desc">How autonomous agents dynamically discover, load, and execute a SKILL.md playbook at runtime:</p>
+
+      <div class="arch-flow">
+        <div class="arch-node">
+          <div class="arch-node-title">Phase 01</div>
+          <div class="arch-node-content">Semantic Matching & Discovery</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node">
+          <div class="arch-node-title">Phase 02</div>
+          <div class="arch-node-content">Just-In-Time Context Injection</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node">
+          <div class="arch-node-title">Phase 03</div>
+          <div class="arch-node-content">MCP Tool Invocation & Verification</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node">
+          <div class="arch-node-title">Phase 04</div>
+          <div class="arch-node-content">Production Artifact Generation</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="toast" id="toast">Copied to clipboard</div>
+
+  <script>
+    const tabs = {
+      skill: `---
+name: impeccable-design-audit
+description: "Audit frontend code for typographic hierarchy, layout bugs, and anti-generic visual polish."
+version: "1.4.0"
+author: "@pbakaus"
+compatibility: ["claude-code", "antigravity", "cursor"]
+---
+
+# Operational Philosophy
+When auditing or generating interfaces, avoid generic corporate AI templates:
+- Use intentional, opinionated typography (pairing distinctive serif with high-legibility sans).
+- Ensure high contrast ratios and purposeful negative space.
+- Sub-step all fluid physics springs for continuous 60-120fps rendering.
+
+## Step-by-Step Execution
+1. Inspect DOM structure and inspect element hierarchy.
+2. Verify token budgets and font rendering metrics.
+3. Validate interactive hover, active, and focus states.
+4. Run automated test pass and emit actionable diffs.`,
+
+      config: `{
+  "customizations": {
+    "skills": [
+      "https://github.com/pbakaus/impeccable",
+      "https://github.com/Leonxlnx/taste-skill",
+      "https://github.com/vercel-labs/agent-skills"
+    ],
+    "autoload": true,
+    "environment": {
+      "NODE_ENV": "production",
+      "STRICT_AUDIT": "true"
+    }
+  }
+}`,
+
+      mcp: `{
+  "mcpServers": {
+    "skilla-registry": {
+      "command": "npx",
+      "args": ["-y", "@skilla/mcp-server@latest"],
+      "env": {
+        "SKILLA_API_KEY": "sk_live_playbooks"
+      }
+    }
+  }
+}`
+    };
+
+    const tabBtns = document.querySelectorAll('.spec-tab');
+    const codeBlock = document.getElementById('specCodeBlock');
+    const copyBtn = document.getElementById('copyCodeBtn');
+    const toast = document.getElementById('toast');
+
+    let currentTab = 'skill';
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentTab = btn.getAttribute('data-tab');
+        codeBlock.textContent = tabs[currentTab];
+      });
+    });
+
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(tabs[currentTab]).then(() => {
+        toast.textContent = "Copied to clipboard";
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2000);
+      });
+    });
+  </script>
+</body>
+</html>
